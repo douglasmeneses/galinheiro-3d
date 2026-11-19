@@ -129,7 +129,7 @@ Só da v1, e baratos:
 - Areia
 - Cal hidratada para caiar
 
-**Não verifiquei os preços.**
+**Custo estimado (anúncios online de 19/11/2026, faixas):** obra da v1 ≈ R$ 420–760; com as 5 frangas ≈ R$ 520–935, sem ração. Tabela item a item em `guia-montagem-v1.html#comece-aqui`. Vários itens pequenos são estimativa sem anúncio conferido: pedir orçamento em loja de João Pessoa.
 
 ## 8. Passagem da v1 para a v2
 
