@@ -1,4 +1,6 @@
-# Contexto Completo Consolidado — Projeto Galinheiro & Quintal (João Pessoa/PB)
+# v2 — Contexto Completo Consolidado — Projeto Galinheiro & Quintal (João Pessoa/PB)
+
+> **Versões:** **v1** = só o Canil 1 com 5 frangas, mínimo de obra (`V1-CANIL-1.md`). **v2** = este documento, o projeto completo. A v1 é feita para virar v2 sem desfazer nada.
 
 > **Documento mestre (consolidado em 18/11/2026; revisado em 19/11: mureta de volta, telhado a 2,10 m, testeira, tela soldada nos canis):** reúne todas as decisões técnicas, medidas reais tiradas no local, aprendizados de pesquisa no YouTube, resultados da auditoria técnica cega e mapa dos arquivos deste diretório, para que qualquer agente (Antigravity, Claude, etc.) ou o usuário entenda o projeto inteiro sem precisar ler múltiplos arquivos.
 
@@ -24,17 +26,17 @@
 
 ## 2. Evolução e Decisão Final do Projeto (Aprovada e Auditada em 18/11)
 
-O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 aves com solário em L) → **versão final consolidada**:
+O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 aves com solário em L) → **v2 (versão final consolidada)**. A `v1-a` antiga não é a v1 atual (`V1-CANIL-1.md`):
 
 - **Lotação recomendada:** **8 a 10 poedeiras comerciais** (Lohmann, Isa Brown ou Embrapa 051 — **só fêmeas**; caipira comum bota menos e come mais). *Obs.: cabem até 12 no poleiro, mas 8–10 vivem com mais conforto no solário de `9 m²`.*
 - **Formato do galinheiro:** **Retângulo limpo `3,00 × 4,00 m` (SEM braço em L):**
   - `1,00 m` canis + `1,00 m` patamar (`3 m²`) + **`2,00 m` terra (`6 m²`)** → **Solário total = `9,00 m²`**.
   - **Por que sem L:** deixa a **tampa com alças** e a **goiabeira nova** 100% livres do lado de fora, economiza estacas/mureta/tela e elimina emendas de telhado em degrau.
 - **Divisão dos Canis:**
-  - **Canil 1 (esquerda, `1,30 × 1,00 m`) = Dormitório:** 2 poleiros removíveis de `1,30 m` a `45 cm` de altura (`30 cm` e `65 cm` da parede do fundo), maravalha grossa (`5–8 cm`), tela `1/2"` na grade + **lona corta-vento apenas na metade inferior (`60 cm`)**.
+  - **Canil 1 (esquerda, `1,30 × 1,00 m`) = Dormitório:** 2 poleiros removíveis de `1,30 m` (`4–5 cm`, madeira **não tratada**) a `45 cm` de altura (`30 cm` e `65 cm` da parede do fundo), **soltos sobre suportes** parafusados na parede (sem parafuso no próprio poleiro, para saírem inteiros para escaldar e tomar sol), maravalha grossa (`5–8 cm`), tela `1/2"` na grade + **lona corta-vento apenas na metade inferior (`60 cm`)**.
   - **Canil 2 (direita, `1,30 × 1,00 m`) = Dividido 50% / 50% na vertical (`X_DIV = 2,10 m`):**
     - **Metade direita (`0,65 m`):** fechada do piso ao teto com sarrafo + tela `1/2"` para guardar **pilhas de cerâmicas de piso e parede** direto no chão (pesadas demais para prateleira).
-    - **Metade esquerda (`0,65 m`):** **3 ninhos (`31 × 35 × 32 cm`) em 2 andares** (2 embaixo a `15 cm` do piso + 1 em cima), com borda de `10 cm`, teto inclinado contra poleiro e 1 ovo falso cada.
+    - **Metade esquerda (`0,65 m`):** **3 baldes de 20 L deitados** (plástico sem emenda, com borda na boca, fáceis de lavar com mangueira): **2 embaixo, lado a lado, a `15 cm` do piso, e 1 em cima, sobre uma tábua, com uma tábua inclinada por cima** (contra poleiro), e 1 ovo falso cada.
 - **Cobertura (`2,10 m` fundo → `1,75 m` beiral, caimento ~19%) e fim do contrapeso:**
   - **Inclinação mínima da Tropical 5 mm: 10° (18%)** (página oficial da Eternit, conferida em 19/11). A versão anterior (`2,05 m`, 16,7%) ficava abaixo disso. **Regras práticas da Eternit para a Tropical 5 mm (PDF oficial, lido em 19/11):** telha de 1,83 m pede **2 apoios** (vão livre máx. `1,69 m`); balanço longitudinal sem calha **mín. `25` / máx. `40 cm`**, medido do furo de fixação; balanço lateral **máx. `10 cm`**; fixar nos apoios, na **2ª e 5ª crista**, parafuso galvanizado `8 mm × 110 mm` + arruela metálica + arruela de vedação, sem apertar demais; furo de **`10 mm` na telha** (a `5 cm` ou mais da borda) e **`7,5 mm` na madeira**; recobrimento lateral `1/4` de onda (`5 cm`). O projeto atende: apoios no fundo e na testeira (vão `1,40 m`), balanço da frente `~35 cm`, telhas centralizadas com `10 cm` de cada lado. PDF: `https://www.eternit.com.br/portal/Principal/arquivos/listas/65/ETE12023_Atualiza%C3%A7%C3%A3o%20Regras%20Praticas%20Telhas%20de%20fibrocimento_Tropical_Revis%C3%A3o%20MKT%20e%20SAC.pdf`.
   - Antes, as telhas ficavam soltas com tábuas pesadas em cima como contrapeso (esconderijo de ratos/escorpiões).
@@ -66,6 +68,15 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
 - **Enchente:** o piso dos canis está a `~12–13 cm` da terra, então **água acima de `~12 cm` entra nos canis**. Em previsão de chuva forte: tampar o dreno da mureta por fora, subir ração e água acima de `35 cm`, tirar ovos dos ninhos de baixo; as aves ficam no poleiro (`~57 cm` da terra); depois, trocar a maravalha molhada. Falta saber com que frequência alaga e até que altura. Se for frequente, a saída é subir o piso do Canil 1 com contrapiso.
 - **Postura / Luz:** João Pessoa tem ~12 h de dia; se a postura cair no futuro, um LED fraco com timer no Canil 1 de madrugada completa 14–16 h.
 - **Consumo e produção (referência):** ~120 g ração/ave/dia; ~2× peso em água; franga de 30 dias come ~7 kg até começar a botar (~3,5 meses, ou seja, postura por volta de ~135 dias de vida); 12 aves produzem ~24 dúzias/mês (8–10 aves ~16–20 dúzias/mês).
+- **Pixilinga (ácaros e piolhos de galinha):** o ácaro vermelho passa o dia escondido em fresta de madeira, emenda de ninho e trinca de parede, e sobe nas aves à noite.
+  - **Sem esconderijo:** caiar (cal hidratada com água) as paredes internas dos canis e vigas antes de as aves entrarem (também tira o limo verde); tirar a tralha e tábuas velhas soltas de perto dos canis.
+  - **Poleiro removível:** ficam soltos, apoiados em suportes parafusados na parede, sem parafuso no próprio poleiro — assim saem inteiros para escaldar e tomar sol.
+  - **Ninho de balde:** 3 baldes de 20 L deitados, de plástico, sem emenda, com borda na boca — lava com mangueira.
+  - **Banho de terra:** areia e cinza de lenha (é o que elas fazem por conta própria contra parasita).
+  - **Pardal fora:** comedouro protegido/recolhido e tela no solário inteiro (pássaro de fora traz ácaro).
+  - **Ave nova:** comprar de fornecedor que vacina; antes de entrar no bando, olhar embaixo das asas e em volta da cloaca; manter 2–3 semanas separada.
+  - **Conferência 1× por mês, à noite:** passar papel branco ou lenço embaixo do poleiro e nas emendas; pontinhos vermelhos ou cinza que se mexem são ácaro.
+  - **Se aparecer:** trocar toda a cama, escaldar os poleiros e os baldes, caiar de novo e tratar as aves com produto para aves da casa agropecuária, seguindo a bula. **Não verifiquei nenhum produto ou dose** — pergunte lá ou a um veterinário.
 
 ---
 
@@ -84,10 +95,10 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
 Furadeira, broca `7,5 mm` madeira, brocas vídea `8 mm` e `10 mm`, serrote, esquadro, trena, prumo, nível de bolha, linha de pedreiro, colher de pedreiro, enxada, cavadeira, alicate/torquês, chave de boca ou parafusadeira, luvas e máscara PFF2.
 
 ### Materiais (iguais à lista do `guia-montagem.html`, revisada em 19/11)
-- **Limpeza/Vedação:** 2 L água sanitária, 4 kg cal hidratada, 1 rolo de fita aluminizada autoadesiva `10–15 cm × 3 m` (ou selante PU).
+- **Limpeza/Vedação:** 2 L água sanitária, 4 kg cal hidratada (caiar paredes e vigas contra ácaro/pixilinga), 1 rolo de fita aluminizada autoadesiva `10–15 cm × 3 m` (ou selante PU).
 - **Telhado:** 3 telhas Eternit Tropical 5 mm `1,10 × 1,80 m` (**já tem**), 15–18 parafusos `5/16" × 110 mm` c/ borracha EPDM, **7 caibros `5 × 5 cm × 3,00 m`** (2 terças, 3 caibros, 1 testeira, 1 para os 3 pontaletes do fundo; sobras = 3 pontaletes da frente), 8 cantoneiras em L + 12 buchas `10 mm` e parafusos.
-- **Mureta/Solário:** 35 tijolos 8 furos, 2 sacos cimento 50 kg, 6 latas (18 L) areia média, 4 latas brita 1, 30 cm cano PVC `40 mm`, 3 estacas eucalipto tratado `Ø 8–10 cm × 2,20 m` + 2 estacas `Ø 5–7 cm × 2,20 m`, 7 sarrafos `5 × 2,5 cm × 3,00 m`, 15 m tela hexagonal `1" × 1,50 m`, 20 m arame liso nº 14, 1 pct grampos `3/4"`, 1 rolo arame recozido nº 18, 1 kg pregos (`17×21` e `18×27`), 4 buchas `8 mm` (poleiros), kit porta (2 dobradiças + ferrolho + cadeado/mosquetão). Sombrite 50% opcional.
-- **Canis/Manejo:** **10 m tela soldada galvanizada `1/2"`** (`1,00 m` alt.), lona ou saco de ráfia `1,30 × 0,60 m`, 2 poleiros `1,30 m` (`4–5 cm`), tábuas p/ 3 ninhos, 2 sacos grandes maravalha grossa, 1 comedouro caseiro + 1 bebedouro 5 L.
+- **Mureta/Solário:** 35 tijolos 8 furos, 2 sacos cimento 50 kg, 6 latas (18 L) areia média, 4 latas brita 1, 30 cm cano PVC `40 mm`, 3 estacas eucalipto tratado `Ø 8–10 cm × 2,20 m` + 2 estacas `Ø 5–7 cm × 2,20 m`, 7 sarrafos `5 × 2,5 cm × 3,00 m`, 15 m tela hexagonal `1" × 1,50 m`, 20 m arame liso nº 14, 1 pct grampos `3/4"`, 1 rolo arame recozido nº 18, 1 kg pregos (`17×21` e `18×27`), suportes de poleiro + buchas `8 mm`, kit porta (2 dobradiças + ferrolho + cadeado/mosquetão). Sombrite 50% opcional.
+- **Canis/Manejo:** **10 m tela soldada galvanizada `1/2"`** (`1,00 m` alt.), lona ou saco de ráfia `1,30 × 0,60 m`, 2 poleiros `1,30 m` (`4–5 cm`, madeira não tratada, soltos sobre suportes), **3 baldes de 20 L** (ninhos) + tábuas/sobras (apoio e cobertura inclinada do balde de cima), 2 sacos grandes maravalha grossa, 1 comedouro caseiro + 1 bebedouro 5 L.
 - **Ferramentas a mais por causa da mureta:** colher de pedreiro e cavadeira articulada (comprar ou emprestar).
 
 ### Fornecedores de Eucalipto Tratado (Grande João Pessoa/PB — ref. 18/11)
@@ -118,4 +129,5 @@ Publicado em `https://douglasmeneses.github.io/galinheiro-3d/` (repo público).
   - `CONTEXTO-COMPLETO-PROJETO.md`: **este arquivo**.
   - `PROJETO-HORTAS.md`: as duas hortas.
   - `fotos-18-11/`: 14 fotos originais do quintal e `LEIA.md`.
+- **`V1-CANIL-1.md`:** v1, só o Canil 1 com 5 frangas, para começar já.
 - **Legado (`legado/`):** versões anteriores à revisão final (`v1*`, `galinheiro-12*`, `PROJETO-12-GALINHAS.md`, `PROJETO-V1-E-V2.md`, `CONTEXTO-E-DECISOES.md`, `GUIA-CRIACAO-E-GALINHEIRO.md`, `PESQUISA-YOUTUBE-POEDEIRAS-BAIXO-CUSTO.md`, `shot.mjs`). Os números de lá **não valem** mais.

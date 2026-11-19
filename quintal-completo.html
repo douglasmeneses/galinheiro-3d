@@ -22,6 +22,8 @@
   .specs span:nth-child(odd){color:var(--mut)}
   .lbl{font-size:10.5px;font-weight:600;background:rgba(15,23,42,.82);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);color:#f8fafc;padding:3px 8px;border-radius:5px;white-space:nowrap;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.35)}
   .lbl.horta{border-left:3px solid var(--acc)}
+  .lbl.med{font-size:12px;font-weight:700;background:rgba(10,15,25,.95);color:#fff;border:1px solid rgba(250,204,21,.6);border-left:4px solid #facc15;padding:4px 9px}
+  .lbl.ref{font-size:12px;font-weight:700;background:rgba(10,15,25,.95);color:#fff;border:1px solid rgba(56,189,248,.6);border-left:4px solid #38bdf8;padding:4px 9px}
 </style>
 <script type="importmap">
 {"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
@@ -51,6 +53,13 @@
     <button data-etapa="2B">2B · Tela/Porta</button>
     <button data-etapa="3">3 · Interior</button>
     <button data-etapa="4" class="active" style="grid-column:span 2">4 · Obra Completa + Aves</button>
+    <button data-versao="v1" style="grid-column:span 2">v1 · Só Canil 1</button>
+    <button data-versao="medidas" style="grid-column:span 2">📏 Medidas</button>
+    <div id="medBtns" style="display:none;grid-column:span 2;gap:4px;grid-template-columns:1fr 1fr 1fr">
+      <button data-view="medidas-frente">M1 · M4</button>
+      <button data-view="medidas-vaos">M2</button>
+      <button data-view="medidas-muro">M3</button>
+    </div>
   </div>
   <h2>Camadas</h2>
   <label><input type="checkbox" id="cMangueira" checked> Árvore principal (Mangueira)</label>
@@ -353,7 +362,8 @@ const G = { obra: new THREE.Group(), telhado: new THREE.Group(), telas: new THRE
 Object.values(G).forEach(g => scene.add(g));
 const E = {
   e0: new THREE.Group(), e1a: new THREE.Group(), e1b: new THREE.Group(),
-  e2a: new THREE.Group(), e2b: new THREE.Group(), e3: new THREE.Group(), e4: new THREE.Group()
+  e2a: new THREE.Group(), e2b: new THREE.Group(), e3: new THREE.Group(), e4: new THREE.Group(),
+  v1: new THREE.Group(), medidas: new THREE.Group()
 };
 Object.values(E).forEach(g => G.obra.add(g));
 const ORDEM_ETAPAS = ['0', '1A', '1B', '2A', '2B', '3', '4'];
@@ -578,21 +588,39 @@ caixa(X_DIV - 0.015, X_DIV + 0.015, Y_PISO, Y_TETO_CANIL, Z_CANIL - 0.05, Z_CANI
 tela('fina', [X_DIV, Y_PISO + 0.03, 0.04], [X_DIV, Y_TETO_CANIL - 0.13, Z_CANIL - 0.05], E.e3);
 
 const Y_POLEIRO = Y_PISO + 0.45, Z_POLEIROS = [0.30, 0.65];
-for (const z of Z_POLEIROS) barra(0.022, [C1[0] + 0.01, Y_POLEIRO, z], [C1[1] - 0.01, Y_POLEIRO, z], M.madeira, E.e3);
+function poleiroComSuportes(z, pai) {
+  caixa(C1[0] + 0.01, C1[0] + 0.06, Y_POLEIRO - 0.068, Y_POLEIRO - 0.018, z - 0.025, z + 0.025, M.madeira, pai);
+  caixa(C1[1] - 0.05, C1[1], Y_POLEIRO - 0.068, Y_POLEIRO - 0.018, z - 0.025, z + 0.025, M.madeira, pai);
+  barra(0.022, [C1[0] + 0.01, Y_POLEIRO, z], [C1[1] - 0.01, Y_POLEIRO, z], M.madeira, pai);
+}
+for (const z of Z_POLEIROS) poleiroComSuportes(z, E.e3);
+
+const matBaldeNinho = new THREE.MeshStandardMaterial({ color: 0x3b6e8c, roughness: 0.42, side: THREE.DoubleSide });
+function ninhoBalde(xc, yBot, z0, pai) {
+  const R = 0.15, L = 0.35, yc = yBot + R;
+  const corpo = new THREE.Mesh(new THREE.CylinderGeometry(R, R * 0.90, L, 24, 1, true), matBaldeNinho);
+  corpo.rotation.x = Math.PI / 2; corpo.position.set(xc, yc, z0 + L / 2);
+  corpo.castShadow = corpo.receiveShadow = true; pai.add(corpo);
+  const fundo = new THREE.Mesh(new THREE.CircleGeometry(R * 0.90, 24), matBaldeNinho);
+  fundo.position.set(xc, yc, z0); fundo.castShadow = fundo.receiveShadow = true; pai.add(fundo);
+  const borda = new THREE.Mesh(new THREE.CircleGeometry(R, 24, Math.PI * 1.12, Math.PI * 0.76), matBaldeNinho);
+  borda.position.set(xc, yc, z0 + L - 0.005); borda.castShadow = borda.receiveShadow = true; pai.add(borda);
+  const aro = new THREE.Mesh(new THREE.TorusGeometry(R, 0.011, 8, 24), matBaldeNinho);
+  aro.position.set(xc, yc, z0 + L); aro.castShadow = true; pai.add(aro);
+  caixa(xc - 0.12, xc - 0.09, yBot, yBot + 0.04, z0 + 0.04, z0 + L - 0.04, M.madeira, pai);
+  caixa(xc + 0.09, xc + 0.12, yBot, yBot + 0.04, z0 + 0.04, z0 + L - 0.04, M.madeira, pai);
+  caixa(xc - 0.09, xc + 0.09, yBot + 0.015, yBot + 0.055, z0 + 0.04, z0 + L - 0.03, M.palha, pai);
+}
 
 const Y_NINHO = Y_PISO + 0.15, H_NINHO = 0.32, W_NINHO = 0.31;
-const NINHOS = [[1.46, 0, false], [1.78, 0, true], [1.46, 1, true]];
-for (const [x0, andar, comTeto] of NINHOS) {
-  const x1 = x0 + W_NINHO, z1 = 0.36, y0 = Y_NINHO + andar * (H_NINHO + 0.02);
-  caixa(x0, x1, y0 - 0.02, y0, 0.01, z1, M.madeira, E.e3);
-  caixa(x0, x0 + 0.015, y0, y0 + H_NINHO, 0.01, z1, M.madeira, E.e3);
-  caixa(x1 - 0.015, x1, y0, y0 + H_NINHO, 0.01, z1, M.madeira, E.e3);
-  caixa(x0, x1, y0, y0 + 0.10, z1 - 0.015, z1, M.madeira, E.e3);
-  caixa(x0 + 0.02, x1 - 0.02, y0, y0 + 0.05, 0.02, z1 - 0.02, M.palha, E.e3);
-  if (comTeto) {
-    const teto = caixa(x0, x1, -0.008, 0.008, -0.18, 0.18, M.madeira, E.e3);
-    teto.position.set((x0 + x1) / 2, y0 + H_NINHO + 0.04, z1 / 2); teto.rotation.x = Math.atan2(0.08, z1);
-  }
+const NINHOS = [[1.46, 0], [1.78, 0], [1.46, 1]];
+caixa(1.46, 2.09, Y_NINHO - 0.02, Y_NINHO, 0.02, 0.37, M.madeira, E.e3);
+caixa(1.46, 1.80, Y_NINHO + 0.31, Y_NINHO + 0.33, 0.02, 0.37, M.madeira, E.e3);
+for (const [x0, andar] of NINHOS) ninhoBalde(x0 + W_NINHO / 2, Y_NINHO + andar * 0.33, 0.02, E.e3);
+{
+  const teto = caixa(-0.18, 0.18, -0.008, 0.008, -0.19, 0.19, M.madeira, E.e3);
+  teto.position.set(1.46 + W_NINHO / 2, Y_NINHO + 0.67, 0.20);
+  teto.rotation.x = Math.atan2(0.09, 0.38);
 }
 for (let i = 0; i < 6; i++) caixa(2.20, 2.65, Y_PISO + i * 0.045, Y_PISO + i * 0.045 + 0.04, 0.08, 0.53, i % 2 ? M.cimento : M.madeira, E.e3);
 for (let i = 0; i < 5; i++) caixa(2.22, 2.67, Y_PISO + i * 0.04, Y_PISO + i * 0.04 + 0.035, 0.58, 0.88, i % 2 ? M.pedra : M.madeira, E.e3);
@@ -698,13 +726,15 @@ for (const x of [0.50, 1.00, 1.50, 2.00, 2.50]) barra(0.005, [x, TOPO, Z_BEIRAL]
   tela('hex', [0, S, S], [0, h - S, w - S], p); E.e2b.add(p);
 }
 
-// 10 aves (lotação recomendada 8–10)
-const aves = Array.from({ length: 10 }, () => {
+function criarAve(pai) {
   const g = new THREE.Group(), m = new THREE.MeshStandardMaterial({ color: 0x9c5a2d, roughness: 0.8 });
   const c = new THREE.Mesh(new THREE.CapsuleGeometry(0.08, 0.14, 6, 10), m); c.rotation.z = Math.PI / 2; c.position.y = 0.17; g.add(c);
   const cab = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), m); cab.position.set(0.11, 0.25, 0); g.add(cab);
-  g.traverse(o => { if (o.isMesh) o.castShadow = true; }); G.aves.add(g); return g;
-});
+  g.traverse(o => { if (o.isMesh) o.castShadow = true; }); pai.add(g); return g;
+}
+
+// 10 aves (lotação recomendada 8–10)
+const aves = Array.from({ length: 10 }, () => criarAve(G.aves));
 const DIA = [
   [0.55, 2.35, 0, -1.1], [1.45, 2.55, 0, 2.3], [0.75, 3.15, 0, 0.4], [1.35, Z_FRENTE - 0.55, 0, 2.1],
   [2.15, 2.65, 0, -0.8], [2.55, Z_FRENTE - 0.55, 0, 3.0], [2.45, 3.15, 0, 1.2],
@@ -714,13 +744,234 @@ const DIA = [
 ];
 const NOITE = Array.from({ length: 10 }, (_, i) => [C1[0] + 0.13 + (i % 5) * 0.21, Z_POLEIROS[i < 5 ? 0 : 1], Y_POLEIRO + 0.02, -Math.PI / 2]);
 
+// Telha velha COMO ESTÁ HOJE (altura real não medida: M1/M2): apoiada na viga, pouco acima das paredes de 1,20 m.
+const Y_TV_FUNDO = 1.32, Y_TV_FRENTE = 1.24;
+function criarTelhaVelha(pai, opacidade = 1, cor = 0xc9cfd5) {
+  const dz = 1.15, dy = Y_TV_FUNDO - Y_TV_FRENTE, comp = Math.hypot(dz, dy);
+  const geo = new THREE.PlaneGeometry(X_EXT + 0.06, comp, 48, 1);
+  const pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) pos.setZ(i, Math.sin(pos.getX(i) * 35) * 0.02);
+  geo.computeVertexNormals();
+  const mat = opacidade < 1 || cor !== 0xc9cfd5 ? new THREE.MeshStandardMaterial({ color: cor, roughness: 0.86, side: THREE.DoubleSide, transparent: opacidade < 1, opacity: opacidade }) : M.fibro;
+  const tv = new THREE.Mesh(geo, mat);
+  tv.rotation.x = -Math.PI / 2 + Math.atan2(dy, dz);
+  tv.position.set(X_EXT / 2, (Y_TV_FUNDO + Y_TV_FRENTE) / 2 + 0.02, dz / 2);
+  tv.castShadow = tv.receiveShadow = true; pai.add(tv);
+  return { dz, dy, yEm: z => Y_TV_FUNDO - dy * (z / dz) };
+}
+
+// Versão v1: Canil 1 + solário 1,40 × 2,00 m (5 frangas, sem obra da v2)
+{
+  const X_SOL_V1 = 1.40, Z_SOL_V1 = 3.00, Y_SOL_V1 = 1.55, SV = 0.05, EV = 0.025;
+  // Telha velha simples sobre os canis + tiras de tela 1/2" nos vãos acima das paredes do Canil 1
+  const { yEm } = criarTelhaVelha(E.v1);
+  const yFrente = yEm(1.00);
+  tela('fina', [0.02, Y_TETO_CANIL, 1.00], [C1[1], yFrente, 1.00], E.v1);
+  tela('fina', [0.02, Y_TETO_CANIL, 0.02], [C1[1], Y_TV_FUNDO, 0.02], E.v1);
+  telaTrapezio('fina', C1[1], 0.02, 1.00, Y_TETO_CANIL, Y_TV_FUNDO, yFrente, E.v1);
+  telaTrapezio('fina', 0.01, 0.02, 1.00, Y_TETO_CANIL, Y_TV_FUNDO, yFrente, E.v1);
+
+  // Teto do solário inclinado: de 1,55 m na frente (z = 3,00) até o sarrafo logo abaixo do beiral (z = 1,00)
+  const Y_SOL_TRAS = yFrente - 0.01;
+  const ySol = z => Y_SOL_TRAS + (Y_SOL_V1 - Y_SOL_TRAS) * ((z - Z_CANIL) / (Z_SOL_V1 - Z_CANIL));
+  // 2 estacas finas (Ø 6 cm) em (1,40; 2,05) e (1,40; 3,00)
+  for (const z of [2.05, Z_SOL_V1]) barra(0.03, [X_SOL_V1, 0, z], [X_SOL_V1, ySol(z), z], M.eucalipto, E.v1);
+  // Sarrafos 5 × 2,5 cm: frente, laterais inclinadas, vertical em (0; 3,00) e horizontal na alvenaria logo abaixo do beiral
+  caixa(0, X_SOL_V1, Y_SOL_V1 - SV, Y_SOL_V1, Z_SOL_V1 - EV, Z_SOL_V1, M.madeira, E.v1);
+  const dzSol = Z_SOL_V1 - Z_CANIL, dySol = Y_SOL_V1 - Y_SOL_TRAS, compSol = Math.hypot(dzSol, dySol);
+  const angSol = -Math.atan2(dySol, dzSol);
+  for (const x of [EV / 2, X_SOL_V1 - EV / 2]) {
+    const sLat = caixa(x - EV / 2, x + EV / 2, -SV / 2, SV / 2, -compSol / 2, compSol / 2, M.madeira, E.v1);
+    sLat.position.set(x, (Y_SOL_TRAS + Y_SOL_V1) / 2 - SV / 2, (Z_CANIL + Z_SOL_V1) / 2);
+    sLat.rotation.x = angSol;
+  }
+  caixa(0, EV, 0, Y_SOL_V1, Z_SOL_V1 - SV, Z_SOL_V1, M.madeira, E.v1);
+  caixa(0, X_SOL_V1, Y_SOL_TRAS - SV, Y_SOL_TRAS, Z_CANIL, Z_CANIL + EV, M.madeira, E.v1);
+  // Tela hexagonal: lateral direita, frente (até a porta), teto inclinado sobre 2 fios, faixa muro esquerdo
+  telaTrapezio('hex', X_SOL_V1 - 0.01, Z_CANIL, Z_PATAMAR, Y_PATAMAR, Y_SOL_TRAS, ySol(Z_PATAMAR), E.v1);
+  telaTrapezio('hex', X_SOL_V1 - 0.01, Z_PATAMAR, Z_SOL_V1, 0, ySol(Z_PATAMAR), Y_SOL_V1, E.v1);
+  tela('hex', [0, 0, Z_SOL_V1 - 0.01], [X_SOL_V1 - 0.80, Y_SOL_V1, Z_SOL_V1 - 0.01], E.v1);
+  {
+    const txTeto = T_HEX.clone(); txTeto.needsUpdate = true;
+    txTeto.repeat.set(Math.max(1, X_SOL_V1 * 4), Math.max(1, compSol * 4));
+    const tetoSol = new THREE.Mesh(
+      new THREE.PlaneGeometry(X_SOL_V1, compSol),
+      new THREE.MeshStandardMaterial({ map: txTeto, transparent: true, side: THREE.DoubleSide, alphaTest: 0.25 })
+    );
+    tetoSol.rotation.x = -Math.PI / 2 + angSol;
+    tetoSol.position.set(X_SOL_V1 / 2, (Y_SOL_TRAS + Y_SOL_V1) / 2 + 0.003, (Z_CANIL + Z_SOL_V1) / 2);
+    E.v1.add(tetoSol);
+  }
+  for (const x of [0.47, 0.93]) barra(0.005, [x, Y_SOL_TRAS, Z_CANIL], [x, Y_SOL_V1, Z_SOL_V1], M.ferro, E.v1, 6);
+  telaTrapezio('hex', 0.015, Z_CANIL, Z_SOL_V1, 1.20, Y_SOL_TRAS, Y_SOL_V1, E.v1);
+  // Saia de tela de 30 cm deitada no chão por fora (só no trecho de terra z 2,00–3,00)
+  function telaSaia(x0, x1, z0, z1) {
+    const w = x1 - x0, d = z1 - z0, tx = T_HEX.clone(); tx.needsUpdate = true;
+    tx.repeat.set(Math.max(1, w * 4), Math.max(1, d * 4));
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshStandardMaterial({ map: tx, transparent: true, side: THREE.DoubleSide, alphaTest: 0.25 }));
+    m.rotation.x = -Math.PI / 2; m.position.set((x0 + x1) / 2, 0.02, (z0 + z1) / 2); E.v1.add(m);
+  }
+  telaSaia(0, X_SOL_V1 + 0.30, Z_SOL_V1, Z_SOL_V1 + 0.30);
+  telaSaia(X_SOL_V1, X_SOL_V1 + 0.30, Z_PATAMAR, Z_SOL_V1);
+  // Porta 0,80 × 1,50 m na frente, articulada na estaca (1,40; 3,00)
+  {
+    const w = 0.80, h = 1.50, p = new THREE.Group();
+    p.position.set(X_SOL_V1, 0.03, Z_SOL_V1); p.rotation.y = 0.45;
+    caixa(-w, 0, 0, SV, -0.015, 0.015, M.madeira, p); caixa(-w, 0, h - SV, h, -0.015, 0.015, M.madeira, p);
+    caixa(-w, -w + SV, SV, h - SV, -0.015, 0.015, M.madeira, p); caixa(-SV, 0, SV, h - SV, -0.015, 0.015, M.madeira, p);
+    barra(0.016, [-w + 0.03, 0.03, 0], [-0.03, h - 0.03, 0], M.madeira, p, 6);
+    tela('hex', [-w + SV, SV, 0], [-SV, h - SV, 0], p); E.v1.add(p);
+  }
+  // Dentro do Canil 1: poleiro solto em suportes, tabuleiro de areia, maravalha 8 cm, ninho de balde, comedouro
+  poleiroComSuportes(0.30, E.v1);
+  caixa(C1[0] + 0.01, C1[1], Y_PISO, Y_PISO + 0.01, 0.01, 0.55, M.madeira, E.v1);
+  caixa(C1[0] + 0.01, C1[1], Y_PISO, Y_PISO + 0.05, 0.01, 0.03, M.madeira, E.v1);
+  caixa(C1[0] + 0.01, C1[1], Y_PISO, Y_PISO + 0.05, 0.53, 0.55, M.madeira, E.v1);
+  caixa(C1[0] + 0.01, C1[0] + 0.03, Y_PISO, Y_PISO + 0.05, 0.03, 0.53, M.madeira, E.v1);
+  caixa(C1[1] - 0.02, C1[1], Y_PISO, Y_PISO + 0.05, 0.03, 0.53, M.madeira, E.v1);
+  caixa(C1[0] + 0.03, C1[1] - 0.02, Y_PISO + 0.01, Y_PISO + 0.04, 0.03, 0.53, M.areia, E.v1);
+  caixa(C1[0] + 0.01, C1[1], Y_PISO, Y_PISO + 0.08, 0.55, Z_CANIL - 0.03, M.maravalha, E.v1);
+  // Ninho: balde de 20 L deitado no canto da frente à esquerda, +0,15 m do piso
+  caixa(0.02, 0.34, Y_NINHO - 0.02, Y_NINHO, 0.60, 0.95, M.madeira, E.v1);
+  ninhoBalde(0.18, Y_NINHO, 0.60, E.v1);
+  // Comedouro pendurado no canto da frente à direita
+  {
+    const cx = C1[1] - 0.16, cz = Z_CANIL - 0.17, yBase = Y_PISO + 0.20;
+    barra(0.055, [cx, yBase, cz], [cx, yBase + 0.10, cz], new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.35 }), E.v1, 20);
+    barra(0.125, [cx, yBase + 0.10, cz], [cx, yBase + 0.50, cz], new THREE.MeshStandardMaterial({ color: 0xeef3f5, transparent: true, opacity: 0.85, roughness: 0.12 }), E.v1, 24);
+    barra(0.004, [cx, yBase + 0.50, cz], [cx, Y_TETO_CANIL, cz], M.ferro, E.v1, 6);
+  }
+  // Bebedouro: balde 10 L pendurado no sarrafo da lateral direita sobre o patamar (x 1,25, z 1,50), fundo +0,35 m, 3 bicos embaixo
+  {
+    const bx = 1.25, bz = 1.50, yFundo = Y_PATAMAR + 0.35;
+    barra(0.125, [bx, yFundo + 0.28, bz], [bx, yFundo, bz], new THREE.MeshStandardMaterial({ color: 0x60a5fa, transparent: true, opacity: 0.88, roughness: 0.2 }), E.v1, 24);
+    barra(0.13, [bx, yFundo + 0.28, bz], [bx, yFundo + 0.295, bz], new THREE.MeshStandardMaterial({ color: 0x1d4ed8, roughness: 0.4 }), E.v1, 24);
+    barra(0.004, [bx, yFundo + 0.295, bz], [X_SOL_V1 - 0.02, ySol(bz) - 0.02, bz], M.ferro, E.v1, 6);
+    const matBico = new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.4 });
+    for (const [dx, dz] of [[-0.05, -0.03], [0.05, -0.03], [0, 0.05]]) {
+      barra(0.01, [bx + dx, yFundo, bz + dz], [bx + dx, yFundo - 0.025, bz + dz], matBico, E.v1, 8);
+      barra(0.004, [bx + dx, yFundo - 0.025, bz + dz], [bx + dx, yFundo - 0.045, bz + dz], M.ferro, E.v1, 6);
+    }
+  }
+  // Banho de terra: caixa rasa 0,50 × 0,50 m de areia escura no canto do solário (x 0,10–0,60, z 2,40–2,90)
+  caixa(0.10, 0.60, 0, 0.08, 2.40, 2.43, M.madeira, E.v1);
+  caixa(0.10, 0.60, 0, 0.08, 2.87, 2.90, M.madeira, E.v1);
+  caixa(0.10, 0.13, 0, 0.08, 2.43, 2.87, M.madeira, E.v1);
+  caixa(0.57, 0.60, 0, 0.08, 2.43, 2.87, M.madeira, E.v1);
+  caixa(0.13, 0.57, 0.008, 0.06, 2.43, 2.87, M.terraRica, E.v1);
+}
+const avesV1 = Array.from({ length: 5 }, () => criarAve(E.v1));
+const DIA_V1 = [
+  [0.55, 0.78, Y_PISO + 0.06, 0.5], [0.82, 0.72, Y_PISO + 0.06, -1.8],
+  [1.02, 1.55, Y_PATAMAR, 0.4], [0.76, 2.55, 0, -2.1], [0.46, 2.18, 0, 1.1],
+];
+const NOITE_V1 = Array.from({ length: 5 }, (_, i) => [C1[0] + 0.17 + i * 0.24, 0.30, Y_POLEIRO + 0.02, -Math.PI / 2]);
+E.v1.visible = false;
+
+// Modo "Medidas a tirar": quintal como está hoje (base + telha velha) com cotas M1A..M4
+const medFrente = new THREE.Group(), medMuro = new THREE.Group(), medVaos = new THREE.Group();
+E.medidas.add(medFrente, medMuro, medVaos);
+const rotulosMed = new THREE.Group(), rotulosMedFrente = new THREE.Group(), rotulosMedMuro = new THREE.Group(), rotulosMedVaos = new THREE.Group();
+rotulosMed.add(rotulosMedFrente, rotulosMedMuro, rotulosMedVaos);
+G.rotulos.add(rotulosMed);
+{
+  const { yEm } = criarTelhaVelha(E.medidas, 0.28, 0x64748b);
+  const matAmarelo = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
+  const matLaranja = new THREE.MeshBasicMaterial({ color: 0xf97316 });
+  const matRef = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+  function cota(a, b, mat = matAmarelo, tickAxis = [1, 0, 0], pai = E.medidas, rL = 0.009, cR = 0.026, cH = 0.065) {
+    const va = new THREE.Vector3(...a), vb = new THREE.Vector3(...b);
+    const dir = new THREE.Vector3().subVectors(vb, va), len = dir.length();
+    const u = dir.clone().normalize(), up = new THREE.Vector3(0, 1, 0);
+    const hCone = Math.min(cH, len * 0.34), rCone = cR * (hCone / cH);
+    const linha = new THREE.Mesh(new THREE.CylinderGeometry(rL, rL, Math.max(0.005, len - hCone * 1.4), 8), mat);
+    linha.position.copy(va).addScaledVector(dir, 0.5);
+    linha.quaternion.setFromUnitVectors(up, u);
+    pai.add(linha);
+    for (const [pt, s] of [[va, -1], [vb, 1]]) {
+      const cone = new THREE.Mesh(new THREE.ConeGeometry(rCone, hCone, 10), mat);
+      cone.position.copy(pt).addScaledVector(u, -s * (hCone / 2));
+      cone.quaternion.setFromUnitVectors(up, u.clone().multiplyScalar(s));
+      pai.add(cone);
+      const tick = new THREE.Mesh(new THREE.CylinderGeometry(rL * 0.7, rL * 0.7, 0.08, 6), mat);
+      tick.position.copy(pt);
+      tick.quaternion.setFromUnitVectors(up, new THREE.Vector3(...tickAxis).normalize());
+      pai.add(tick);
+    }
+  }
+  // M1A, M1B e M4 (vista frente)
+  const yBeiral = yEm(1.02);
+  cota([0.08, Y_PATAMAR, 1.03], [0.08, yBeiral, 1.03], matAmarelo, [1, 0, 0], medFrente);
+  cota([1.35, Y_PATAMAR, 1.03], [1.35, yBeiral, 1.03], matAmarelo, [1, 0, 0], medFrente);
+  cota([0.01, 0.22, 1.08], [1.375, 0.22, 1.08], matAmarelo, [0, 1, 0], medFrente);
+  rotulo('M1A · Altura do beiral (lado do muro)', 0.08, 0.72, 1.06, 'med', rotulosMedFrente);
+  rotulo('M1B · Altura do beiral (lado da divisória)', 1.35, 0.58, 1.06, 'med', rotulosMedFrente);
+  rotulo('M4 · Largura: muro até o meio da divisória', 0.70, 0.28, 1.12, 'med', rotulosMedFrente);
+
+  // M2A–M2D: cotas verticais curtas (setinha dupla) dentro de cada vão entre parede (1,20 m) e telha velha
+  const yFrente = yEm(1.00) + 0.01, yEsq = yEm(0.24) + 0.01, yFundo = yEm(0.03) + 0.01, yDiv = yEm(0.55) + 0.01;
+  cota([0.68, Y_TETO_CANIL, 1.00], [0.68, yFrente, 1.00], matLaranja, [1, 0, 0], medVaos, 0.006, 0.018, 0.025);
+  cota([0.03, Y_TETO_CANIL, 0.24], [0.03, yEsq, 0.24], matLaranja, [0, 0, 1], medVaos, 0.006, 0.018, 0.032);
+  cota([0.68, Y_TETO_CANIL, 0.03], [0.68, yFundo, 0.03], matLaranja, [1, 0, 0], medVaos, 0.006, 0.018, 0.032);
+  cota([1.375, Y_TETO_CANIL, 0.55], [1.375, yDiv, 0.55], matLaranja, [0, 0, 1], medVaos, 0.006, 0.018, 0.032);
+  rotulo('M2A · Vão parede-telha: frente', 0.68, 1.13, 1.02, 'med', rotulosMedVaos);
+  rotulo('M2B · Vão parede-telha: esquerda', 0.26, 1.33, 0.24, 'med', rotulosMedVaos);
+  rotulo('M2C · Vão parede-telha: fundo', 0.68, 1.38, 0.04, 'med', rotulosMedVaos);
+  rotulo('M2D · Vão parede-telha: divisória', 1.42, 1.24, 0.55, 'med', rotulosMedVaos);
+
+  // M3A (na terra logo à frente do patamar z=2,04) e M3B (z=3,00) + cota de 1 m da grade até a marca de 1 m
+  cota([0.05, 0, 2.04], [0.05, 1.55, 2.04], matAmarelo, [0, 0, 1], medMuro);
+  cota([0.05, 0, 3.00], [0.05, 1.55, 3.00], matAmarelo, [0, 0, 1], medMuro);
+  cota([0.70, Y_PATAMAR + 0.02, 1.00], [0.70, Y_PATAMAR + 0.02, 2.00], matRef, [1, 0, 0], medMuro);
+  caixa(0, 1.40, Y_PATAMAR, Y_PATAMAR + 0.014, 1.99, 2.02, matRef, medMuro);
+  caixa(0, 1.40, 0.008, 0.024, 2.99, 3.02, matRef, medMuro);
+  rotulo('M3A · Altura do muro (beira do patamar)', 0.05, 0.92, 2.04, 'med', rotulosMedMuro);
+  rotulo('M3B · Altura do muro (frente do solário)', 0.05, 0.62, 3.00, 'med', rotulosMedMuro);
+  rotulo('1 m', 0.70, Y_PATAMAR + 0.08, 1.50, 'ref', rotulosMedMuro);
+  rotulo('1 m à frente da grade', 0.95, 0.16, 2.06, 'ref', rotulosMedMuro);
+  rotulo('2 m à frente da grade', 0.85, 0.08, 3.06, 'ref', rotulosMedMuro);
+}
+E.medidas.visible = false;
+
 // =====================================================================
 // 3. LEGENDAS E CÂMERAS
 // =====================================================================
-rotulo('Galinheiro · 3,0 × 4,0 m', 1.5, 2.35, 1.2);
+const rotuloGalinheiro = rotulo('Galinheiro · 3,0 × 4,0 m', 1.5, 2.35, 1.2);
 rotulo('Mangueira (~15 m)', 6.2, 6.2, 8.1, '', G.mangueira);
 rotulo('Círculo de pedra', 8.2, 0.45, 6.7);
 rotulo('Casa', 7.5, 1.9, QZ - 0.4);
+const rotulosV1 = new THREE.Group();
+G.rotulos.add(rotulosV1);
+rotulo('Solário v1 1,40 × 2 m', 0.70, 1.56, 2.00, '', rotulosV1);
+rotulo('Saia de tela 30 cm', 0.55, 0.06, 3.22, '', rotulosV1);
+rotulo('Porta (vai para a v2)', 1.05, 1.35, 3.22, '', rotulosV1);
+rotulo('Tela 1/2" no vão da telha', 0.65, 1.29, 1.02, '', rotulosV1);
+rotulo('Ninho de balde', 0.20, Y_NINHO + 0.38, 0.78, '', rotulosV1);
+rotulo('Bebedouro de bicos', 1.25, Y_PATAMAR + 0.24, 1.56, '', rotulosV1);
+rotulo('Banho de terra', 0.35, 0.16, 2.65, '', rotulosV1);
+rotulo('Poleiro', 0.75, Y_POLEIRO + 0.22, 0.30, '', rotulosV1);
+rotulo('Tabuleiro de areia', 0.55, Y_PISO + 0.09, 0.25, '', rotulosV1);
+rotulo('Comedouro', 1.16, Y_PISO + 0.65, 0.83, '', rotulosV1);
+let etapaAtual = '4', versaoAtual = 'v2', vistaAtual = 'geral';
+function syncRotulosGrupo(grp, ativo) {
+  const vis = ativo && document.getElementById('cRotulos').checked;
+  grp.visible = vis;
+  grp.children.forEach(c => c.visible = vis);
+}
+function syncRotulosExtras() {
+  syncRotulosGrupo(rotulosV1, versaoAtual === 'v1');
+  const medAtivo = versaoAtual === 'medidas';
+  const isFrente = vistaAtual === 'medidas-frente', isMuro = vistaAtual === 'medidas-muro', isVaos = vistaAtual === 'medidas-vaos';
+  const showAll = !isFrente && !isMuro && !isVaos;
+  medFrente.visible = medAtivo && (isFrente || showAll);
+  medMuro.visible   = medAtivo && (isMuro || showAll);
+  medVaos.visible   = medAtivo && (isVaos || showAll);
+  rotulosMed.visible = medAtivo && document.getElementById('cRotulos').checked;
+  syncRotulosGrupo(rotulosMedFrente, medFrente.visible);
+  syncRotulosGrupo(rotulosMedMuro, medMuro.visible);
+  syncRotulosGrupo(rotulosMedVaos, medVaos.visible);
+}
+syncRotulosExtras();
 
 const VISTAS = {
   geral:      [[16.8, 10.5, 16.5], [6.0, 1.5, 5.2]],
@@ -731,13 +982,22 @@ const VISTAS = {
   galinheiroClose: [[4.5, 2.4, 4.9], [1.5, 1.0, 1.4]],
   encaixeTelhado: [[4.3, 2.25, 3.1], [1.75, 1.65, 1.15]],
   planta:     [[6.0, 21.0, 5.0], [6.0, 0, 5.0]],
+  v1:         [[3.45, 2.75, 4.55], [0.75, 0.75, 1.65]],
+  v1Solario:  [[2.55, 1.85, 5.15], [0.75, 0.75, 2.35]],
+  v1Interior: [[0.95, 1.38, 1.88], [0.60, 0.42, 0.48]],
+  'medidas-frente': [[2.45, 1.25, 3.05], [0.72, 0.68, 0.85]],
+  'medidas-muro':   [[2.65, 1.65, 4.35], [0.45, 0.65, 2.45]],
+  'medidas-vaos':   [[1.85, 1.72, 1.55], [0.68, 1.24, 0.48]],
 };
 function vista(k) {
+  vistaAtual = k;
   const [p, alvo] = VISTAS[k] || VISTAS.geral; camera.position.set(...p); controls.target.set(...alvo); controls.update();
   document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === k));
+  syncRotulosExtras();
 }
-let etapaAtual = '4';
 function setEtapa(et) {
+  versaoAtual = 'v2';
+  document.getElementById('medBtns').style.display = 'none';
   etapaAtual = ORDEM_ETAPAS.includes(et) ? et : '4';
   const idx = ORDEM_ETAPAS.indexOf(etapaAtual);
   E.e0.visible  = idx >= 0;
@@ -746,15 +1006,47 @@ function setEtapa(et) {
   E.e2a.visible = idx >= 3;
   E.e2b.visible = idx >= 4 && document.getElementById('cTela').checked;
   E.e3.visible  = idx >= 5;
+  E.v1.visible  = false;
+  E.medidas.visible = false;
   G.aves.visible = idx >= 6;
   gradeExtras.forEach(o => o.visible = idx >= 5);
+  gradeExtras[0].material.opacity = 1;
+  M.muro.color.setHex(0xffffff); M.cal.color.setHex(0xf3f4f0);
+  rotuloGalinheiro.visible = true;
+  syncRotulosExtras();
+  aplicarEstado(document.getElementById('cNoite').checked);
   document.querySelectorAll('[data-etapa]').forEach(b => b.classList.toggle('active', b.dataset.etapa === etapaAtual));
+  document.querySelectorAll('[data-versao]').forEach(b => b.classList.remove('active'));
+}
+function setVersao(v, moverCamera = true) {
+  if (v !== 'v1' && v !== 'medidas') { setEtapa(etapaAtual); return; }
+  versaoAtual = v;
+  E.e0.visible = true;
+  E.e1a.visible = E.e1b.visible = E.e2a.visible = E.e2b.visible = E.e3.visible = false;
+  E.v1.visible = v === 'v1';
+  E.medidas.visible = v === 'medidas';
+  M.muro.color.setHex(v === 'medidas' ? 0xb0b8c0 : 0xffffff);
+  M.cal.color.setHex(v === 'medidas' ? 0xd0d6dc : 0xf3f4f0);
+  G.aves.visible = false;
+  gradeExtras[0].visible = v === 'v1';
+  gradeExtras[0].material.opacity = v === 'v1' ? 0.48 : 1;
+  gradeExtras[1].visible = false;
+  gradeExtras[2].visible = v === 'v1';
+  rotuloGalinheiro.visible = false;
+  syncRotulosExtras();
+  aplicarEstado(document.getElementById('cNoite').checked);
+  document.querySelectorAll('[data-etapa]').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('[data-versao]').forEach(b => b.classList.toggle('active', b.dataset.versao === v));
+  if (moverCamera) vista(v === 'medidas' ? 'medidas-frente' : 'v1');
+  document.getElementById('medBtns').style.display = v === 'medidas' ? 'grid' : 'none';
 }
 function aplicarEstado(noite) {
   const pos = noite ? NOITE : DIA;
   aves.forEach((a, i) => { a.position.set(pos[i][0], pos[i][2], pos[i][1]); a.rotation.y = pos[i][3]; });
-  grades[0].rotation.y = noite ? 0 : -ABERTA;
-  grades[1].rotation.y = noite ? 0 : ABERTA;
+  const posV1 = noite ? NOITE_V1 : DIA_V1;
+  avesV1.forEach((a, i) => { a.position.set(posV1[i][0], posV1[i][2], posV1[i][1]); a.rotation.y = posV1[i][3]; });
+  grades[0].rotation.y = versaoAtual === 'medidas' ? 0 : (noite ? 0 : -ABERTA);
+  grades[1].rotation.y = (versaoAtual === 'v1' || versaoAtual === 'medidas') ? 0 : (noite ? 0 : ABERTA);
   updateSun(noite);
 }
 aplicarEstado(false);
@@ -762,19 +1054,29 @@ aplicarEstado(false);
 const params = new URLSearchParams(location.search);
 if (params.get('ui') === '0') document.getElementById('ui').style.display = 'none';
 if (params.get('rotulos') === '0') { document.getElementById('cRotulos').checked = false; G.rotulos.visible = false; }
-vista(params.get('view') || 'geral');
-setEtapa(params.get('etapa') || '4');
+if (params.get('noite') === '1') { document.getElementById('cNoite').checked = true; aplicarEstado(true); }
+if (params.get('medidas') === '1') {
+  setVersao('medidas', !params.has('view'));
+  if (params.has('view')) vista(params.get('view'));
+} else if (params.get('versao') === 'v1') {
+  setVersao('v1', !params.has('view'));
+  if (params.has('view')) vista(params.get('view'));
+} else {
+  vista(params.get('view') || 'geral');
+  setEtapa(params.get('etapa') || '4');
+}
 window.__ready = true;
 
 document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => vista(b.dataset.view)));
 document.querySelectorAll('[data-etapa]').forEach(b => b.addEventListener('click', () => setEtapa(b.dataset.etapa)));
+document.querySelectorAll('[data-versao]').forEach(b => b.addEventListener('click', () => setVersao(b.dataset.versao, true)));
 const bind = (id, fn) => document.getElementById(id).addEventListener('change', e => fn(e.target.checked));
 bind('cMangueira', v => G.mangueira.visible = v);
 bind('cHortas', v => G.hortas.visible = v);
 bind('cCopas', v => G.copas.visible = v);
-bind('cTelhado', () => setEtapa(etapaAtual));
-bind('cTela', () => setEtapa(etapaAtual));
-bind('cRotulos', v => G.rotulos.visible = v);
+bind('cTelhado', () => { if (versaoAtual === 'v2') setEtapa(etapaAtual); });
+bind('cTela', () => { if (versaoAtual === 'v2') setEtapa(etapaAtual); });
+bind('cRotulos', v => { G.rotulos.visible = v; syncRotulosExtras(); });
 bind('cSSAO', v => ssaoPass.enabled = v);
 bind('cNoite', v => aplicarEstado(v));
 
