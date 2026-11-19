@@ -18,6 +18,7 @@
 - **Estrutura pré-existente no canto esquerdo-fundo:**
   - **2 canis de alvenaria elevados** lado a lado (`1,30 × 1,00 m` cada, parede divisória de `~15 cm` → largura total `~2,90 m`).
   - **Altura real da mureta menor dos canis:** **`1,20 m`** (com tijolos 8 furos abertos no topo).
+  - **Medidas de 19/11 (`fotos-19-11/LEIA.md`):** beiral da telha velha a `1,20–1,30 m` do patamar; topo da parede da frente do Canil 1 a ~`1,16 m` do patamar (o 3D usa `1,10 m`, então os pontaletes da frente ficam ~6 cm mais curtos: cortar na medida); muro esquerdo com `1,57–1,62 m` da terra; muro até o meio da divisória `1,37 m`; vãos parede–telha de `4–9 cm` (passam rato).
   - **Patamar cimentado à frente dos canis:** **`3,00 × 1,00 m`** (`~10 cm` acima da terra; piso dos canis fica **`2–3 cm` acima do patamar** (medido pelo Douglas em 19/11, entendido como acima do patamar), `~12–13 cm` da terra).
   - **Telhas existentes (confirmado por foto em 18/11):** **3 folhas Eternit 5 mm Tropical (`1,10 × 1,80 m`), fabricação `26/08/2023`** — **NÃO contêm amianto** (podem ser furadas e parafusadas com segurança).
   - **À direita dos canis:** **tampa de concreto com 2 alças de ferro** (fossa/inspeção), **goiabeira nova** e **toco grande**.

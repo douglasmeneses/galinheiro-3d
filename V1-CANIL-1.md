@@ -7,7 +7,7 @@
 
 ## 1. Escolha mais barata
 
-- **Solário só na frente do Canil 1:** `1,40 m` de largura (do muro esquerdo até o meio da parede que divide os canis) por `2,00 m` de fundo. É `1 m` de patamar mais `1 m` de terra, `2,8 m²`.
+- **Solário só na frente do Canil 1:** `1,37 m` de largura (do muro esquerdo até o meio da parede que divide os canis, M4 medida em 19/11) por `2,00 m` de fundo. É `1 m` de patamar mais `1 m` de terra, `~2,7 m²`.
 - **Sem mureta.** Contra quem cava, uma **saia de tela de `30 cm`** fica deitada no chão por fora, presa com pedras e grampos. Não precisa cavar valeta.
 - **2 estacas finas socadas** na terra. Na v2 elas são arrancadas e socadas de novo como as 2 estacas finas que a v2 já prevê.
 - **A porta é a da v2** (`0,80 × 1,50 m`, com o kit de dobradiças e ferrolho). É construída agora e muda de lugar depois.
@@ -27,19 +27,19 @@ Se o solário fosse até `2 m` de terra (`z = 4,00`), a frente da v1 já ficaria
 | Canil 1 | `x 0–1,30`, `z 0–1,00`, piso a `~12–13 cm` da terra |
 | Patamar (cimento) | `z 1,00–2,00`, `~10 cm` acima da terra |
 | Terra do solário | `z 2,00–3,00` |
-| Lateral direita do solário | linha `x = 1,40`, de `z = 1,00` (parede dos canis) até `z = 3,00` |
-| Frente do solário | linha `z = 3,00`, de `x = 0` (muro esquerdo) até `x = 1,40` |
+| Lateral direita do solário | linha `x = 1,37`, de `z = 1,00` (parede dos canis) até `z = 3,00` |
+| Frente do solário | linha `z = 3,00`, de `x = 0` (muro esquerdo) até `x = 1,37` (porta de `0,80` + trecho fixo de `0,57 m`) |
 | Altura do solário | `1,55 m` acima da terra |
-| Estacas finas (`Ø 5–7 cm × 2,20 m`, `50 cm` enterradas) | `(x 1,40; z 2,05)` e `(x 1,40; z 3,00)` |
-| Porta `0,80 × 1,50 m` | na frente, presa na estaca `(1,40; 3,00)`, abre para fora |
+| Estacas finas (`Ø 5–7 cm × 2,20 m`, `50 cm` enterradas) | `(x 1,37; z 2,05)` e `(x 1,37; z 3,00)` |
+| Porta `0,80 × 1,50 m` | na frente, presa na estaca `(1,37; 3,00)`, abre para fora |
 
 ## 3. Vãos por onde entra bicho (timbu, rato, gato)
 
 Um timbu passa por onde passa a cabeça dele, e um rato por `~2 cm`. Todos os vãos abaixo são fechados com **tela soldada `1/2"`**, amarrada com arame recozido ou grampeada em sarrafo. **Nunca amarrar na borda da telha.**
 
-1. **Entre o topo das paredes do Canil 1 e a telha velha** (frente, fundo e lateral). Medir no local e cortar tiras da tela `1/2"`.
-2. **Entre o teto de tela do solário e a parede ou beiral dos canis** (`z = 1,00`). Um sarrafo horizontal vai parafusado com bucha na alvenaria da frente, logo abaixo do beiral, e o teto e as frestas que sobram são amarrados nele.
-3. **Em cima do muro esquerdo:** o muro tem ~`1,25 m` e o solário tem `1,55 m`. Uma faixa de tela fecha os `~30 cm`. Na frente do Canil 2, que fica fora do solário, a grade continua fechada e com a tela `1/2"`.
+1. **Entre o topo das paredes do Canil 1 e a telha velha, nos 4 lados.** Medido em 19/11 (`fotos-19-11/`): na frente, `4 cm` no vale e `9 cm` na crista (M2A); na esquerda, no fundo e na divisória, `~5 cm`, a altura da onda (M2B–M2D). Todos passam rato. Corte **5 tiras de `15 cm × 1,00 m`** de um pedaço de `0,75 m` do rolo de tela `1/2"` e feche os 4 lados: a tira fica de pé, rente à face de dentro da parede, presa embaixo com bucha e arruela (ou grampo na viga de madeira) e dobrada em cima contra a telha, acompanhando as ondas. Nas fotos aparecem também tábuas velhas soltas e uma lona entre a parede e a telha. Elas saem na limpeza, porque escondem ácaro.
+2. **Entre o teto de tela do solário e a parede ou beiral dos canis** (`z = 1,00`). Um sarrafo horizontal vai parafusado com bucha na alvenaria da frente, logo abaixo do beiral (M1: `1,20–1,25 m` do patamar no vale, então o sarrafo fica a ~`1,15 m` do patamar), e o teto e as frestas que sobram são amarrados nele.
+3. **Muro esquerdo:** medido `1,57 m` e `1,62 m` da terra (M3A/M3B), portanto mais alto que o solário (`1,55 m`). **Não precisa de faixa de tela acima do muro.** O teto e a frente do solário se prendem num sarrafo parafusado no muro, rente, sem fresta. Na frente do Canil 2, que fica fora do solário, a grade continua fechada e com a tela `1/2"`.
 4. **Grade do Canil 1:** tela soldada `1/2"` (a mesma da v2). De noite **a grade fica fechada no ferrolho**: elas entram sozinhas ao escurecer e você só fecha. O solário usa tela hexagonal `1"`, e o próprio doc da v2 avisa que timbu rasga tela fina. A grade fechada é o que protege de noite.
 
 ## 4. Pixilinga (ácaros e piolhos de galinha) — vale para v1 e v2
@@ -177,8 +177,4 @@ A v2 é construída **em volta** da v1, na ordem do `guia-montagem.html`. As ave
   - depois, trocar a cama molhada.
 
   Ainda falta saber com que frequência alaga.
-- **Teto e porta da v1 ainda não conferidos no local:**
-  - altura real do beiral da telha velha;
-  - se o muro esquerdo tem mesmo ~`1,25 m`.
-
-  As duas medidas mudam o tamanho das tiras de tela.
+- **Medidas do local:** tiradas em 19/11 (`fotos-19-11/LEIA.md`). O fundo da telha velha (altura atrás) não foi medido, mas não muda nada na v1.
