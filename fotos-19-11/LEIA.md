@@ -26,7 +26,7 @@ Conclusões:
 |---|---|
 | 01 | Vista de fora, por cima: a telha Eternit 5 mm encostada no muro esquerdo, que sobe acima dela. Há uma fresta escura ao longo da emenda e bananeira do vizinho atrás |
 | 02 | Dentro do canil: vão entre o topo da parede e a telha, com um sarrafo velho inclinado chumbado com massa na parede. Manchas verdes descendo |
-| 03 | Dentro do canil, no canto: tábuas velhas soltas entre a parede e a telha, uma pintada de azul com dobradiças enferrujadas. É esconderijo de ácaro, sai na limpeza |
+| 03 | Dentro do canil, no canto: 3 tábuas embaixo da telha, apoiadas na parede (uma larga, uma azul com dobradiças, uma fina). **Elas seguram a telha: ficam.** Escovar e caiar contra ácaro |
 | 04 | Parede da frente vista de baixo: viga de madeira sobre a parede, e as ondas da telha deixam arcos abertos (vão de vale e crista) |
-| 05 | Canto: emenda de massa na parede, viga de madeira escura e lona velha, com vão aberto para fora |
+| 05 | Canto: emenda de massa na parede, viga de madeira escura (segura a telha) com lona velha enrolada, e vão aberto para fora |
 | 06 | Canto: vão triangular entre a telha, a viga e o topo da parede |

@@ -56,7 +56,7 @@ Um timbu passa por onde passa a cabeça dele, e um rato por `~2 cm`. Todos os v�
   - `M2B–M2D` (esquerda, fundo e divisória do Canil 1): `~5 cm` (altura da onda).
   - `M3A` / `M3B` (muro esquerdo): `1,57 m` (a `1 m` da grade) e `1,62 m` (a `2 m` da grade).
   - `M4` (largura até o meio da divisória): conferida em 19/11 (`1,37 m` medido; cercado usa `1,40 m`).
-- **Fechamento dos 4 vãos do Canil 1:** cortar **5 tiras de `15 cm × 1,00 m`** de tela soldada `1/2"`. Cada tira fica de pé, rente à face de dentro da parede, presa embaixo com bucha `8 mm` e arruela (ou grampo na viga de madeira) e dobrada em cima contra a telha, acompanhando as ondas. A lona e as tábuas soltas que não seguram a telha saem na limpeza (escondem ácaro); o que segura a telha fica e é caiado.
+- **Fechamento dos 4 vãos do Canil 1:** cortar **5 tiras de `15 cm × 1,00 m`** de tela soldada `1/2"`. Cada tira fica de pé, rente à face de dentro da parede, presa embaixo com bucha `8 mm` e arruela (ou grampo na viga de madeira) e dobrada em cima contra a telha, acompanhando as ondas. A madeira embaixo da telha segura o telhado e fica; é escovada e caiada contra ácaro.
 - **Grade do Canil 1:** revestida com tela soldada `1/2"`. De dia fica aberta; de noite **fica fechada no ferrolho** — é o que protege de timbu e rato à noite.
 
 ## 4. Pixilinga (ácaros e piolhos de galinha) — vale para v1 e v2
@@ -65,7 +65,7 @@ O ácaro vermelho passa o dia escondido em **fresta de madeira, emenda de ninho 
 
 - **Sem esconderijo:**
   - Caiar (cal hidratada com água) as paredes internas do Canil 1 e a viga velha antes de as aves entrarem (2 demãos, com máscara PFF2 e luvas). Isso também tira o limo verde.
-  - Tirar a lona e as tábuas soltas de perto do Canil 1. **Nada que segura a telha sai:** viga ou tábua em que a telha apoia fica, escovada e caiada.
+  - Toda a madeira embaixo da telha do Canil 1 (3 tábuas no canto, viga da frente, ripa do canto) segura o telhado e **fica**: escovar e caiar. Só sai sujeira, folha e o que estiver caído.
 - **Poleiro removível:** fica **solto, apoiado em 2 suportes** parafusados na parede, sem parafuso no próprio poleiro. Assim sai inteiro para escaldar e tomar sol.
 - **Ninho de balde:** **balde de 20 L deitado**, de plástico, sem emenda, com uma borda na boca (entra com `~16 semanas`). Lava com mangueira.
 - **Banho de terra:** canto do cercado com areia e cinza de lenha. É o que elas fazem por conta própria contra parasita.
@@ -99,7 +99,7 @@ O ácaro vermelho passa o dia escondido em **fresta de madeira, emenda de ninho 
 ## 6. Passo a passo (23 passos)
 
 **Etapa 0 · Limpeza e vãos**
-1. Tirar do Canil 1 só o que está solto e não segura a telha (lona, tábua caída, tralha). Viga e tábua em que a telha apoia ficam e são caiadas.
+1. Limpar o Canil 1 (folhas, poeira, teia). A madeira embaixo da telha segura o telhado e fica: escovar e caiar.
 2. Lavar e deixar secar.
 3. Caiar o Canil 1 e a viga, com 2 demãos e máscara PFF2.
 4. Grampear e amarrar as 5 tiras de tela `1/2"` nos 4 vãos entre a parede e a telha.
