@@ -1,46 +1,52 @@
-# v1 — Canil 1 + solário de 1 m, 5 frangas de 35 dias (João Pessoa/PB)
+# v1 — Canil 1 + solário 3,00 × 3,00 m (casca da v2), 5 frangas de 35 dias (João Pessoa/PB)
 
-> **v1 (19/11/2026):** começar já, com o mínimo de obra e de gasto. A **v2** é o projeto completo do `CONTEXTO-COMPLETO-PROJETO.md` (solário 3 × 4 m, 8–10 aves).
-> A v1 fica de pé enquanto a v2 é construída em volta dela. As aves não precisam sair, e quase tudo da v1 é reaproveitado (seção 8).
+> **v1 = casca da v2 (decidida em 19/11/2026):** a parte de fora da v1 é montada já nas linhas finais da **v2** (`CONTEXTO-COMPLETO-PROJETO.md`, solário 3 × 3 m, 8–10 aves), para não desmontar nem perder nada na passagem. Fica faltando só a mureta e o telhado novo, além de poucas peças temporárias.
+> As aves não precisam sair na passagem para a v2, e nada de fora é desmontado (seção 8).
 > Não confundir com a `v1-a` antiga em `legado/`.
 > Passo a passo de montagem: `guia-montagem-v1.html`. 3D: `quintal-completo.html?versao=v1`.
 
-## 1. Escolha mais barata
+## 1. Escolha ("parte de fora da v1 = casca da v2")
 
-- **Solário só na frente do Canil 1:** `1,37 m` de largura (do muro esquerdo até o meio da parede que divide os canis, M4 medida em 19/11) por `2,00 m` de fundo. É `1 m` de patamar mais `1 m` de terra, `~2,7 m²`.
-- **Sem mureta.** Contra quem cava, uma **saia de tela de `30 cm`** fica deitada no chão por fora, presa com pedras e grampos. Não precisa cavar valeta.
-- **2 estacas finas socadas** na terra. Na v2 elas são arrancadas e socadas de novo como as 2 estacas finas que a v2 já prevê.
-- **A porta é a da v2** (`0,80 × 1,50 m`, com o kit de dobradiças e ferrolho). É construída agora e muda de lugar depois.
-- **Teto do solário de tela**, sobre 2 fios de arame liso nº 14. Timbu sobe em muro e em tela, então o teto não pode ficar aberto.
-- **Na tela, tudo é rolo da v2.** A tela hexagonal `1" × 1,50 m` da v2 (`15 m`) e a tela soldada `1/2"` (`10 m`) podem ser compradas inteiras agora. A v1 usa ~`7 m` da hexagonal e ~`3 m` da soldada, e esses pedaços voltam para a v2.
+- **Solário já nas linhas finais da v2 (`3,00 × 3,00 m`, `~9 m²`):** de `x = 0` a `3,00` e `z = 1,00` a `4,00`. São `3 × 1 m` de patamar mais `3 × 2 m` de terra.
+- **5 estacas finais já no lugar:** 3 grossas (`Ø 8–10 cm`) e 2 finas (`Ø 5–7 cm`), de `2,20 m`, socadas `50 cm` sem concreto, com o topo a `1,70 m` da terra.
+- **Sarrafos definitivos já no lugar:** de topo a `1,70 m` (frente, direita e esquerda no muro) e de base a `0,20 m` da terra (frente e direita). A mureta da v2 entra depois por baixo do sarrafo de base.
+- **Sem mureta ainda (rodapé + saia e soleira temporários):** o vão de `0,20 m` abaixo do sarrafo de base fecha com uma faixa de `50 cm` de tela hexagonal (`20 cm` em pé + `30 cm` de saia deitada no chão por fora, segura com pedras). No patamar, só o rodapé preso em sarrafo parafusado no cimento, sem saia. Sob a porta, uma tábua de soleira de `0,80 × 0,20 m`.
+- **Porta definitiva da v2 (`0,80 × 1,50 m`):** na lateral direita (`z 3,05–3,85`, de `0,20` a `1,70 m`), com diagonal e ferrolho.
+- **Teto plano a `1,70 m` + rampa temporária até a telha velha:** o teto plano vai de `z = 1,75` a `4,00` sobre 5 fios longitudinais nº 14 e 1 fio transversal em `z = 1,75`. Entre o topo da parede da frente dos canis (`z = 1,00`, `~1,15 m` do patamar) e o fio em `z = 1,75`, uma rampa de tela hexagonal (`~3 m`) fecha a fresta sem amarrar na telha. Na v2, essa tela da rampa fecha os triângulos laterais e a faixa vertical em `z = 1,75`.
+- **Tela soldada `1/2"` nas duas grades (Canil 1 e Canil 2):** o Canil 2 fica dentro do solário, com a grade fechada (as aves não usam). A tela fecha uma caixa contra rato que entre pelo telhado do Canil 2. É peça da v2 já no lugar.
 
-Descartei duas alternativas, porque as duas custam mais agora:
-- solário com os 3 m de largura;
-- mureta já na v1.
+## 2. Medidas e coordenadas (iguais às do 3D, em metros)
 
-Se o solário fosse até `2 m` de terra (`z = 4,00`), a frente da v1 já ficaria na linha da frente da v2. Custaria ~`1,5 m` a mais de tela.
+`x` a partir do muro esquerdo; `z` a partir da parede do fundo dos canis.
 
-## 2. Medidas (z a partir da parede do fundo do canil)
-
-| Peça | Onde |
+| Peça | Onde / Medida |
 |---|---|
 | Canil 1 | `x 0–1,30`, `z 0–1,00`, piso a `~12–13 cm` da terra |
-| Patamar (cimento) | `z 1,00–2,00`, `~10 cm` acima da terra |
-| Terra do solário | `z 2,00–3,00` |
-| Lateral direita do solário | linha `x = 1,37`, de `z = 1,00` (parede dos canis) até `z = 3,00` |
-| Frente do solário | linha `z = 3,00`, de `x = 0` (muro esquerdo) até `x = 1,37` (porta de `0,80` + trecho fixo de `0,57 m`) |
-| Altura do solário | `1,55 m` acima da terra |
-| Estacas finas (`Ø 5–7 cm × 2,20 m`, `50 cm` enterradas) | `(x 1,37; z 2,05)` e `(x 1,37; z 3,00)` |
-| Porta `0,80 × 1,50 m` | na frente, presa na estaca `(1,37; 3,00)`, abre para fora |
+| Parede divisória | `x 1,30–1,45` |
+| Canil 2 | `x 1,45–2,75`; parede externa até `x 2,90` (grade fechada c/ tela `1/2"`, aves não usam) |
+| Patamar (cimento) | `z 1,00–2,00`, `~12–13 cm` acima da terra |
+| Terra do solário | `z 2,00–4,00` |
+| Solário (o mesmo da v2) | `x 0–3,00`, `z 1,00–4,00` (`3,00 × 3,00 m`, `~9 m²`: patamar `3 × 1` + terra `3 × 2`) |
+| Telha velha (fica na v1) | Borda da frente a `1,20–1,30 m` do patamar (`~1,32 m` da terra); topo da parede da frente dos canis a `~1,16 m` do patamar |
+| Altura do solário | `1,70 m` acima da terra (sarrafo de topo a `1,70 m`; sarrafo de base a `0,20 m` da terra) |
+| 3 estacas grossas (`Ø 8–10 cm × 2,20 m`, `50 cm` socadas) | Canto frente-esquerda `(0,06; 3,94)`, canto frente-direita `(2,94; 3,94)` e batente da porta `(2,94; 3,01)` |
+| 2 estacas finas (`Ø 5–7 cm × 2,20 m`, `50 cm` socadas) | Meio da frente `(1,50; 3,94)` e início da terra à direita `(2,94; 2,05)` |
+| Frente do solário | `x 0–3,00` (em `z = 3,94` / borda `4,00`), tela hexagonal de `0,20` a `1,70 m` |
+| Lateral direita do solário | Linha `x = 2,94`, de `z = 1,00` a `4,00`: tela de `z 1 → 3,05`, porta, tela de `z 3,85 → 4,00` (`z 1–2` preso em sarrafo na parede do canil e no patamar com bucha `8 mm`) |
+| Porta `0,80 × 1,50 m` | Na lateral direita, `z 3,05–3,85`, de `0,20` a `1,70 m`, com diagonal, ferrolho e soleira temporária (`0,80 × 0,20 m`) |
+| Muro esquerdo (`x = 0`) | Medido `1,57 m` e `1,62 m` da terra (`M3A`/`M3B`); faixa de tela hexagonal do topo do muro até `1,70 m` |
+| Teto plano (`1,70 m`) | `x 0–3,00`, `z 1,75–4,00`, sobre 5 fios longitudinais nº 14 (`x 0,5 / 1,0 / 1,5 / 2,0 / 2,5`) + 1 fio transversal em `z = 1,75` |
+| Rampa de tela (temporária) | `x 0–3,00`, do sarrafo em `z = 1,00` (`~1,15 m` do patamar, abaixo da telha velha) até o fio transversal em `z = 1,75 / 1,70 m` |
 
 ## 3. Vãos por onde entra bicho (timbu, rato, gato)
 
-Um timbu passa por onde passa a cabeça dele, e um rato por `~2 cm`. Todos os vãos abaixo são fechados com **tela soldada `1/2"`**, amarrada com arame recozido ou grampeada em sarrafo. **Nunca amarrar na borda da telha.**
+Um timbu passa por onde passa a cabeça dele, e um rato por `~2 cm`. Todos os vãos abaixo são fechados com tela bem presa em sarrafo, estaca ou alvenaria. **Nunca amarrar na borda da telha.**
 
-1. **Entre o topo das paredes do Canil 1 e a telha velha, nos 4 lados.** Medido em 19/11 (`fotos-19-11/`): na frente, `4 cm` no vale e `9 cm` na crista (M2A); na esquerda, no fundo e na divisória, `~5 cm`, a altura da onda (M2B–M2D). Todos passam rato. Corte **5 tiras de `15 cm × 1,00 m`** de um pedaço de `0,75 m` do rolo de tela `1/2"` e feche os 4 lados: a tira fica de pé, rente à face de dentro da parede, presa embaixo com bucha e arruela (ou grampo na viga de madeira) e dobrada em cima contra a telha, acompanhando as ondas. Nas fotos aparecem também tábuas velhas soltas e uma lona entre a parede e a telha. Elas saem na limpeza, porque escondem ácaro.
-2. **Entre o teto de tela do solário e a parede ou beiral dos canis** (`z = 1,00`). Um sarrafo horizontal vai parafusado com bucha na alvenaria da frente, logo abaixo do beiral (M1: `1,20–1,25 m` do patamar no vale, então o sarrafo fica a ~`1,15 m` do patamar), e o teto e as frestas que sobram são amarrados nele.
-3. **Muro esquerdo:** medido `1,57 m` e `1,62 m` da terra (M3A/M3B), portanto mais alto que o solário (`1,55 m`). **Não precisa de faixa de tela acima do muro.** O teto e a frente do solário se prendem num sarrafo parafusado no muro, rente, sem fresta. Na frente do Canil 2, que fica fora do solário, a grade continua fechada e com a tela `1/2"`.
-4. **Grade do Canil 1:** tela soldada `1/2"` (a mesma da v2). De noite **a grade fica fechada no ferrolho**: elas entram sozinhas ao escurecer e você só fecha. O solário usa tela hexagonal `1"`, e o próprio doc da v2 avisa que timbu rasga tela fina. A grade fechada é o que protege de noite.
+1. **Entre o topo das paredes do Canil 1 e a telha velha, nos 4 lados:** medido em 19/11 (`fotos-19-11/`): na frente, `4 cm` no vale e `9 cm` na crista (`M2A`); na esquerda, no fundo e na divisória, `~5 cm`, a altura da onda (`M2B–M2D`). Todos passam rato. Corte **5 tiras de `15 cm × 1,00 m`** de um pedaço de `0,75 m` do rolo de **tela soldada `1/2"`** e feche os 4 lados: a tira fica de pé, rente à face de dentro da parede, presa embaixo com bucha e arruela (ou grampo na viga de madeira) e dobrada em cima contra a telha, acompanhando as ondas. As tábuas velhas soltas e a lona entre a parede e a telha saem na limpeza, porque escondem ácaro. Na v2, essas tiras saem com a telha velha e vão para os vãos de ventilação.
+2. **Entre o teto plano (`z = 1,75`, `1,70 m`) e a parede da frente dos canis (`z = 1,00`):** um sarrafo horizontal vai parafusado com bucha `8 mm` no topo da parede da frente dos canis (`x 0–3,00`, `~1,15 m` do patamar, logo abaixo da borda da telha velha a `1,20–1,30 m`, **sem amarrar na telha**). Daí até o fio transversal em `z = 1,75 / 1,70 m`, uma **rampa de tela hexagonal** (`~3 m`) fecha o vão inclinado.
+3. **Acima do muro esquerdo (`x = 0`):** medido `1,57 m` e `1,62 m` da terra em 19/11 (`M3A`/`M3B`). Como o solário agora sobe até `1,70 m`, o topo do muro recebe um sarrafo a `1,70 m` e uma **faixa de tela hexagonal** fechando do topo do muro (`1,57–1,62 m`) até `1,70 m`.
+4. **Grades do Canil 1 e do Canil 2 (tela soldada `1/2"`):** a grade do Canil 1 leva tela `1/2"` e, de noite, **fica fechada no ferrolho** (as aves entram sozinhas ao escurecer e você só fecha). O solário usa tela hexagonal `1"`, e timbu rasga tela fina — a grade fechada é o que protege de noite. A grade do **Canil 2** também ganha tela `1/2"` e fica fechada (as aves não usam), formando caixa fechada para rato que entre pelo telhado do Canil 2 não chegar ao solário.
+5. **Vão de base (`0,20 m` do chão ao sarrafo de base) e soleira (temporários):** como a mureta só entra na v2, o vão é fechado por um **rodapé + saia** de tela hexagonal de `50 cm` (`20 cm` em pé do chão ao sarrafo de base + `30 cm` deitados no chão por fora, seguros com pedras), na frente e na lateral direita na terra (`~5,2 m` tirando a porta; sai em 3 tiras de `0,50 m` cortadas de `~1,75 m` do rolo). No patamar, o rodapé é preso em sarrafo parafusado no cimento, sem saia. Embaixo da porta (`z 3,05–3,85`), vai uma tábua de soleira de `0,80 × 0,20 m`.
 
 ## 4. Pixilinga (ácaros e piolhos de galinha) — vale para v1 e v2
 
@@ -64,25 +70,24 @@ O ácaro vermelho passa o dia escondido em **fresta de madeira, emenda de ninho 
   - Caiar de novo.
   - Tratar as aves com produto para aves da casa agropecuária, seguindo a bula. **Não verifiquei nenhum produto ou dose.** Pergunte lá ou a um veterinário.
 
-## 5. Dentro do Canil 1
+## 5. Dentro do Canil 1 (e Canil 2 fechado)
 
-- **Poleiro:**
-  - 1 poleiro de `1,30 m` (`4–5 cm`, madeira **não tratada**), solto sobre 2 suportes.
-  - Fica a `30 cm` da parede do fundo.
-  - Altura: `~30 cm` do piso no começo, `45 cm` com ~2 meses de idade.
-- **Tabuleiro de dejetos:** caixa rasa de tábua de `1,30 × 0,55 m`, com borda de `5 cm` e `~3 cm` de areia, embaixo do poleiro. Peneirar 2× por semana. **É o que mais segura o cheiro.**
-- **Cama:** maravalha grossa com `8–10 cm` no resto do piso.
-- **Comedouro:** galão de 20 L com cano de 100 mm, pendurado no canto da frente à direita, na altura do dorso delas. Rato e pardal não chegam nele.
-- **Ninho:** balde de 20 L deitado, no canto da frente à esquerda, a `15 cm` do piso, com 1 ovo falso. Entra só com **~16 semanas**.
+- **Canil 1 (dormitório):**
+  - **Poleiro:** 1 poleiro de `1,30 m` (`4–5 cm`, madeira **não tratada**), solto sobre 2 suportes, a `30 cm` da parede do fundo. Altura: `~30 cm` do piso no começo, `45 cm` com `~2 meses` de idade.
+  - **Tabuleiro de dejetos:** caixa rasa de tábua de `1,30 × 0,55 m`, com borda de `5 cm` e `~3 cm` de areia, embaixo do poleiro. Peneirar 2× por semana. **É o que mais segura o cheiro.**
+  - **Cama:** maravalha grossa com `8–10 cm` no resto do piso.
+  - **Comedouro:** galão de 20 L com cano de `100 mm`, pendurado no canto da frente à direita, na altura do dorso delas. Rato e pardal não chegam nele.
+  - **Ninho:** balde de 20 L deitado, no canto da frente à esquerda, a `15 cm` do piso, com 1 ovo falso. Entra só com **~16 semanas**.
+- **Canil 2:** fica dentro do solário, com a **grade fechada** e revestida de **tela soldada `1/2"`** (as aves não usam na v1; só entra em uso na v2).
 
-## 6. No solário
+## 6. No solário (`3,00 × 3,00 m`)
 
 - **Bebedouro:** balde de 10 L com tampa e 2–3 bicos nipple no fundo.
-  - Fica pendurado no sarrafo da lateral direita, **sobre o patamar**, para os pingos caírem no cimento e não virarem lama.
+  - Fica pendurado no sarrafo da lateral direita (`x = 2,94`), **sobre o patamar** (`z 1–2`), para os pingos caírem no cimento e não virarem lama.
   - O fundo fica na altura da cabeça delas esticada.
   - Nos primeiros dias, deixe um bebedouro comum junto e mostre o bico tocando nele.
-- **Patamar:** cimento liso, sem cama. Raspar 2× por semana.
-- **Terra:** folhas secas do quintal, revirar 1× por semana. No canto, o banho de terra.
+- **Patamar (`3 × 1 m`):** cimento liso, sem cama. Raspar 2× por semana.
+- **Terra (`3 × 2 m`, `z 2–4`):** folhas secas do quintal, revirar 1× por semana. No canto, o banho de terra (areia + cinza de lenha).
 - **Grade do Canil 1:** de dia fica amarrada aberta, de noite fica fechada no ferrolho.
 
 ## 7. Rotina
@@ -105,72 +110,57 @@ Estimativas, sem medição. 5 aves bebem por volta de `1–1,5 L/dia` no calor, 
 
 **Hortas:** continuam como no `PROJETO-HORTAS.md`.
 
-### Lista de compras v1
+### Lista de compras e custo estimado (faixas de anúncios online de 19/11/2026; `*` = estimativa sem anúncio conferido)
 
-Itens que também são da v2 (comprar inteiros e guardar a sobra):
-- Tela soldada `1/2"` (`10 m`)
-- Tela hexagonal `1" × 1,50 m` (`15 m`)
-- 20 m de arame liso nº 14
-- Rolo de arame recozido nº 18
-- Grampos `3/4"`
-- 2 estacas finas de eucalipto tratado (`Ø 5–7 × 2,20 m`)
-- 3 sarrafos `5 × 2,5 × 3,00 m` para a v1 (a v2 usa 7)
-- Kit da porta
-- Pregos
-- Buchas `8 mm` com parafusos (suportes do poleiro, sarrafos no muro e na parede, sarrafo no patamar)
-- Poleiro de `1,30 m`
-- Maravalha
-- Galão de 20 L e cano de 100 mm
+| Item | Quantidade | R$ |
+|---|---|---|
+| Tela hexagonal `1" × 1,50 m` (por metro) | ~16 m | 190–260 |
+| Tela soldada galvanizada `1/2"` (altura 1 m, por metro): grade do Canil 1, grade do Canil 2 e tiras | ~4,5 m | 113–240 |
+| Estacas de eucalipto tratado `2,20 m` | 3 grossas `Ø 8–10` + 2 finas `Ø 5–7` | 63–120 |
+| Sarrafo `5 × 2,5 × 300 cm` | 9 (~24 m) | 54–234 |
+| Arame liso nº 14 | 20 m | 15–25 * |
+| Arame recozido nº 18 + grampos `3/4"` | 1 rolo + 1 caixa | 25–35 * |
+| Dobradiças + ferrolho da porta | 1 kit | 25–40 * |
+| Pregos, buchas `8 mm` e parafusos | 1 pacote de cada | 20–30 * |
+| Poleiro `4–5 cm × 1,30 m` (madeira sem tratamento) | 1 | 0–10 * |
+| Tábuas do tabuleiro + soleira da porta | sobras | 0–30 * |
+| Areia | 1 saco | 5–10 * |
+| Cal hidratada | 20 kg | 13–34 |
+| Maravalha grossa | 1 fardo | 25–40 * |
+| Galão 20 L + cano `100 mm` | 1 | 20–40 * |
+| Balde 10 L + kit de 10 bicos nipple | 1 + 1 | 30–45 |
+| Balde 20 L (ninho, ~16 semanas) | 1 | 15–25 * |
+| **Total da obra (nova v1)** | | **≈ R$ 610 – 1.220** |
+| 5 frangas de 35 dias, vacinadas | 5 | 100–175 |
+| **Total com as aves (sem ração)** | | **≈ R$ 710 – 1.400** |
 
-Só da v1, e baratos:
-- Balde de 10 L com 3 bicos nipple
-- Balde de 20 L para o ninho
-- Tábuas para o tabuleiro
-- Areia
-- Cal hidratada para caiar
+**Notas sobre o custo:**
+- Custa `~R$ 190–460` a mais que montar um cercado reduzido, mas **não é gasto extra**: é a parte de fora da v2 comprada adiantada.
+- Na passagem para a v2, falta comprar o material da mureta (`~R$ 80–130 + frete`, ver `CONTEXTO-COMPLETO-PROJETO.md`), o telhado novo e o interior do Canil 2.
+- Ração ainda não cotada. Itens com `*` são estimativa sem anúncio conferido: peça orçamento em loja de João Pessoa.
+- **Resumo do que é final vs temporário na lista:** toda a estrutura externa (5 estacas, 9 sarrafos, tela das laterais/frente/muro/teto, porta com kit, fios de arame e telas `1/2"` das duas grades) e todo o interior/manejo são **peças da v2 já no lugar**. Só são **temporários**: o rodapé + saia (`3 tiras` de `0,50 m` cortadas de `~1,75 m` do rolo), a soleira da porta (`0,80 × 0,20 m`), a rampa de tela (`~3 m`, reaproveitada nos triângulos na v2) e as 5 tiras de tela `1/2"` nos vãos do Canil 1 (reaproveitadas nos vãos de ventilação da v2).
 
-**Custo estimado (anúncios online de 19/11/2026, faixas):** obra da v1 ≈ R$ 420–760; com as 5 frangas ≈ R$ 520–935, sem ração. Tabela item a item em `guia-montagem-v1.html#comece-aqui`. Vários itens pequenos são estimativa sem anúncio conferido: pedir orçamento em loja de João Pessoa.
+## 8. Passagem da v1 para a v2 (nada de fora é desmontado)
 
-## 8. Passagem da v1 para a v2
+Na v2, toda a casca externa da v1 continua de pé no lugar. As aves ficam no galinheiro o tempo todo.
 
-A v2 é construída **em volta** da v1, na ordem do `guia-montagem.html`. As aves ficam na v1 o tempo todo.
+1. **Mureta:** baldrame `10 × 15` + 1 fiada de tijolo (`20 cm`), feitos **por baixo do sarrafo de base**, entre as 5 estacas que já estão socadas. Antes, tirar a faixa de rodapé + saia de cada trecho, um trecho por vez, e trocar a soleira da porta pela mureta. Mais o dreno (`cano PVC 40 mm` com tampão).
+2. **Telhado novo:**
+   - A telha velha sai, junto com as 5 tiras de tela `1/2"` dos vãos, e as aves ficam presas no Canil 1 nesse dia.
+   - Quando o telhado novo estiver em cima, tirar a rampa de tela.
+   - Fechar os triângulos laterais sob o telhado e a faixa vertical em `z = 1,75` com a tela da rampa.
+3. **Interior do Canil 2:** abrir a grade para as aves, instalar 3 ninhos de balde (o balde da v1 é um deles) e o 2º poleiro (no Canil 1, a `65 cm` do fundo).
 
-1. **Etapa 0 da v2 (mureta e baldrame na frente e na direita):** fica fora da área da v1, não mexe nela.
-2. **Etapas 1A e 1B (telhado novo):**
-   - A telha velha sai. Nesse dia as aves ficam presas no Canil 1.
-   - O sarrafo do vão 2 e as tiras de tela soldada do vão 1 são desmontados. As tiras voltam a ser usadas nos vãos de ventilação da v2 (acima de `1,20 m`).
-   - O teto de tela da v1 fica, porque passa por baixo do telhado novo.
-3. **Etapas 2A e 2B (estacas, tela e porta da v2):** fecham o solário grande por fora.
-4. **Só depois que o solário da v2 estiver fechado:**
-   - Desmontar a lateral direita, a frente e o teto da v1.
-   - Arrancar as 2 estacas finas e socá-las nos lugares das 2 finas da v2.
-   - Passar a porta para o lugar da porta da v2.
-   - Tirar a saia.
-5. **Etapa 3 (interior):**
-   - O 2º poleiro entra no Canil 1, a `65 cm` do fundo.
-   - O Canil 2 ganha a tela `1/2"` e 3 ninhos de balde. O balde da v1 é um deles.
-   - O balde com bicos fica no patamar. Ele substitui o bebedouro de 5 L, porque não derrama.
-
-**O que se reaproveita:**
-- tela `1/2"` da grade do Canil 1;
-- tiras de tela `1/2"` dos vãos;
-- pedaços da tela hexagonal: o teto (`~2 m`) e a lateral (`~2 m`) vão para o teto e as laterais da v2;
-- 2 estacas finas;
-- 3 sarrafos;
-- porta;
-- arames;
-- poleiro;
-- tabuleiro;
-- ninho de balde;
-- comedouro;
-- balde com bicos.
-
-**O que se perde:**
-- a saia de tela (faixa de `30 cm`, a mureta da v2 faz esse papel);
-- furos de bucha no patamar e na parede, que se tapam com massa.
+- **Fica no lugar:** as 5 estacas, os sarrafos de topo (`1,70 m`) e de base (`0,20 m`), a tela hexagonal das laterais/frente/muro/teto (`1,70 m`), a porta `0,80 × 1,50 m`, os fios de arame, a tela `1/2"` nas grades do Canil 1 e do Canil 2, todo o interior do Canil 1 e o balde de bicos.
+- **Sai (e para onde vai):** a rampa de tela hexagonal (`~3 m`, vai para os triângulos laterais sob o telhado novo e a faixa vertical em `z = 1,75`) e as 5 tiras de tela `1/2"` dos vãos do Canil 1 (vão para os vãos de ventilação da v2).
+- **Perde-se só:** o rodapé + saia (`~5,2 m × 0,5 m` de tela), a soleira da porta e os furos de bucha (que se tapam com massa).
 
 ## 9. Riscos
 
+- **Mais obra antes das aves:** são 5 estacas em vez de 2, e o solário já tem `~9 m²` (`3,00 × 3,00 m`). Se as frangas chegarem antes, deixe-as no Canil 1 com a grade fechada e o bebedouro dentro até o solário fechar.
+- **Saia e estacas:**
+  - Sem mureta, a saia é a única defesa contra quem cava: **conferir as pedras toda semana**.
+  - As estacas ficam com a madeira na terra até a mureta chegar, o que já é assim na v2 (estacas socadas na terra).
 - **Enchente:** a terra do solário e o patamar alagam primeiro. O piso do canil fica a `~12–13 cm` da terra. Em chuva forte:
   - deixar as aves no canil;
   - subir o comedouro;
