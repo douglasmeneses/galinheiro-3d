@@ -681,11 +681,11 @@ telaTrapezio('hex', 0.005, Z_CANIL, Z_BEIRAL, 1.55, Y_CANIL_TELHA, Y_BEIRAL, E.e
 tela('hex', [XT, MURETA, Z_CANIL], [XT, TOPO, PORTA[0]], E.e2b);
 tela('hex', [XT, MURETA, PORTA[1]], [XT, TOPO, Z_FRENTE - 0.015], E.e2b);
 telaTrapezio('hex', XT, Z_CANIL, Z_BEIRAL, TOPO, Y_CANIL_TELHA, Y_BEIRAL, E.e2b);
-// Teto do solário (1,75..4,00 m) + 3 fios de arame nº 14 + fio transversal no beiral (tela NÃO amarra na telha!)
+// Teto do solário (1,75..4,00 m) + 5 fios de arame nº 14 (a cada 50 cm, por causa das mangas) + fio transversal no beiral (tela NÃO amarra na telha!)
 tela('hex', [0, TOPO + 0.003, Z_BEIRAL], [W, TOPO + 0.003, Z_FRENTE], E.e2b);
 tela('hex', [0, Y_BEIRAL, Z_BEIRAL], [W, TOPO, Z_BEIRAL], E.e2b);
 barra(0.006, [0.06, TOPO, Z_BEIRAL], [XS, TOPO, Z_BEIRAL], M.ferro, E.e2b, 8);
-for (const x of [0.75, 1.50, 2.25]) barra(0.005, [x, TOPO, Z_BEIRAL], [x, TOPO, ZS], M.ferro, E.e2b, 6);
+for (const x of [0.50, 1.00, 1.50, 2.00, 2.50]) barra(0.005, [x, TOPO, Z_BEIRAL], [x, TOPO, ZS], M.ferro, E.e2b, 6);
 {
   const w = PORTA[1] - PORTA[0], h = TOPO - MURETA;
   const p = new THREE.Group(); p.position.set(XT, MURETA, PORTA[0]); p.rotation.y = 0.45;
