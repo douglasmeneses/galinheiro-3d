@@ -7,7 +7,10 @@
 <style>
   :root{--bg:rgba(15,20,26,.82);--bd:rgba(255,255,255,.12);--tx:#f1f5f9;--mut:#94a3b8;--acc:#34d399}
   html,body{margin:0;height:100%;overflow:hidden;font-family:'Inter',system-ui,-apple-system,sans-serif;background:#0f172a;color:var(--tx)}
-  #ui{position:absolute;top:16px;left:16px;width:262px;max-height:calc(100% - 32px);overflow:auto;background:var(--bg);backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;box-shadow:0 16px 40px rgba(0,0,0,.45);font-size:12px;line-height:1.45}
+  #ui{position:fixed;top:68px;left:16px;z-index:10;width:262px;max-width:calc(100vw - 32px);max-height:calc(100% - 84px);box-sizing:border-box;overflow:auto;background:var(--bg);backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;box-shadow:0 16px 40px rgba(0,0,0,.45);font-size:12px;line-height:1.45}
+  #ui.collapsed{display:none}
+  #uiToggle{position:fixed;top:16px;left:16px;z-index:20;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--bg);backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:10px;color:var(--tx);font-size:18px;line-height:1;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  @media (max-width:700px){#ui{max-width:85vw}}
   .kicker{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--acc);margin-bottom:2px}
   h1{font-size:15px;font-weight:650;margin:0 0 2px;letter-spacing:-.02em}
   .sub{color:var(--mut);font-size:11px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bd)}
@@ -30,6 +33,7 @@
 </script>
 </head>
 <body>
+<button id="uiToggle" type="button" aria-label="Alternar painel" aria-expanded="true">✕</button>
 <aside id="ui">
   <div class="kicker">Renderização PBR + SSAO</div>
   <h1>Quintal 12,0 × 10,0 m</h1>
@@ -1051,8 +1055,18 @@ function aplicarEstado(noite) {
 }
 aplicarEstado(false);
 
+const uiEl = document.getElementById('ui');
+const uiToggle = document.getElementById('uiToggle');
+function setUiOpen(open) {
+  uiEl.classList.toggle('collapsed', !open);
+  uiToggle.textContent = open ? '✕' : '☰';
+  uiToggle.setAttribute('aria-expanded', String(open));
+}
+setUiOpen(!matchMedia('(max-width: 700px)').matches);
+uiToggle.addEventListener('click', () => setUiOpen(uiEl.classList.contains('collapsed')));
+
 const params = new URLSearchParams(location.search);
-if (params.get('ui') === '0') document.getElementById('ui').style.display = 'none';
+if (params.get('ui') === '0') { uiEl.style.display = 'none'; uiToggle.style.display = 'none'; }
 if (params.get('rotulos') === '0') { document.getElementById('cRotulos').checked = false; G.rotulos.visible = false; }
 if (params.get('noite') === '1') { document.getElementById('cNoite').checked = true; aplicarEstado(true); }
 if (params.get('medidas') === '1') {
