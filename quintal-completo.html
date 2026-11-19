@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visualização Realista — Quintal 12 × 10 m</title>
+<style>
+  :root{--bg:rgba(15,20,26,.82);--bd:rgba(255,255,255,.12);--tx:#f1f5f9;--mut:#94a3b8;--acc:#34d399}
+  html,body{margin:0;height:100%;overflow:hidden;font-family:'Inter',system-ui,-apple-system,sans-serif;background:#0f172a;color:var(--tx)}
+  #ui{position:absolute;top:16px;left:16px;width:262px;max-height:calc(100% - 32px);overflow:auto;background:var(--bg);backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;box-shadow:0 16px 40px rgba(0,0,0,.45);font-size:12px;line-height:1.45}
+  .kicker{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--acc);margin-bottom:2px}
+  h1{font-size:15px;font-weight:650;margin:0 0 2px;letter-spacing:-.02em}
+  .sub{color:var(--mut);font-size:11px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bd)}
+  h2{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);margin:12px 0 6px;font-weight:700}
+  .views{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  button{padding:6px 8px;border:1px solid var(--bd);border-radius:6px;background:rgba(255,255,255,.06);color:var(--tx);cursor:pointer;font-size:11.5px;font-weight:500;transition:all .15s}
+  button:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28)}
+  button.active{background:var(--acc);border-color:var(--acc);color:#06281e;font-weight:600}
+  label{display:flex;gap:8px;align-items:center;margin:4px 0;cursor:pointer;color:#cbd5e1}
+  input[type=checkbox]{accent-color:var(--acc)}
+  .specs{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:11px;color:#cbd5e1;margin-top:4px}
+  .specs span:nth-child(odd){color:var(--mut)}
+  .lbl{font-size:10.5px;font-weight:600;background:rgba(15,23,42,.82);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);color:#f8fafc;padding:3px 8px;border-radius:5px;white-space:nowrap;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+  .lbl.horta{border-left:3px solid var(--acc)}
+</style>
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<aside id="ui">
+  <div class="kicker">Renderização PBR + SSAO</div>
+  <h1>Quintal 12,0 × 10,0 m</h1>
+  <div class="sub">Galinheiro (3 × 4 m) + Hortas (6 m² e 12 m²)</div>
+  <a href="guia-montagem.html" style="display:block;text-align:center;padding:8px 10px;margin-bottom:10px;border-radius:7px;background:#15803d;color:#fff;text-decoration:none;font-weight:600;font-size:12px">📖 Guia Passo a Passo + Materiais</a>
+  <h2>Câmeras</h2>
+  <div class="views">
+    <button data-view="geral" class="active">Perspectiva</button>
+    <button data-view="daCasa">Da Casa</button>
+    <button data-view="horta1">Horta 1 (2×3)</button>
+    <button data-view="horta2">Horta 2 (2×6)</button>
+    <button data-view="galinheiro">Galinheiro</button>
+    <button data-view="planta">Planta</button>
+  </div>
+  <h2>Etapa da Obra (3D)</h2>
+  <div class="views" id="etapasCtrl">
+    <button data-etapa="0">0 · Base</button>
+    <button data-etapa="1A">1A · Madeira</button>
+    <button data-etapa="1B">1B · Telhas</button>
+    <button data-etapa="2A">2A · Estacas</button>
+    <button data-etapa="2B">2B · Tela/Porta</button>
+    <button data-etapa="3">3 · Interior</button>
+    <button data-etapa="4" class="active" style="grid-column:span 2">4 · Obra Completa + Aves</button>
+  </div>
+  <h2>Camadas</h2>
+  <label><input type="checkbox" id="cMangueira" checked> Árvore principal (Mangueira)</label>
+  <label><input type="checkbox" id="cHortas" checked> Hortas (H1 6 m² + H2 12 m²)</label>
+  <label><input type="checkbox" id="cCopas" checked> Árvores jovens</label>
+  <label><input type="checkbox" id="cTelhado" checked> Cobertura fibrocimento</label>
+  <label><input type="checkbox" id="cTela" checked> Fechamento em tela</label>
+  <label><input type="checkbox" id="cRotulos" checked> Marcadores</label>
+  <label><input type="checkbox" id="cSSAO" checked> Oclusão ambiental (SSAO)</label>
+  <label><input type="checkbox" id="cNoite"> Entardecer / noite</label>
+  <h2>Quadro de Áreas</h2>
+  <div class="specs">
+    <span>Terreno</span><span>12,0 × 10,0 m (120 m²)</span>
+    <span>Galinheiro</span><span>3,0 × 4,0 m (solário 9 m²)</span>
+    <span>Canil 2</span><span>50% ninhos · 50% cerâmicas</span>
+    <span>Horta 1</span><span>2,0 × 3,0 m (6 m² · tijolo 25 cm)</span>
+    <span>Horta 2</span><span>2,0 × 6,0 m (12 m² · tijolo 30 cm)</span>
+  </div>
+  <h2>Proposta Hortas (pré-fotos)</h2>
+  <div class="specs">
+    <span>H1 (Folhosas*)</span><span>Alface, couve, temperos</span>
+    <span>H2 (Sol pleno*)</span><span>Tomate, pepino, raízes</span>
+    <span>Fotos do sol</span><span>06:30 · 09:30 · 12:00 · 14:00 · 17:00</span>
+  </div>
+  <div style="font-size:10.5px;color:#64748b;margin-top:6px;line-height:1.35">*Layout e cultivos sujeitos a ajuste após análise das fotos do sol. Veja <b>PROJETO-HORTAS.md</b>.</div>
+</aside>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { Sky } from 'three/addons/objects/Sky.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { SSAOPass } from 'three/addons/postprocessing/SSAOPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const QX = 12.0, QZ = 10.0;
+const C1 = [0, 1.30], C2 = [1.45, 2.75], X_EXT = 2.90, W = 3.00;
+const Z_CANIL = 1.00, Z_PATAMAR = 2.00, Z_FRENTE = 4.00;
+const Y_PATAMAR = 0.10, Y_PISO = 0.18, Y_TETO_CANIL = 1.20;
+const Z_BEIRAL = 1.75, Y_BEIRAL = 1.75, Y_TELHADO_FUNDO = 2.05; // 3 folhas 1,10 × 1,80 m (17% caimento)
+const MURETA = 0.0, TOPO = 1.70;
+const PORTA = [Z_FRENTE - 0.95, Z_FRENTE - 0.15];
+const ABERTA = 1.25;
+
+// ---------- Renderer & Post-Processing (SSAO + ACES) ----------
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0xdce6ef, 0.006);
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.2, 180);
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.96;
+document.body.appendChild(renderer.domElement);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const ssaoPass = new SSAOPass(scene, camera, innerWidth, innerHeight);
+ssaoPass.kernelRadius = 0.65;
+ssaoPass.minDistance = 0.002;
+ssaoPass.maxDistance = 0.12;
+composer.addPass(ssaoPass);
+composer.addPass(new OutputPass());
+
+const css = new CSS2DRenderer();
+css.setSize(innerWidth, innerHeight);
+Object.assign(css.domElement.style, { position: 'absolute', top: 0, left: 0, pointerEvents: 'none' });
+document.body.appendChild(css.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.055;
+controls.maxPolarAngle = Math.PI * 0.485;
+controls.minDistance = 1.8;
+controls.maxDistance = 42;
+
+// ---------- Sky & Lighting ----------
+const sky = new Sky();
+sky.scale.setScalar(600);
+scene.add(sky);
+const sunVec = new THREE.Vector3();
+const pmrem = new THREE.PMREMGenerator(renderer);
+
+const hemi = new THREE.HemisphereLight(0xdbeafe, 0x6c5c4c, 0.55);
+scene.add(hemi);
+const sol = new THREE.DirectionalLight(0xffeeda, 2.4);
+sol.castShadow = true;
+sol.shadow.mapSize.set(4096, 4096);
+Object.assign(sol.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 55 });
+sol.shadow.bias = -0.00025;
+sol.shadow.normalBias = 0.015;
+scene.add(sol);
+
+function updateSun(noite) {
+  const u = sky.material.uniforms;
+  u['turbidity'].value = noite ? 2 : 3.5;
+  u['rayleigh'].value = noite ? 0.4 : 1.45;
+  u['mieCoefficient'].value = 0.0035;
+  u['mieDirectionalG'].value = 0.80;
+  const elev = noite ? -3 : 33;
+  const azim = 242;
+  sunVec.setFromSphericalCoords(1, THREE.MathUtils.degToRad(90 - elev), THREE.MathUtils.degToRad(azim));
+  u['sunPosition'].value.copy(sunVec);
+  sol.position.copy(sunVec).multiplyScalar(28).add(new THREE.Vector3(6, 0, 5));
+  sol.intensity = noite ? 0.14 : 2.4;
+  hemi.intensity = noite ? 0.25 : 0.58;
+  scene.fog.color.setHex(noite ? 0x111722 : 0xdce6ef);
+  scene.environment = pmrem.fromScene(sky).texture;
+}
+
+// ---------- High-Res Procedural PBR & Voronoi Textures ----------
+function canvasTex(w, h, repX, repY, srgb, fn) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  fn(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(repX, repY);
+  t.anisotropy = 8;
+  if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+// Normal map from heightmap canvas
+function heightToNormalTex(w, h, repX, repY, strength, drawHeightFn) {
+  const hc = document.createElement('canvas'); hc.width = w; hc.height = h;
+  const hg = hc.getContext('2d');
+  drawHeightFn(hg, w, h);
+  const src = hg.getImageData(0, 0, w, h).data;
+  const nc = document.createElement('canvas'); nc.width = w; nc.height = h;
+  const ng = nc.getContext('2d');
+  const dst = ng.createImageData(w, h);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const xm = (x - 1 + w) % w, xp = (x + 1) % w, ym = (y - 1 + h) % h, yp = (y + 1) % h;
+      const dx = (src[(y * w + xp) * 4] - src[(y * w + xm) * 4]) / 255 * strength;
+      const dy = (src[(yp * w + x) * 4] - src[(ym * w + x) * 4]) / 255 * strength;
+      const len = Math.hypot(dx, dy, 1);
+      const i = (y * w + x) * 4;
+      dst.data[i] = ((-dx / len) * 0.5 + 0.5) * 255;
+      dst.data[i + 1] = ((-dy / len) * 0.5 + 0.5) * 255;
+      dst.data[i + 2] = ((1 / len) * 0.5 + 0.5) * 255;
+      dst.data[i + 3] = 255;
+    }
+  }
+  ng.putImageData(dst, 0, 0);
+  const t = new THREE.CanvasTexture(nc);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(repX, repY);
+  t.anisotropy = 8;
+  return t;
+}
+
+// 1. Terra arenosa com micro-grãos e variação orgânica
+const texTerra = canvasTex(512, 512, 10, 8, true, (g, w, h) => {
+  g.fillStyle = '#87715b'; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 24000; i++) {
+    const v = (Math.random() - 0.5) * 34;
+    g.fillStyle = `rgb(${135 + v},${113 + v},${91 + v})`;
+    g.fillRect(Math.random() * w, Math.random() * h, 1 + Math.random() * 2.5, 1 + Math.random() * 2.5);
+  }
+});
+const normTerra = heightToNormalTex(256, 256, 10, 8, 1.8, (g, w, h) => {
+  g.fillStyle = '#808080'; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 8000; i++) { const v = 80 + Math.random() * 100; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(Math.random() * w, Math.random() * h, 2, 2); }
+});
+
+// 2. Voronoi Flagstone (pedra portuguesa real irregular + argamassa)
+const vorPts = Array.from({ length: 42 }, () => [Math.random() * 256, Math.random() * 256, 145 + Math.random() * 35]);
+function drawVoronoi(g, w, h, isHeight) {
+  const img = g.createImageData(w, h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let d1 = 1e9, d2 = 1e9, shade = 160;
+    for (const [px, py, sh] of vorPts) {
+      let dx = Math.abs(x - px); if (dx > w / 2) dx = w - dx;
+      let dy = Math.abs(y - py); if (dy > h / 2) dy = h - dy;
+      const d = Math.hypot(dx, dy);
+      if (d < d1) { d2 = d1; d1 = d; shade = sh; } else if (d < d2) d2 = d;
+    }
+    const edge = d2 - d1;
+    const isMortar = edge < 4.5;
+    const i = (y * w + x) * 4;
+    if (isHeight) {
+      const hv = isMortar ? 45 : Math.min(255, 190 + edge * 2.5);
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = hv; img.data[i + 3] = 255;
+    } else {
+      const n = (Math.random() - 0.5) * 14;
+      const c = isMortar ? 105 + n : shade + n;
+      img.data[i] = c; img.data[i + 1] = c + 2; img.data[i + 2] = c + 4; img.data[i + 3] = 255;
+    }
+  }
+  g.putImageData(img, 0, 0);
+}
+const texPedra = canvasTex(256, 256, 2.5, 2.5, true, (g, w, h) => drawVoronoi(g, w, h, false));
+const normPedra = heightToNormalTex(256, 256, 2.5, 2.5, 3.2, (g, w, h) => drawVoronoi(g, w, h, true));
+
+// 3. Tijolo aparente + Normal Map
+const texTijolo = canvasTex(512, 512, 6, 3, true, (g, w, h) => {
+  g.fillStyle = '#756e68'; g.fillRect(0, 0, w, h);
+  const bh = 36, bw = 84;
+  for (let r = 0; r * bh < h; r++) {
+    const off = (r % 2) * (bw / 2);
+    for (let c = -1; c * bw < w; c++) {
+      const s = (Math.random() - 0.5) * 28;
+      g.fillStyle = `rgb(${128 + s},${62 + s * 0.6},${46 + s * 0.4})`;
+      g.fillRect(c * bw + off + 3, r * bh + 3, bw - 6, bh - 6);
+    }
+  }
+});
+const normTijolo = heightToNormalTex(256, 256, 6, 3, 3.5, (g, w, h) => {
+  g.fillStyle = '#303030'; g.fillRect(0, 0, w, h); g.fillStyle = '#e0e0e0';
+  const bh = 18, bw = 42;
+  for (let r = 0; r * bh < h; r++) {
+    const off = (r % 2) * (bw / 2);
+    for (let c = -1; c * bw < w; c++) g.fillRect(c * bw + off + 1.5, r * bh + 1.5, bw - 3, bh - 3);
+  }
+});
+
+// 4. Reboco real com desgaste e umidade
+const texMuro = canvasTex(512, 512, 4, 1, true, (g, w, h) => {
+  const gr = g.createLinearGradient(0, 0, 0, h);
+  gr.addColorStop(0, '#f0f2f4'); gr.addColorStop(0.68, '#e3e6e8'); gr.addColorStop(0.90, '#b9b4a8'); gr.addColorStop(1, '#797468');
+  g.fillStyle = gr; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 6000; i++) {
+    g.fillStyle = `rgba(55,50,42,${Math.random() * 0.06})`;
+    g.fillRect(Math.random() * w, h * 0.55 + Math.random() * h * 0.45, 2 + Math.random() * 4, 4 + Math.random() * 8);
+  }
+});
+const normMuro = heightToNormalTex(256, 256, 4, 1, 1.2, (g, w, h) => {
+  g.fillStyle = '#808080'; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 4000; i++) { const v = 110 + Math.random() * 35; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(Math.random() * w, Math.random() * h, 3, 3); }
+});
+
+const texMad = canvasTex(256, 256, 2, 1, true, (g, w, h) => {
+  g.fillStyle = '#ae763e'; g.fillRect(0, 0, w, h);
+  for (let y = 0; y < h; y += 3) { g.fillStyle = `rgba(70,38,12,${0.06 + Math.random() * 0.1})`; g.fillRect(0, y, w, 1 + Math.random() * 2); }
+});
+const texCim = canvasTex(512, 512, 4, 4, true, (g, w, h) => {
+  g.fillStyle = '#b4b8bd'; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 8000; i++) { const v = 165 + Math.random() * 28; g.fillStyle = `rgb(${v},${v + 2},${v + 3})`; g.fillRect(Math.random() * w, Math.random() * h, 2, 2); }
+});
+const texCasca = canvasTex(256, 256, 2, 6, true, (g, w, h) => {
+  g.fillStyle = '#473729'; g.fillRect(0, 0, w, h);
+  for (let x = 0; x < w; x += 5) { g.fillStyle = `rgba(22,15,10,${0.15 + Math.random() * 0.25})`; g.fillRect(x, 0, 2 + Math.random() * 3, h); }
+});
+const normCasca = heightToNormalTex(256, 256, 2, 6, 3.0, (g, w, h) => {
+  g.fillStyle = '#808080'; g.fillRect(0, 0, w, h);
+  for (let x = 0; x < w; x += 5) { const v = 60 + Math.random() * 140; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(x, 0, 3, h); }
+});
+const texFolha = canvasTex(256, 256, 1, 1, true, (g, w, h) => {
+  g.clearRect(0, 0, w, h);
+  for (let i = 0; i < 32; i++) {
+    const a = (i / 32) * Math.PI * 2 + Math.random() * 0.4;
+    const dist = 20 + Math.random() * 72;
+    const cx = w / 2 + Math.cos(a) * dist, cy = h / 2 + Math.sin(a) * dist;
+    g.save(); g.translate(cx, cy); g.rotate(a + Math.random() * 0.6);
+    const l = 34 + Math.random() * 22, r = 9 + Math.random() * 6;
+    const shade = Math.floor(Math.random() * 30);
+    g.fillStyle = `rgb(${38 + shade},${92 + shade},${36 + Math.floor(shade * 0.5)})`;
+    g.beginPath(); g.ellipse(0, 0, l, r, 0, 0, Math.PI * 2); g.fill();
+    g.restore();
+  }
+});
+function texTela(cor, n) {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d'); g.strokeStyle = cor; g.lineWidth = n === 4 ? 4 : 3;
+  if (n === 4) { for (let i = 0; i <= 64; i += 16) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i, 64); g.moveTo(0, i); g.lineTo(64, i); g.stroke(); } }
+  else { g.beginPath(); g.moveTo(0, 0); g.lineTo(64, 64); g.moveTo(64, 0); g.lineTo(0, 64); g.stroke(); }
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+}
+const T_HEX = texTela('#334155', 2), T_FINA = texTela('#1e293b', 4);
+
+const M = {
+  terra: new THREE.MeshStandardMaterial({ map: texTerra, normalMap: normTerra, roughness: 0.96 }),
+  terraRica: new THREE.MeshStandardMaterial({ color: 0x35271d, roughness: 0.96 }),
+  cimento: new THREE.MeshStandardMaterial({ map: texCim, roughness: 0.85 }),
+  pedra: new THREE.MeshStandardMaterial({ map: texPedra, normalMap: normPedra, roughness: 0.78 }),
+  muro: new THREE.MeshStandardMaterial({ map: texMuro, normalMap: normMuro, roughness: 0.90 }),
+  tijoloAp: new THREE.MeshStandardMaterial({ map: texTijolo, normalMap: normTijolo, roughness: 0.88 }),
+  cal: new THREE.MeshStandardMaterial({ color: 0xf3f4f0, roughness: 0.92 }),
+  fibro: new THREE.MeshStandardMaterial({ color: 0xc9cfd5, roughness: 0.86, side: THREE.DoubleSide }),
+  madeira: new THREE.MeshStandardMaterial({ map: texMad, roughness: 0.80 }),
+  eucalipto: new THREE.MeshStandardMaterial({ map: texCasca, roughness: 0.88 }),
+  tijolo: new THREE.MeshStandardMaterial({ color: 0xae4d34, roughness: 0.88 }),
+  ferro: new THREE.MeshStandardMaterial({ color: 0x2a3036, metalness: 0.65, roughness: 0.36 }),
+  lona: new THREE.MeshStandardMaterial({ color: 0x245940, roughness: 0.78, side: THREE.DoubleSide }),
+  maravalha: new THREE.MeshStandardMaterial({ color: 0xd9b372, roughness: 0.95 }),
+  palha: new THREE.MeshStandardMaterial({ color: 0xe3c878, roughness: 0.95 }),
+  areia: new THREE.MeshStandardMaterial({ color: 0xd6c7a9, roughness: 0.95 }),
+  tronco: new THREE.MeshStandardMaterial({ map: texCasca, normalMap: normCasca, roughness: 0.94 }),
+  folhaCard: new THREE.MeshStandardMaterial({ map: texFolha, alphaTest: 0.38, side: THREE.DoubleSide, roughness: 0.82 }),
+  sombrite: new THREE.MeshStandardMaterial({ color: 0x161f1c, transparent: true, opacity: 0.45, side: THREE.DoubleSide }),
+};
+
+const G = { obra: new THREE.Group(), telhado: new THREE.Group(), telas: new THREE.Group(), rotulos: new THREE.Group(), aves: new THREE.Group(), copas: new THREE.Group(), hortas: new THREE.Group(), mangueira: new THREE.Group() };
+Object.values(G).forEach(g => scene.add(g));
+const E = {
+  e0: new THREE.Group(), e1a: new THREE.Group(), e1b: new THREE.Group(),
+  e2a: new THREE.Group(), e2b: new THREE.Group(), e3: new THREE.Group(), e4: new THREE.Group()
+};
+Object.values(E).forEach(g => G.obra.add(g));
+const ORDEM_ETAPAS = ['0', '1A', '1B', '2A', '2B', '3', '4'];
+
+function caixa(x0, x1, y0, y1, z0, z1, m, pai = G.obra) {
+  const o = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, y1 - y0, z1 - z0), m);
+  o.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+  o.castShadow = o.receiveShadow = true; pai.add(o); return o;
+}
+function barra(r, a, b, m, pai = G.obra, seg = 12) {
+  const va = new THREE.Vector3(...a), vb = new THREE.Vector3(...b), d = new THREE.Vector3().subVectors(vb, va);
+  const o = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.82, r, d.length(), seg), m);
+  o.position.copy(va).addScaledVector(d, 0.5);
+  o.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize());
+  o.castShadow = o.receiveShadow = true; pai.add(o); return o;
+}
+function galhoCurvo(pts, rBase, m, pai) {
+  const curve = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p)));
+  const geo = new THREE.TubeGeometry(curve, 16, rBase, 10, false);
+  const o = new THREE.Mesh(geo, m); o.castShadow = o.receiveShadow = true; pai.add(o); return o;
+}
+function tela(tipo, a, b, pai = G.telas) {
+  const dx = Math.abs(b[0] - a[0]), dy = Math.abs(b[1] - a[1]), dz = Math.abs(b[2] - a[2]);
+  const w = Math.max(dx, dz), h = dy || dz;
+  const tx = (tipo === 'hex' ? T_HEX : T_FINA).clone(); tx.needsUpdate = true;
+  tx.repeat.set(Math.max(1, w * (tipo === 'hex' ? 4 : 6)), Math.max(1, h * (tipo === 'hex' ? 4 : 6)));
+  const o = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: tx, transparent: true, side: THREE.DoubleSide, alphaTest: 0.25 }));
+  o.position.set((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2);
+  if (dy < 0.01) o.rotation.x = -Math.PI / 2; else if (dx < 0.01) o.rotation.y = Math.PI / 2;
+  pai.add(o); return o;
+}
+function telaTrapezio(tipo, x, z0, z1, yBot, yTop0, yTop1, pai = G.telas) {
+  const w = Math.abs(z1 - z0), hMax = Math.max(yTop0, yTop1) - yBot;
+  const tx = (tipo === 'hex' ? T_HEX : T_FINA).clone(); tx.needsUpdate = true;
+  tx.repeat.set(Math.max(1, w * (tipo === 'hex' ? 4 : 6)), Math.max(1, hMax * (tipo === 'hex' ? 4 : 6)));
+  const geo = new THREE.BufferGeometry();
+  const verts = new Float32Array([
+    x, yBot,  z0,   x, yBot,  z1,   x, yTop1, z1,
+    x, yBot,  z0,   x, yTop1, z1,   x, yTop0, z0
+  ]);
+  const uvs = new Float32Array([
+    0, 0,   1, 0,   1, (yTop1 - yBot) / hMax,
+    0, 0,   1, (yTop1 - yBot) / hMax,   0, (yTop0 - yBot) / hMax
+  ]);
+  geo.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+  geo.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+  geo.computeVertexNormals();
+  const o = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tx, transparent: true, side: THREE.DoubleSide, alphaTest: 0.25 }));
+  pai.add(o); return o;
+}
+function rotulo(texto, x, y, z, cls = '', pai = G.rotulos) {
+  const d = document.createElement('div'); d.className = 'lbl ' + cls; d.textContent = texto;
+  const o = new CSS2DObject(d); o.position.set(x, y, z); pai.add(o); return o;
+}
+
+// =====================================================================
+// 1. QUINTAL REAL (12 × 10 m) COM TERRENO ORGÂNICO
+// =====================================================================
+{
+  const gTer = new THREE.PlaneGeometry(QX + 1.2, QZ + 2.8, 72, 72);
+  gTer.rotateX(-Math.PI / 2);
+  const pos = gTer.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i) + QX / 2, z = pos.getZ(i) + (QZ + 1.6) / 2;
+    const inCoop = x < W + 0.2 && z < Z_FRENTE + 0.2;
+    const inWalk = z > QZ - 1.6;
+    if (!inCoop && !inWalk) {
+      pos.setY(i, (Math.sin(x * 1.1) * Math.cos(z * 0.9) + Math.sin(x * 2.3 + z)) * 0.018);
+    }
+  }
+  gTer.computeVertexNormals();
+  const ter = new THREE.Mesh(gTer, M.terra);
+  ter.position.set(QX / 2, 0, (QZ + 1.6) / 2);
+  ter.receiveShadow = true; G.obra.add(ter);
+}
+
+// Folhas secas
+{
+  const inst = new THREE.InstancedMesh(new THREE.CircleGeometry(0.038, 5), new THREE.MeshStandardMaterial({ color: 0x8b6239, roughness: 0.94, side: THREE.DoubleSide }), 550);
+  const d = new THREE.Object3D();
+  for (let i = 0; i < 550; i++) {
+    d.position.set(0.3 + Math.random() * (QX - 0.6), 0.018, 0.3 + Math.random() * (QZ - 1.6));
+    d.rotation.set(-Math.PI / 2, 0, Math.random() * 6.28); d.scale.set(1.2, 0.5, 1); d.updateMatrix();
+    inst.setMatrixAt(i, d.matrix);
+  }
+  inst.receiveShadow = true; G.obra.add(inst);
+}
+
+// Muros (muro esquerdo contínuo de 1,55 m em toda a extensão!)
+caixa(-0.18, 0, 0, 1.55, -0.18, QZ, M.muro);
+caixa(-0.21, 0.03, 1.55, 1.60, -0.18, QZ, M.cimento);
+caixa(-0.18, QX + 0.18, 0, 2.90, -0.18, 0, M.muro);
+caixa(-0.22, QX + 0.22, 2.90, 3.04, -0.25, 0.08, M.tijoloAp);
+caixa(QX, QX + 0.18, 0, 1.35, -0.18, QZ, M.muro);
+caixa(QX, QX + 0.18, 1.35, 2.90, -0.18, QZ, M.tijoloAp);
+caixa(QX - 0.03, QX + 0.21, 2.90, 2.95, -0.18, QZ, M.cimento);
+
+// Casa + calçada + meio-fio + ralo + mangueira + escada
+caixa(0, QX, 0, 0.11, QZ - 1.45, QZ, M.cimento);
+caixa(0, 2.4, 0.11, 0.24, QZ - 1.48, QZ - 1.40, M.cimento);
+caixa(1.35, 1.55, 0.111, 0.115, QZ - 0.95, QZ - 0.75, M.ferro);
+barra(0.012, [0.2, 0.125, 9.6], [1.8, 0.125, 8.8], new THREE.MeshStandardMaterial({ color: 0x2a7f52, roughness: 0.5 }));
+caixa(4.2, QX, 0, 3.15, QZ, QZ + 0.45, M.muro);
+caixa(5.2, 6.8, 1.55, 2.15, QZ - 0.02, QZ + 0.02, M.ferro);
+barra(0.016, [5.7, 1.45, QZ - 0.02], [5.7, 1.45, QZ - 0.28], M.ferro);
+for (let d = 0; d < 4; d++) caixa(7.5, 8.5, 0, 0.13 * (d + 1), QZ - 1.45 + d * 0.28, QZ - 1.17 + d * 0.28, M.cimento);
+
+// Caminho de pedra + círculo + pisantes
+function pedraCirculo(cx, cz, r, h = 0.12) {
+  const o = new THREE.Mesh(new THREE.CylinderGeometry(r, r + 0.04, h, 40), M.pedra);
+  o.position.set(cx, h / 2, cz); o.receiveShadow = o.castShadow = true; G.obra.add(o);
+}
+pedraCirculo(8.2, 6.7, 1.15);
+const ptsCaminho = [[2.25, 8.55], [2.95, 7.75], [3.95, 7.15], [5.15, 6.85], [6.45, 6.75], [7.45, 6.70]];
+for (let i = 0; i < ptsCaminho.length - 1; i++) {
+  const [x1, z1] = ptsCaminho[i], [x2, z2] = ptsCaminho[i + 1];
+  const dx = x2 - x1, dz = z2 - z1, len = Math.hypot(dx, dz);
+  const seg = new THREE.Mesh(new THREE.BoxGeometry(len + 0.25, 0.12, 0.72), M.pedra);
+  seg.position.set((x1 + x2) / 2, 0.06, (z1 + z2) / 2);
+  seg.rotation.y = -Math.atan2(dz, dx);
+  seg.receiveShadow = seg.castShadow = true; G.obra.add(seg);
+}
+for (const [px, pz] of [[9.4, 7.7], [9.7, 8.1]]) {
+  const p = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.05, 0.34), M.cimento);
+  p.position.set(px, 0.025, pz); p.rotation.y = -0.35; p.castShadow = p.receiveShadow = true; G.obra.add(p);
+}
+
+function copaBotanica(cx, cy, cz, rx, ry, rz, count, cardSize, pai) {
+  const inst = new THREE.InstancedMesh(new THREE.PlaneGeometry(cardSize, cardSize), M.folhaCard, count);
+  const d = new THREE.Object3D();
+  for (let i = 0; i < count; i++) {
+    const u = Math.random(), v = Math.random();
+    const th = u * 2 * Math.PI, ph = Math.acos(2 * v - 1), r = Math.cbrt(Math.random());
+    d.position.set(cx + r * rx * Math.sin(ph) * Math.cos(th), cy + r * ry * Math.cos(ph), cz + r * rz * Math.sin(ph) * Math.sin(th));
+    d.rotation.set((Math.random() - 0.5) * 1.4, Math.random() * 6.28, (Math.random() - 0.5) * 1.4);
+    const s = 0.75 + Math.random() * 0.55; d.scale.set(s, s, s); d.updateMatrix();
+    inst.setMatrixAt(i, d.matrix);
+  }
+  inst.castShadow = inst.receiveShadow = true; pai.add(inst);
+}
+
+// ÁRVORE PRINCIPAL (Mangueira 5× mais alta, em grupo próprio para ligar/desligar!)
+galhoCurvo([[6.2, 0, 8.1], [6.18, 3.8, 8.08], [6.12, 7.6, 8.0]], 0.44, M.tronco, G.mangueira);
+galhoCurvo([[6.12, 7.4, 8.0], [5.4, 9.8, 7.5], [4.5, 12.2, 6.9]], 0.25, M.tronco, G.mangueira);
+galhoCurvo([[6.12, 7.4, 8.0], [7.0, 10.0, 8.4], [7.9, 12.4, 9.0]], 0.25, M.tronco, G.mangueira);
+galhoCurvo([[6.12, 7.5, 8.0], [6.2, 10.6, 7.2], [6.4, 13.2, 6.2]], 0.20, M.tronco, G.mangueira);
+copaBotanica(6.2, 13.4, 7.8, 4.5, 2.9, 4.3, 460, 1.45, G.mangueira);
+
+// Toco grande + árvores jovens
+barra(0.30, [5.4, 0, 2.4], [5.4, 0.85, 2.4], M.tronco, G.obra, 14);
+function arvoreJovem(x, z, h, r) {
+  barra(0.065, [x, 0, z], [x + 0.05, h * 0.55, z], M.tronco, G.copas);
+  barra(0.04, [x + 0.05, h * 0.55, z], [x - 0.25, h, z - 0.15], M.tronco, G.copas);
+  barra(0.04, [x + 0.05, h * 0.55, z], [x + 0.30, h, z + 0.15], M.tronco, G.copas);
+  copaBotanica(x, h + r * 0.25, z, r, r * 0.75, r, 75, 0.65, G.copas);
+}
+arvoreJovem(4.3, 2.0, 2.3, 0.90);
+arvoreJovem(6.1, 0.85, 2.6, 1.00);
+arvoreJovem(9.6, 0.90, 2.4, 0.85);
+arvoreJovem(11.3, 2.1, 2.2, 0.70);
+
+// Tampa com alças
+caixa(3.15, 3.90, 0, 0.14, 0.18, 0.72, M.cimento);
+for (const x of [3.30, 3.75]) barra(0.008, [x, 0.14, 0.45], [x, 0.22, 0.45], M.ferro);
+
+// ---------- HORTAS (H1: 2 × 3 m = 6 m² | H2: 2 × 6 m = 12 m²) ----------
+function canteiro(x0, x1, z0, z1, h = 0.25, tutor = false) {
+  const esp = 0.08; // meia-vez de tijolo
+  caixa(x0, x1, 0, h, z0, z0 + esp, M.tijoloAp, G.hortas);
+  caixa(x0, x1, 0, h, z1 - esp, z1, M.tijoloAp, G.hortas);
+  caixa(x0, x0 + esp, 0, h, z0 + esp, z1 - esp, M.tijoloAp, G.hortas);
+  caixa(x1 - esp, x1, 0, h, z0 + esp, z1 - esp, M.tijoloAp, G.hortas);
+  caixa(x0 + esp, x1 - esp, 0.01, h - 0.03, z0 + esp, z1 - esp, M.terraRica, G.hortas);
+  const cols = Math.floor((x1 - x0 - 0.24) / 0.24), rows = Math.floor((z1 - z0 - 0.24) / 0.24);
+  const inst = new THREE.InstancedMesh(new THREE.PlaneGeometry(0.24, 0.24), M.folhaCard, cols * rows * 2);
+  const d = new THREE.Object3D(); let idx = 0;
+  for (let cx = 0; cx < cols; cx++) for (let rz = 0; rz < rows; rz++) {
+    const px = x0 + 0.20 + cx * 0.24, pz = z0 + 0.20 + rz * 0.24;
+    for (let k = 0; k < 2; k++) {
+      d.position.set(px, h + 0.01 + k * 0.03, pz);
+      d.rotation.set(-Math.PI / 2 + (Math.random() - 0.5) * 0.4, Math.random() * 6.28, 0);
+      d.scale.setScalar(0.9 + Math.random() * 0.3); d.updateMatrix();
+      inst.setMatrixAt(idx++, d.matrix);
+    }
+  }
+  inst.castShadow = inst.receiveShadow = true; G.hortas.add(inst);
+  if (tutor) {
+    const xm = (x0 + x1) / 2;
+    for (let z = z0 + 0.35; z <= z1 - 0.35; z += 0.70) barra(0.015, [xm, h - 0.02, z], [xm, h + 1.15, z], M.madeira, G.hortas);
+    barra(0.012, [xm, h + 1.05, z0 + 0.35], [xm, h + 1.05, z1 - 0.35], M.madeira, G.hortas);
+  }
+}
+canteiro(0.12, 0.92, 5.45, 8.45, 0.25, false);
+canteiro(1.12, 1.92, 5.45, 8.45, 0.25, false);
+rotulo('Horta 1 · 6 m² (tijolo 25 cm · folhosas*)', 1.02, 0.80, 6.95, 'horta', G.hortas);
+
+canteiro(QX - 1.92, QX - 1.12, 2.55, 5.35, 0.30, true);
+canteiro(QX - 0.92, QX - 0.12, 2.55, 5.35, 0.30, false);
+canteiro(QX - 1.92, QX - 1.12, 5.60, 8.45, 0.30, false);
+canteiro(QX - 0.92, QX - 0.12, 5.60, 8.45, 0.30, false);
+rotulo('Horta 2 · 12 m² (tijolo 30 cm · frutos/raízes*)', QX - 1.0, 0.85, 5.50, 'horta', G.hortas);
+
+// =====================================================================
+// 2. GALINHEIRO (3,00 × 4,00 m) — ORGANIZADO POR ETAPAS DE OBRA
+// =====================================================================
+// Etapa 0: Base original limpa e caiada
+caixa(0, W, 0, 0.006, Z_PATAMAR, Z_FRENTE, M.terra, E.e0);
+caixa(0, W, 0, Y_PATAMAR, 0, Z_PATAMAR, M.cimento, E.e0);
+caixa(0, X_EXT, Y_PATAMAR, Y_PISO, 0, Z_CANIL, M.cimento, E.e0);
+caixa(C1[1], C2[0], Y_PISO, Y_TETO_CANIL, 0, Z_CANIL, M.cal, E.e0);
+caixa(C2[1], X_EXT, Y_PISO, Y_TETO_CANIL, 0, Z_CANIL, M.cal, E.e0);
+caixa(0, X_EXT, Y_TETO_CANIL - 0.10, Y_TETO_CANIL, Z_CANIL - 0.10, Z_CANIL, M.cal, E.e0);
+caixa(0, X_EXT, Y_PISO, Y_TETO_CANIL, 0, 0.01, M.cal, E.e0);
+caixa(0, 0.01, Y_PISO, Y_TETO_CANIL, 0, Z_CANIL, M.cal, E.e0);
+
+// Etapa 3: Interior dos Canis & Patamar
+caixa(C1[0], C1[1], Y_PISO, Y_PISO + 0.05, 0, Z_CANIL - 0.1, M.maravalha, E.e3);
+const X_DIV = 2.10;
+caixa(C2[0], X_DIV, Y_PISO, Y_PISO + 0.05, 0, Z_CANIL - 0.1, M.maravalha, E.e3);
+caixa(X_DIV - 0.015, X_DIV + 0.015, Y_PISO, Y_TETO_CANIL, 0.01, 0.04, M.madeira, E.e3);
+caixa(X_DIV - 0.015, X_DIV + 0.015, Y_PISO, Y_TETO_CANIL, Z_CANIL - 0.05, Z_CANIL - 0.02, M.madeira, E.e3);
+tela('fina', [X_DIV, Y_PISO + 0.03, 0.04], [X_DIV, Y_TETO_CANIL - 0.13, Z_CANIL - 0.05], E.e3);
+
+const Y_POLEIRO = Y_PISO + 0.45, Z_POLEIROS = [0.30, 0.65];
+for (const z of Z_POLEIROS) barra(0.022, [C1[0] + 0.01, Y_POLEIRO, z], [C1[1] - 0.01, Y_POLEIRO, z], M.madeira, E.e3);
+
+const Y_NINHO = Y_PISO + 0.15, H_NINHO = 0.32, W_NINHO = 0.31;
+const NINHOS = [[1.46, 0, false], [1.78, 0, true], [1.46, 1, true]];
+for (const [x0, andar, comTeto] of NINHOS) {
+  const x1 = x0 + W_NINHO, z1 = 0.36, y0 = Y_NINHO + andar * (H_NINHO + 0.02);
+  caixa(x0, x1, y0 - 0.02, y0, 0.01, z1, M.madeira, E.e3);
+  caixa(x0, x0 + 0.015, y0, y0 + H_NINHO, 0.01, z1, M.madeira, E.e3);
+  caixa(x1 - 0.015, x1, y0, y0 + H_NINHO, 0.01, z1, M.madeira, E.e3);
+  caixa(x0, x1, y0, y0 + 0.10, z1 - 0.015, z1, M.madeira, E.e3);
+  caixa(x0 + 0.02, x1 - 0.02, y0, y0 + 0.05, 0.02, z1 - 0.02, M.palha, E.e3);
+  if (comTeto) {
+    const teto = caixa(x0, x1, -0.008, 0.008, -0.18, 0.18, M.madeira, E.e3);
+    teto.position.set((x0 + x1) / 2, y0 + H_NINHO + 0.04, z1 / 2); teto.rotation.x = Math.atan2(0.08, z1);
+  }
+}
+for (let i = 0; i < 6; i++) caixa(2.20, 2.65, Y_PISO + i * 0.045, Y_PISO + i * 0.045 + 0.04, 0.08, 0.53, i % 2 ? M.cimento : M.madeira, E.e3);
+for (let i = 0; i < 5; i++) caixa(2.22, 2.67, Y_PISO + i * 0.04, Y_PISO + i * 0.04 + 0.035, 0.58, 0.88, i % 2 ? M.pedra : M.madeira, E.e3);
+
+caixa(1.43, 1.67, Y_PATAMAR, Y_PATAMAR + 0.09, 1.14, 1.36, M.tijolo, E.e3);
+barra(0.13, [1.55, Y_PATAMAR + 0.09, 1.25], [1.55, Y_PATAMAR + 0.27, 1.25], new THREE.MeshStandardMaterial({ color: 0x7fb3d5, transparent: true, opacity: 0.85, roughness: 0.15 }), E.e3, 24);
+{
+  const x = 1.88, z = 1.25;
+  caixa(x - 0.10, x + 0.10, Y_PATAMAR, Y_PATAMAR + 0.09, z - 0.10, z + 0.10, M.tijolo, E.e3);
+  barra(0.11, [x, Y_PATAMAR + 0.09, z], [x, Y_PATAMAR + 0.13, z], new THREE.MeshStandardMaterial({ color: 0xb83227, roughness: 0.4 }), E.e3, 20);
+  barra(0.08, [x, Y_PATAMAR + 0.13, z], [x, Y_PATAMAR + 0.41, z], new THREE.MeshStandardMaterial({ color: 0xeef3f5, transparent: true, opacity: 0.85, roughness: 0.12 }), E.e3, 20);
+}
+caixa(2.00, 2.60, Y_PATAMAR, Y_PATAMAR + 0.12, 1.25, 1.75, M.madeira, E.e3);
+caixa(2.02, 2.58, Y_PATAMAR + 0.08, Y_PATAMAR + 0.11, 1.27, 1.73, M.areia, E.e3);
+
+const gradeExtras = [];
+function grade(x0, x1, comLona) {
+  const g = new THREE.Group(), w = x1 - x0, h = Y_TETO_CANIL - 0.10 - Y_PISO;
+  g.position.set(x0, Y_PISO, Z_CANIL - 0.02);
+  for (const y of [0, h / 2, h - 0.02]) caixa(0, w, y, y + 0.02, -0.01, 0.01, M.ferro, g);
+  caixa(0, 0.02, 0, h, -0.01, 0.01, M.ferro, g); caixa(w - 0.02, w, 0, h, -0.01, 0.01, M.ferro, g);
+  for (let x = 0.11; x < w - 0.05; x += 0.11) barra(0.006, [x, 0, 0], [x, h, 0], M.ferro, g, 6);
+  const tMesh = tela('fina', [0.02, 0.02, 0.014], [w - 0.02, h - 0.02, 0.014], g);
+  gradeExtras.push(tMesh);
+  if (comLona) {
+    const l = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.04, h / 2 - 0.03), M.lona);
+    l.position.set(w / 2, h / 4, 0.024); g.add(l); gradeExtras.push(l);
+  }
+  E.e0.add(g); return g;
+}
+const grades = [grade(...C1, true), grade(...C2, false)];
+
+// Etapa 1A (Madeiramento do telhado) + Etapa 1B (Telhas Eternit + Tela 1/2" nos vãos)
+{
+  const dz = Z_BEIRAL + 0.04, dy = Y_TELHADO_FUNDO - Y_BEIRAL, comp = Math.hypot(dz, dy);
+  const geo = new THREE.PlaneGeometry(W + 0.12, comp, 64, 1);
+  const pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) pos.setZ(i, Math.sin(pos.getX(i) * 35) * 0.024);
+  geo.computeVertexNormals();
+  const t = new THREE.Mesh(geo, M.fibro);
+  t.rotation.x = -Math.PI / 2 + Math.atan2(dy, dz);
+  t.position.set(W / 2, (Y_TELHADO_FUNDO + Y_BEIRAL) / 2 + 0.02, (Z_BEIRAL - 0.04) / 2);
+  t.castShadow = t.receiveShadow = true; E.e1b.add(t);
+  // Terça do fundo (z=0,05) e terça de apoio exatamente sobre a parede dos canis (z=0,97)
+  const yParede = Y_TELHADO_FUNDO - dy * (0.97 / dz) - 0.05;
+  caixa(0.02, W, Y_TELHADO_FUNDO - 0.11, Y_TELHADO_FUNDO - 0.05, 0.02, 0.08, M.madeira, E.e1a);
+  caixa(0.02, W, yParede - 0.06, yParede, 0.94, 1.00, M.madeira, E.e1a);
+  // 3 pontaletes: 2 nas paredes dos canis (1,20 -> 1,82 m) + 1 curto no muro esquerdo (1,55 -> 1,82 m)
+  for (const x of [1.34, 2.80]) caixa(x, x + 0.07, Y_TETO_CANIL, yParede - 0.06, 0.94, 1.00, M.madeira, E.e1a);
+  caixa(0.01, 0.08, 1.55, yParede - 0.06, 0.94, 1.00, M.madeira, E.e1a);
+  // 3 caibros inclinados (z=0 até z=1,45 m -> balanço livre da telha cai para apenas 30 cm!)
+  for (const x of [0.06, 1.37, 2.83]) {
+    barra(0.032, [x, Y_TELHADO_FUNDO - 0.02, 0.02], [x, Y_TELHADO_FUNDO - dy * (1.45 / dz) - 0.02, 1.45], M.madeira, E.e1a, 8);
+  }
+  // Tela de 1/2" fechando exatamente o vão aberto acima dos canis (frente + direita + acima do muro esquerdo de 1,55 m)
+  tela('fina', [0.02, Y_TETO_CANIL, 1.00], [X_EXT, yParede, 1.00], E.e1b);
+  telaTrapezio('fina', X_EXT, 0.02, 1.00, Y_TETO_CANIL, Y_TELHADO_FUNDO - 0.05, yParede, E.e1b);
+  telaTrapezio('fina', 0.01, 0.02, 1.00, 1.55, Y_TELHADO_FUNDO - 0.05, yParede, E.e1b);
+}
+
+// Etapa 2A (5 Estacas de eucalipto só na terra — sem mureta de tijolo!)
+const XS = W - 0.06, ZS = Z_FRENTE - 0.06, S = 0.05, E_SAR = 0.025, XT = W - 0.02;
+for (const [x, z] of [[0.06, ZS], [1.50, ZS], [XS, ZS], [XS, 2.05], [XS, PORTA[0] - 0.04]]) {
+  barra(0.04, [x, 0, z], [x, TOPO, z], M.eucalipto, E.e2a);
+}
+
+// Etapa 2B (Sarrafos no topo + rodapé inferior a 3 cm do chão + Porta 0,80 m + Tela hexagonal + Arames de amarração)
+caixa(0, W, TOPO - S, TOPO, ZS - 0.06, ZS - 0.035, M.madeira, E.e2b);
+caixa(XS - 0.06, XS - 0.035, TOPO - S, TOPO, Z_CANIL, ZS, M.madeira, E.e2b);
+caixa(0.06 - E_SAR / 2, 0.06 + E_SAR / 2, TOPO - S, TOPO, Z_BEIRAL, ZS, M.madeira, E.e2b);
+// Rodapé inferior a 3 cm do chão (nunca direto na terra para não apodrecer; facilita grampear a tela)
+caixa(0, W, 0.03, 0.03 + S, ZS - 0.06, ZS - 0.035, M.madeira, E.e2b);
+caixa(XS - 0.06, XS - 0.035, 0.03, 0.03 + S, Z_CANIL, PORTA[0], M.madeira, E.e2b);
+caixa(XS - 0.06, XS - 0.035, 0.03, 0.03 + S, PORTA[1], ZS, M.madeira, E.e2b);
+tela('hex', [0, 0.03, Z_FRENTE - 0.015], [W, TOPO, Z_FRENTE - 0.015], E.e2b);
+// Lateral esquerda: acima do muro de 1,55 m até a linha do teto (1,70 m) + triângulo sob o telhado (1,00..1,75 m)
+tela('hex', [0.005, 1.55, Z_BEIRAL], [0.005, TOPO, Z_FRENTE], E.e2b);
+telaTrapezio('hex', 0.005, Z_CANIL, Z_BEIRAL, 1.55, 1.82, Y_BEIRAL, E.e2b);
+// Lateral direita: da parede do canil até a porta + pós-porta + fechamento triangular sob o telhado (1,00..1,75 m)
+tela('hex', [XT, 0.03, Z_CANIL], [XT, TOPO, PORTA[0]], E.e2b);
+tela('hex', [XT, 0.03, PORTA[1]], [XT, TOPO, Z_FRENTE - 0.015], E.e2b);
+telaTrapezio('hex', XT, Z_CANIL, Z_BEIRAL, TOPO, 1.82, Y_BEIRAL, E.e2b);
+// Teto do solário (1,75..4,00 m) + 3 fios de arame nº 14 + fio transversal no beiral (tela NÃO amarra na telha!)
+tela('hex', [0, TOPO + 0.003, Z_BEIRAL], [W, TOPO + 0.003, Z_FRENTE], E.e2b);
+tela('hex', [0, Y_BEIRAL, Z_BEIRAL], [W, TOPO, Z_BEIRAL], E.e2b);
+barra(0.006, [0.06, TOPO, Z_BEIRAL], [XS, TOPO, Z_BEIRAL], M.ferro, E.e2b, 8);
+for (const x of [0.75, 1.50, 2.25]) barra(0.005, [x, TOPO, Z_BEIRAL], [x, TOPO, ZS], M.ferro, E.e2b, 6);
+{
+  const w = PORTA[1] - PORTA[0], h = TOPO - MURETA;
+  const p = new THREE.Group(); p.position.set(XT, MURETA, PORTA[0]); p.rotation.y = 0.45;
+  caixa(-0.015, 0.015, 0, S, 0, w, M.madeira, p); caixa(-0.015, 0.015, h - S, h, 0, w, M.madeira, p);
+  caixa(-0.015, 0.015, S, h - S, 0, S, M.madeira, p); caixa(-0.015, 0.015, S, h - S, w - S, w, M.madeira, p);
+  barra(0.016, [0, 0.03, 0.03], [0, h - 0.03, w - 0.03], M.madeira, p, 6);
+  tela('hex', [0, S, S], [0, h - S, w - S], p); E.e2b.add(p);
+}
+
+// 12 Aves
+const aves = Array.from({ length: 12 }, () => {
+  const g = new THREE.Group(), m = new THREE.MeshStandardMaterial({ color: 0x9c5a2d, roughness: 0.8 });
+  const c = new THREE.Mesh(new THREE.CapsuleGeometry(0.08, 0.14, 6, 10), m); c.rotation.z = Math.PI / 2; c.position.y = 0.17; g.add(c);
+  const cab = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), m); cab.position.set(0.11, 0.25, 0); g.add(cab);
+  g.traverse(o => { if (o.isMesh) o.castShadow = true; }); G.aves.add(g); return g;
+});
+const DIA = [
+  [0.55, 2.35, 0, -1.1], [1.45, 2.55, 0, 2.3], [0.75, 3.15, 0, 0.4], [1.35, Z_FRENTE - 0.55, 0, 2.1],
+  [2.15, 2.65, 0, -0.8], [2.55, Z_FRENTE - 0.55, 0, 3.0], [2.45, 3.15, 0, 1.2],
+  [0.95, 1.60, Y_PATAMAR, 2.4], [1.30, 1.80, Y_PATAMAR, -0.5],
+  [2.30, 1.50, Y_PATAMAR + 0.05, 0.9], [1.72, 1.35, Y_PATAMAR, Math.PI / 2],
+  [NINHOS[0][0] + W_NINHO / 2, 0.19, Y_NINHO + 0.01, -Math.PI / 2],
+];
+const NOITE = Array.from({ length: 12 }, (_, i) => [C1[0] + 0.13 + (i % 6) * 0.21, Z_POLEIROS[i < 6 ? 0 : 1], Y_POLEIRO + 0.02, -Math.PI / 2]);
+
+// =====================================================================
+// 3. LEGENDAS E CÂMERAS
+// =====================================================================
+rotulo('Galinheiro · 3,0 × 4,0 m', 1.5, 2.35, 1.2);
+rotulo('Mangueira (~15 m)', 6.2, 6.2, 8.1, '', G.mangueira);
+rotulo('Círculo de pedra', 8.2, 0.45, 6.7);
+rotulo('Casa', 7.5, 1.9, QZ - 0.4);
+
+const VISTAS = {
+  geral:      [[16.8, 10.5, 16.5], [6.0, 1.5, 5.2]],
+  daCasa:     [[5.0, 2.1, 9.2], [2.4, 0.9, 2.2]],
+  horta1:     [[3.8, 2.4, 9.4], [1.0, 0.3, 6.9]],
+  horta2:     [[7.0, 3.2, 8.5], [10.8, 0.4, 5.2]],
+  galinheiro: [[5.8, 3.2, 6.8], [1.5, 0.8, 2.0]],
+  galinheiroClose: [[4.5, 2.4, 4.9], [1.5, 1.0, 1.4]],
+  encaixeTelhado: [[4.3, 2.25, 3.1], [1.75, 1.65, 1.15]],
+  planta:     [[6.0, 21.0, 5.0], [6.0, 0, 5.0]],
+};
+function vista(k) {
+  const [p, alvo] = VISTAS[k] || VISTAS.geral; camera.position.set(...p); controls.target.set(...alvo); controls.update();
+  document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === k));
+}
+let etapaAtual = '4';
+function setEtapa(et) {
+  etapaAtual = ORDEM_ETAPAS.includes(et) ? et : '4';
+  const idx = ORDEM_ETAPAS.indexOf(etapaAtual);
+  E.e0.visible  = idx >= 0;
+  E.e1a.visible = idx >= 1;
+  E.e1b.visible = idx >= 2 && document.getElementById('cTelhado').checked;
+  E.e2a.visible = idx >= 3;
+  E.e2b.visible = idx >= 4 && document.getElementById('cTela').checked;
+  E.e3.visible  = idx >= 5;
+  G.aves.visible = idx >= 6;
+  gradeExtras.forEach(o => o.visible = idx >= 5);
+  document.querySelectorAll('[data-etapa]').forEach(b => b.classList.toggle('active', b.dataset.etapa === etapaAtual));
+}
+function aplicarEstado(noite) {
+  const pos = noite ? NOITE : DIA;
+  aves.forEach((a, i) => { a.position.set(pos[i][0], pos[i][2], pos[i][1]); a.rotation.y = pos[i][3]; });
+  grades[0].rotation.y = noite ? 0 : -ABERTA;
+  grades[1].rotation.y = noite ? 0 : ABERTA;
+  updateSun(noite);
+}
+aplicarEstado(false);
+
+const params = new URLSearchParams(location.search);
+if (params.get('ui') === '0') document.getElementById('ui').style.display = 'none';
+if (params.get('rotulos') === '0') { document.getElementById('cRotulos').checked = false; G.rotulos.visible = false; }
+vista(params.get('view') || 'geral');
+setEtapa(params.get('etapa') || '4');
+window.__ready = true;
+
+document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => vista(b.dataset.view)));
+document.querySelectorAll('[data-etapa]').forEach(b => b.addEventListener('click', () => setEtapa(b.dataset.etapa)));
+const bind = (id, fn) => document.getElementById(id).addEventListener('change', e => fn(e.target.checked));
+bind('cMangueira', v => G.mangueira.visible = v);
+bind('cHortas', v => G.hortas.visible = v);
+bind('cCopas', v => G.copas.visible = v);
+bind('cTelhado', () => setEtapa(etapaAtual));
+bind('cTela', () => setEtapa(etapaAtual));
+bind('cRotulos', v => G.rotulos.visible = v);
+bind('cSSAO', v => ssaoPass.enabled = v);
+bind('cNoite', v => aplicarEstado(v));
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); css.setSize(innerWidth, innerHeight);
+});
+renderer.setAnimationLoop(() => { controls.update(); composer.render(); css.render(scene, camera); });
+</script>
+</body>
+</html>

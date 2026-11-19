@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guia Visual Completo de Construção + Ferramentas &amp; Materiais — Galinheiro 3×4 m</title>
+<style>
+  :root{--bg:#f8fafc;--card:#ffffff;--tx:#0f172a;--mut:#475569;--bd:#e2e8f0;--acc:#15803d;--acc2:#b45309;--blue:#0369a1}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+  header{background:#0f172a;color:#fff;padding:20px 24px;position:sticky;top:0;z-index:20;box-shadow:0 4px 18px rgba(15,23,42,.18)}
+  .wrap{max-width:1120px;margin:0 auto}
+  .top-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  h1{font-size:20px;margin:0;letter-spacing:-.02em}
+  .sub{color:#94a3b8;font-size:13px;margin-top:2px}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;transition:.15s}
+  .btn:hover{background:rgba(255,255,255,.2)}
+  .btn.primary{background:#22c55e;border-color:#22c55e;color:#052e16}
+  .btn.primary:hover{background:#4ade80}
+  .btn.dark{background:#0f172a;color:#fff;border-color:#0f172a;font-size:12px;padding:6px 11px}
+  .btn.dark:hover{background:#1e293b}
+  nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  nav a{color:#cbd5e1;text-decoration:none;font-size:12px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.07)}
+  nav a:hover{background:rgba(255,255,255,.16);color:#fff}
+
+  main{padding:24px 16px 64px}
+  section{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:22px 24px;margin-bottom:22px;box-shadow:0 2px 10px rgba(15,23,42,.04)}
+  h2{margin:0 0 8px;font-size:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  h3{font-size:14.5px;margin:14px 0 8px;color:#0f172a}
+  .badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:#dcfce7;color:#166534}
+  .badge.warn{background:#fef3c7;color:#92400e}
+  .badge.blue{background:#e0f2fe;color:#075985}
+  .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start;margin-top:14px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+
+  /* Cards de mini-passos visuais */
+  .mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:12px 0 18px}
+  .mini-card{background:#f8fafc;border:1px solid var(--bd);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .mini-card img{width:100%;height:155px;object-fit:cover;cursor:zoom-in;display:block;background:#fff}
+  .mini-card .cap{padding:9px 11px;font-size:12.5px;line-height:1.45}
+  .mini-card .num{display:inline-block;background:#0f172a;color:#fff;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;margin-right:5px}
+
+  /* Galeria de ferramentas */
+  .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:14px}
+  .tool-card{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:10px;text-align:center;display:flex;flex-direction:column;gap:6px;transition:.15s}
+  .tool-card:hover{border-color:#94a3b8;box-shadow:0 4px 12px rgba(15,23,42,.06)}
+  .tool-card img{width:100%;height:120px;object-fit:contain;cursor:zoom-in;background:#fff;border-radius:6px}
+  .tool-card .tname{font-size:12.5px;font-weight:700;color:#0f172a;line-height:1.3}
+  .tool-card .tuse{font-size:11px;color:var(--mut);line-height:1.35}
+
+  /* Resultado 3D por etapa */
+  .res3d-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .res3d{background:#0f172a;color:#f8fafc;border-radius:12px;overflow:hidden;border:1px solid #334155}
+  .res3d img{width:100%;height:230px;object-fit:cover;display:block;cursor:zoom-in}
+  .res3d .bar{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .res3d .bar span{font-size:12.5px;font-weight:600}
+  .res3d .bar a{background:#22c55e;color:#052e16;text-decoration:none;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:6px;white-space:nowrap}
+  .res3d .bar a:hover{background:#4ade80}
+
+  .diagram-box{background:#f1f5f9;border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center}
+  .diagram-box svg{width:100%;height:auto;max-height:310px;display:block;margin:0 auto}
+  .anim-ctrl{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:10px;font-size:12px;color:var(--mut);flex-wrap:wrap}
+  .anim-ctrl button{padding:5px 10px;border:1px solid #cbd5e1;border-radius:6px;background:#fff;cursor:pointer;font-size:12px;font-weight:600;color:var(--tx)}
+  .anim-ctrl button.on{background:#0f172a;color:#fff;border-color:#0f172a}
+
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{margin-bottom:10px}
+  ol.steps li b{color:#0f172a}
+  .tip{background:#f0fdf4;border-left:4px solid var(--acc);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;margin:12px 0;color:#14532d}
+  .alert{background:#fffbeb;border-left:4px solid var(--acc2);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;margin:12px 0;color:#78350f}
+
+  .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+  figure{margin:0;background:#f8fafc;border:1px solid var(--bd);border-radius:10px;overflow:hidden}
+  figure img{width:100%;height:165px;object-fit:cover;display:block;cursor:zoom-in}
+  figcaption{padding:8px 10px;font-size:11.5px;color:var(--mut)}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:middle}
+  th{background:#f1f5f9;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+  tr:hover td{background:#f8fafc}
+  .chk{width:18px;height:18px;accent-color:var(--acc);cursor:pointer}
+  .mat-thumb{width:64px;height:64px;object-fit:contain;border-radius:8px;border:1px solid var(--bd);background:#fff;cursor:zoom-in;display:block}
+
+  /* Lightbox */
+  #lb{position:fixed;inset:0;background:rgba(15,23,42,.88);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;cursor:zoom-out}
+  #lb.open{display:flex}
+  #lb img{max-width:94vw;max-height:86vh;border-radius:10px;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  #lb-cap{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);color:#f8fafc;background:rgba(15,23,42,.85);padding:6px 14px;border-radius:999px;font-size:13px;max-width:90vw;text-align:center}
+
+  @keyframes pulseArrow{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(5px);opacity:.55}}
+  @keyframes airFlow{0%{stroke-dashoffset:24}100%{stroke-dashoffset:0}}
+  .flow{stroke-dasharray:6 6;animation:airFlow 1.1s linear infinite}
+  .screw-anim{animation:pulseArrow 1.5s ease-in-out infinite}
+  @media print{header,.anim-ctrl,#lb{display:none!important}section{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top-row">
+      <div>
+        <h1>Guia Visual Completo + Ferramentas, Materiais &amp; 3D por Etapa</h1>
+        <div class="sub">Quintal 12 × 10 m · Galinheiro 3,00 × 4,00 m (sem L) · Clique em qualquer imagem para ampliar</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn primary" href="quintal-completo.html">🧊 Abrir 3D Interativo</a>
+        <button class="btn" onclick="window.print()">🖨️ Imprimir Guia</button>
+      </div>
+    </div>
+    <nav>
+      <a href="#fases">🐣 Obra em 3 Fases (35 dias)</a>
+      <a href="#ferramentas">🧰 Ferramentas &amp; EPIs</a>
+      <a href="#materiais">📦 Materiais (Lista Enxuta)</a>
+      <a href="#oficina">🛠️ Oficina do Iniciante</a>
+      <a href="#etapa0">0. Limpeza &amp; Cal</a>
+      <a href="#etapa1">1. Telhado (1A + 1B)</a>
+      <a href="#etapa2">2. Solário (2A + 2B)</a>
+      <a href="#etapa3">3. Interior &amp; Patamar</a>
+      <a href="#etapa4">4. Aves &amp; Obra Final</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- CRONOGRAMA EM 3 FASES PARA PINTINHAS DE 35 DIAS -->
+<section id="fases">
+  <h2><span class="badge">Obra por Etapas</span> Como montar em 3 fases para já receber pintinhas de 35 dias</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">Você não precisa construir tudo de uma vez antes de trazer as pintinhas. Fazendo na ordem abaixo, elas já chegam 100% protegidas contra timbú, rato e chuva na <b>Fase 1</b>:</p>
+  <div class="mini-grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-bottom:4px">
+    <div class="mini-card" style="padding:14px;background:#f0fdf4;border-color:#bbf7d0">
+      <div style="font-weight:700;font-size:13.5px;color:#166534;margin-bottom:6px">🐣 Fase 1 · Entrada Imediata (35 dias)</div>
+      <div style="font-size:12.5px;line-height:1.5">
+        Fazer <b>Etapa 0</b> (limpeza, tirar madeiras velhas, tampar buracos das muretas e caiar) + <b>Etapa 1</b> (subir/parafusar telhado + tela `1/2"` nos vãos altos contra timbú) + <b>telar a grade do Canil 1</b> (`1/2"` + saco de ráfia embaixo) + maravalha grossa, água e ração dentro do Canil 1.
+      </div>
+    </div>
+    <div class="mini-card" style="padding:14px;background:#eff6ff;border-color:#bfdbfe">
+      <div style="font-weight:700;font-size:13.5px;color:#1e40af;margin-bottom:6px">🌿 Fase 2 · Liberar Solário (50–70 dias)</div>
+      <div style="font-size:12.5px;line-height:1.5">
+        Quando estiverem maiores e precisando de sol: fazer <b>Etapa 2</b> (chumbar as `5` estacas, pregar sarrafos de topo e rodapé a `3 cm`, porta e tela hexagonal `1"`). Passar comedouro/bebedouro para o patamar.
+      </div>
+    </div>
+    <div class="mini-card" style="padding:14px;background:#fffbeb;border-color:#fde68a">
+      <div style="font-weight:700;font-size:13.5px;color:#92400e;margin-bottom:6px">🥚 Fase 3 · Poleiros &amp; Ninhos (90–105 dias)</div>
+      <div style="font-size:12.5px;line-height:1.5">
+        Antes da 1ª postura (~115 dias): fazer <b>Etapa 3</b> (subir os 2 poleiros do Canil 1 para `45 cm`, organizar cerâmicas à direita do Canil 2 e montar os 3 ninhos à esquerda com ovo falso).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FERRAMENTAS E EPIS COM FOTOS -->
+<section id="ferramentas">
+  <h2><span class="badge blue">Kit Econômico</span> Ferramentas: o que realmente precisa vs o que improvisar de graça (R$ 0)</h2>
+  <div class="tip">
+    <b>Sem coelhos e sem mureta de tijolo, você NÃO precisa comprar:</b> <s>esquadro</s> (use uma <b>cerâmica inteira</b> do Canil 2 a 90°), <s>prumo</s> (amarre uma <b>pedra ou parafuso pesado num barbante</b>), <s>linha de pedreiro</s> (use <b>barbante comum</b>), <s>cavadeira</s> (use <b>enxada + pá</b> ou emprestada), <s>colher de pedreiro</s> (não há alvenaria!), <s>nível de bolha</s> (use <b>app de nível no celular</b>) e <s>masseira</s> (misture no <b>carrinho de mão</b> que você já tem!).
+  </div>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">Abaixo estão todas as ferramentas (com indicação de <b>comprar/emprestar</b> ou <b>improvisar grátis</b>). Clique na foto para ampliar.</p>
+  <div class="tool-grid">
+    <div class="tool-card"><img src="img/ferramentas/furadeira.jpg" alt="Furadeira"><div class="tname">1. Furadeira</div><div class="tuse"><b>Essencial:</b> furar telhas, madeiras e muro</div></div>
+    <div class="tool-card"><img src="img/ferramentas/broca-madeira.jpg" alt="Broca 1/4 madeira"><div class="tname">2. Broca 1/4" madeira</div><div class="tuse"><b>Comprar (~R$ 8):</b> furar Eternit na crista da onda</div></div>
+    <div class="tool-card"><img src="img/ferramentas/brocas-videa.jpg" alt="Brocas vídea 8 e 10 mm"><div class="tname">3. Broca Vídea 8/10 mm</div><div class="tuse"><b>Comprar (~R$ 10):</b> furar muro p/ terças e poleiros</div></div>
+    <div class="tool-card"><img src="img/ferramentas/serrote.jpg" alt="Serrote"><div class="tname">4. Serrote</div><div class="tuse"><b>Essencial:</b> cortar caibros e sarrafos</div></div>
+    <div class="tool-card"><img src="img/ferramentas/trena.jpg" alt="Trena"><div class="tname">5. Trena (5 m)</div><div class="tuse"><b>Essencial:</b> medir alturas e vãos</div></div>
+    <div class="tool-card"><img src="img/ferramentas/chave-martelo.jpg" alt="Chave de boca e martelo"><div class="tname">6. Chave + Martelo</div><div class="tuse"><b>Essencial:</b> apertar parafuso da telha e pregar grampos</div></div>
+    <div class="tool-card"><img src="img/ferramentas/alicate-torques.jpg" alt="Alicate e torquês"><div class="tname">7. Alicate</div><div class="tuse"><b>Essencial:</b> cortar e torcer arames</div></div>
+    <div class="tool-card"><img src="img/ferramentas/enxada.jpg" alt="Enxada"><div class="tname">8. Enxada (ou pá)</div><div class="tuse">Abrir os 5 buracos das estacas e misturar massa</div></div>
+    <div class="tool-card"><img src="img/ferramentas/balde-18l.jpg" alt="Balde 18L"><div class="tname">9. Balde comum</div><div class="tuse"><b>Já tem em casa:</b> medir 2 areia : 1 cimento</div></div>
+    <div class="tool-card"><img src="img/ferramentas/luvas.jpg" alt="Luvas de proteção"><div class="tname">10. Luvas</div><div class="tuse">Proteger mãos com tela e cimento</div></div>
+    <div class="tool-card"><img src="img/ferramentas/mascara-pff2.jpg" alt="Máscara PFF2"><div class="tname">11. Máscara PFF2</div><div class="tuse"><b>Obrigatória:</b> cal, cimento e serrar eucalipto</div></div>
+    <div class="tool-card" style="opacity:.78"><img src="img/ferramentas/esquadro.jpg" alt="Esquadro (substituir por cerâmica)"><div class="tname">Esquadro → R$ 0</div><div class="tuse">Substitua por <b>1 cerâmica inteira</b> a 90°</div></div>
+    <div class="tool-card" style="opacity:.78"><img src="img/ferramentas/prumo.jpg" alt="Prumo (substituir por pedra no barbante)"><div class="tname">Prumo → R$ 0</div><div class="tuse">Substitua por <b>pedra/porca no barbante</b></div></div>
+    <div class="tool-card" style="opacity:.78"><img src="img/ferramentas/nivel.jpg" alt="Nível (usar app do celular)"><div class="tname">Nível → R$ 0</div><div class="tuse">Use <b>app de nível no celular</b></div></div>
+  </div>
+</section>
+
+<!-- MATERIAIS COM FOTOS -->
+<section id="materiais">
+  <h2><span class="badge">Lista Enxuta</span> Materiais Econômicos (corte de ~45% no gasto, sem coelhos)</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">Sem mureta de tijolo, com 5 estacas, 1 saco de cimento, tábuas reaproveitadas e itens caseiros R$ 0. Clique na foto para ampliar.</p>
+  <table>
+    <thead>
+      <tr><th>✓</th><th>Foto</th><th>Etapa</th><th>Material</th><th>Especificação / Dica de Economia</th><th>Quantidade</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/agua-sanitaria-cal.jpg" alt="Água sanitária e cal"></td><td>Limpeza</td><td>Água sanitária + Cal hidratada</td><td>Lavar e caiar (2 demãos) os 2 canis</td><td>2 L água sanit. + 4 kg cal</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/selante-pu.jpg" alt="Selante PU"></td><td>Limpeza</td><td>Selante PU ou massa acrílica</td><td>Vedar encontro telhado / muro do fundo</td><td>1 tubo (ou resto de massa)</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/telha-eternit.jpg" alt="Telha Eternit 5mm"></td><td>Telhado</td><td><b>Telha fibrocimento (JÁ TEM)</b></td><td>Eternit 5 mm Tropical 1,10 × 1,80 m (2023)</td><td>3 folhas (já tem!)</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/parafuso-telha.jpg" alt="Parafuso telha EPDM"></td><td>Telhado</td><td>Parafuso p/ telha c/ vedação</td><td>5/16" × 110 mm (c/ arruela + borracha EPDM)</td><td>15 a 18 unidades</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/caibro-madeira.jpg" alt="Caibro 5x5 cm"></td><td>Telhado</td><td>Caibro <b>5 × 5 cm × 3,00 m</b></td><td>2 p/ terças + 3 p/ caibros de 2 m (das sobras de 1 m saem os 3 pontaletes!)</td><td>5 peças de 3,00 m</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/cantoneira-buchas.jpg" alt="Buchas 10mm"></td><td>Telhado</td><td>Buchas 10 mm + parafusos</td><td>Prender terça no muro; pontaletes vão chumbados nos furos dos tijolos</td><td>8 buchas 10 mm</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/cimento-areia.jpg" alt="1 saco cimento e areia"></td><td>Solário</td><td>Cimento + Areia média</td><td>Só <b>1 saco</b> (chumbar pontaletes e 5 estacas, sem mureta!)</td><td>1 saco 50 kg + 5 latas areia</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/estaca-grossa.jpg" alt="Estacas eucalipto"></td><td>Solário</td><td>Estacas eucalipto tratado (<b>5 unid.</b>)</td><td>3 grossas (cantos/porta) + 2 finas (meio frente/lateral), 2,20 m</td><td>5 unidades no total</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/sarrafo.jpg" alt="Sarrafo 5x2.5 cm"></td><td>Solário</td><td>Sarrafo de madeira</td><td>5 × 2,5 cm × 3,00 m (topo + <b>rodapé a 3 cm do chão</b> + porta)</td><td>7 peças de 3,00 m</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-hexagonal.jpg" alt="Tela hexagonal 1 polegada"></td><td>Solário</td><td>Tela hexagonal (galinheiro) 1"</td><td>1,50 m alt. (vai direto até o chão; sobra 10 cm dobrado c/ pedras)</td><td>15 metros</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/arame-liso-14.jpg" alt="Arame liso 14"></td><td>Solário</td><td>Arame liso galvanizado nº 14</td><td>3 fios do teto + fio de amarração sob o beiral</td><td>15 metros</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/grampos-arame-18.jpg" alt="Grampos e arame 18"></td><td>Solário</td><td>Grampos 3/4" + Arame recozido nº 18</td><td>Prender telas na madeira e nas grades</td><td>1 pct grampo + 1 rolo arame 18</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/pregos-buchas-8mm.jpg" alt="Pregos e buchas 8mm"></td><td>Solário</td><td>Pregos (17×21 e 18×27) + buchas 8 mm</td><td>Sarrafos, caibros e apoio dos poleiros</td><td>1 kg pregos + 4 buchas 8 mm</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/kit-porta.jpg" alt="Kit porta"></td><td>Solário</td><td>Ferragens da porta</td><td>2 dobradiças + 1 ferrolho + 1 mosquetão/cadeado</td><td>1 kit</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-soldada-meia.jpg" alt="Tela pinteiro 1/2"></td><td>Canis</td><td>Tela <b>pinteiro hexagonal 1/2"</b></td><td>Bem mais barata que soldada! Fecha grades dos canis e vãos altos</td><td>8 metros (larg. 1,00 m)</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/lona-corta-vento.jpg" alt="Saco de ráfia ou lona"></td><td>Canis</td><td>Lona ou <b>saco de ráfia aberto (R$ 0)</b></td><td>Metade inferior da grade do Canil 1</td><td>1 pedaço 1,30 × 0,60 m</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/poleiro.jpg" alt="Poleiro"></td><td>Canis</td><td>Poleiros (bambu ou madeira 4–5 cm)</td><td>Lixados e soltos p/ lavar</td><td>2 peças de 1,30 m</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tabuas-ninhos.jpg" alt="Tábuas para ninhos"></td><td>Canis</td><td>Tábuas de pinus <b>20 cm × 3,00 m</b></td><td>Para os 3 ninhos (ou 3 caixotes plásticos / baldes p/ economizar!)</td><td>2 tábuas de 3,00 m</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/maravalha-grossa.jpg" alt="Maravalha grossa"></td><td>Manejo</td><td>Maravalha grossa (<b>peça grátis</b>)</td><td>Pedir raspa de madeira em marcenaria do bairro (não pó fino!)</td><td>2 sacos grandes</td></tr>
+      <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/comedouro-bebedouro.jpg" alt="Comedouro caseiro e bebedouro"></td><td>Manejo</td><td>Bebedouro 5 L + Comedouro caseiro</td><td>Comedouro feito com galão 20 L / garrafa PET; comprar só bebedouro</td><td>1 bebedouro (~R$ 20–25)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- OFICINA DO INICIANTE -->
+<section id="oficina">
+  <h2><span class="badge warn">Guia do Iniciante</span> Cada mínimo passo ilustrado: massa, tijolo, telha e madeira</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">Mesmo sem experiência prévia de pedreiro ou carpinteiro, siga exatamente a sequência visual abaixo:</p>
+
+  <h3>1. Como preparar a massa de cimento e areia <a href="https://www.youtube.com/watch?v=vtam7yYjJ3g" target="_blank" rel="noopener" style="font-size:12px;font-weight:500;margin-left:6px">▶ Vídeo (Cleoney Soares)</a></h3>
+  <div class="mini-grid">
+    <div class="mini-card"><img src="img/passos/massa-1-medir.jpg" alt="Medir baldes"><div class="cap"><span class="num">1.1</span><b>Medir no mesmo balde:</b> <b>3–4 areia : 1 cimento</b> p/ tijolo; <b>2 areia : 1 cimento</b> p/ chumbar estacas e pontaletes.</div></div>
+    <div class="mini-card"><img src="img/passos/massa-2-misturar-seco.jpg" alt="Misturar a seco"><div class="cap"><span class="num">1.2</span><b>Misturar a seco primeiro:</b> revire areia + cimento com a enxada até ficar <b>cinza uniforme</b>, sem listras puras.</div></div>
+    <div class="mini-card"><img src="img/passos/massa-3-vulcao-agua.jpg" alt="Vulcão e água"><div class="cap"><span class="num">1.3</span><b>Vulcão + água aos poucos:</b> abra um buraco no centro e vá pondo água devagar, puxando das bordas para dentro.</div></div>
+    <div class="mini-card"><img src="img/passos/massa-4-ponto-certo.jpg" alt="Ponto certo da massa"><div class="cap"><span class="num">1.4</span><b>Ponto certo:</b> massa <b>viscosa e modelável</b> na colher — não seca tipo farofa e não aguada escorrendo.</div></div>
+  </div>
+
+  <h3>2. Como assentar tijolo reto (mureta de 2 fiadas) <a href="https://www.youtube.com/watch?v=a1zyansPNp0" target="_blank" rel="noopener" style="font-size:12px;font-weight:500;margin-left:6px">▶ Vídeo (Faça Sua Obra)</a></h3>
+  <div class="mini-grid">
+    <div class="mini-card"><img src="img/passos/tijolo-1-molhar.jpg" alt="Molhar tijolos"><div class="cap"><span class="num">2.1</span><b>Molhar antes:</b> borrife água nos tijolos e na base antes de assentar (tijolo seco suga água da massa e solta).</div></div>
+    <div class="mini-card"><img src="img/passos/tijolo-2-prumo.jpg" alt="Conferir no prumo"><div class="cap"><span class="num">2.2</span><b>Cantos no prumo:</b> assente os tijolos das pontas primeiro; o peso do prumo deve passar "lambendo" a face.</div></div>
+    <div class="mini-card"><img src="img/passos/tijolo-3-linha.jpg" alt="Linha de pedreiro"><div class="cap"><span class="num">2.3</span><b>Esticar linha de pedreiro:</b> amarre o barbante bem esticado entre os cantos como régua p/ os tijolos do meio.</div></div>
+    <div class="mini-card"><img src="img/passos/tijolo-4-assentar.jpg" alt="Aplicar massa e alinhar"><div class="cap"><span class="num">2.4</span><b>1,5–2 cm de massa:</b> estenda na base e na lateral ("cabeça"), encaixe e alinhe rente à linha raspando o excesso.</div></div>
+  </div>
+
+  <h3>3. Como furar/parafusar Eternit 5 mm e cortar madeira no esquadro <a href="https://www.youtube.com/watch?v=ZtxeuNQ40qc" target="_blank" rel="noopener" style="font-size:12px;font-weight:500;margin-left:6px">▶ Vídeo Telha</a> · <a href="https://www.youtube.com/watch?v=jjZDPUR2GhA" target="_blank" rel="noopener" style="font-size:12px;font-weight:500">▶ Vídeo Serrote</a></h3>
+  <div class="mini-grid">
+    <div class="mini-card"><img src="img/passos/telha-1-furar-crista.jpg" alt="Furar na crista da onda"><div class="cap"><span class="num">3.1</span><b>SEMPRE na crista (topo) da onda:</b> nunca no vale (senão vaza). Fure reto com broca <b>1/4" madeira</b> até entrar na viga.</div></div>
+    <div class="mini-card"><img src="img/passos/telha-2-parafusar-epdm.jpg" alt="Parafusar com EPDM"><div class="cap"><span class="num">3.2</span><b>Aperte sem esmagar (SEM martelo!):</b> parafuso <b>5/16" × 110 mm</b> + borracha EPDM só até vedar, apenas nas pontas.</div></div>
+    <div class="mini-card"><img src="img/passos/madeira-1-riscar-4-lados.jpg" alt="Riscar 4 lados com esquadro"><div class="cap"><span class="num">4.1</span><b>Riscar os 4 lados:</b> encoste o esquadro e risque toda a volta da madeira com lápis, não só a face de cima.</div></div>
+    <div class="mini-card"><img src="img/passos/madeira-2-serrar-girando.jpg" alt="Serrar girando 90 graus"><div class="cap"><span class="num">4.2</span><b>Serrar girando 90°:</b> corte ~2 cm por face seguindo o risco e girando a peça. Faça pré-furo antes de pregar sarrafos.</div></div>
+  </div>
+</section>
+
+<!-- ETAPA 0 -->
+<section id="etapa0">
+  <h2>
+    <span class="badge warn">Etapa 0 · Antes de tudo</span> Limpeza, infiltração, cal e desratização
+    <a class="btn dark" href="etapa-0.html" target="_blank" style="margin-left:auto">🔍 Abrir Etapa 0 em Outra Aba (Animada + Materiais + Fotos)</a>
+  </h2>
+  <div class="alert">
+    <b>Confirmado pela foto das telhas:</b> suas 3 folhas são <b>Eternit 5 mm Tropical (fabricação 08/2023)</b> — <b>NÃO contêm amianto</b>. Você pode furar e parafusar com segurança (fim das tábuas de contrapeso!).
+  </div>
+  <div class="grid2">
+    <ol class="steps">
+      <li><b>Esvaziar e tirar madeiras velhas:</b> retire todas as tábuas e canos de cima do telhado e também as <b>madeiras escuras antigas apoiadas nos buracos/entalhes das muretas de `1,20 m`</b> (evita cupim, piolho de galinha e escorpiões).</li>
+      <li><b>Tampar os buracos das muretas:</b> com a própria massa de cimento que você preparar para os pontaletes, preencha os buracos/entalhes onde ficavam essas madeiras velhas nas paredes dos canis (elimina esconderijos de escorpião).</li>
+      <li><b>Organizar o Canil 2:</b> empilhe todas as cerâmicas apenas na <b>metade direita (`0,65 m`)</b> do Canil 2. Deixe a metade esquerda (`0,65 m`) e o Canil 1 vazios.</li>
+      <li><b>Achar e vedar a infiltração:</b> as manchas verdes no fundo dos canis vêm do encontro antigo da telha com o muro. Ao subir o telhado para `2,05 m`, vede o encosto com <b>selante PU / massa acrílica</b>.</li>
+      <li><b>Lavar e passar cal (2 demãos):</b> escove piso e paredes com água + água sanitária, enxágue e deixe secar. Passe <b>2 demãos de cal hidratada</b> e aguarde <b>24 h de secagem</b>.</li>
+      <li><b>Desratização prévia:</b> se as bolinhas no patamar forem fezes de rato, faça o controle e recolha todas as iscas antes de soltar as aves.</li>
+    </ol>
+    <div class="photos">
+      <figure><img src="fotos-18-11/07.jpg" alt="Canis antes"><figcaption>Canis originais: mureta de 1,20 m, patamar de 1,00 m e tralha sobre a telha.</figcaption></figure>
+      <figure><img src="fotos-18-11/10.jpg" alt="Tábuas no telhado"><figcaption>Tábuas de contrapeso atuais (retirar: escondem ratos/escorpiões; boas vão p/ ninhos).</figcaption></figure>
+      <figure><img src="fotos-18-11/11.jpg" alt="Infiltração"><figcaption>Manchas verdes de infiltração no fundo: vedar encontro telha/muro e caiar.</figcaption></figure>
+    </div>
+  </div>
+  <div class="res3d-row">
+    <div class="res3d">
+      <img src="img/3d/etapa-0.png" alt="Resultado 3D Etapa 0">
+      <div class="bar">
+        <span>🧊 Resultado em 3D após Etapa 0: Base limpa e caiada</span>
+        <a href="quintal-completo.html?etapa=0&view=galinheiroClose" target="_blank">Abrir Etapa 0 em 3D →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 1 -->
+<section id="etapa1">
+  <h2><span class="badge">Etapa 1 · Cobertura</span> Subir o telhado (2,05 m → 1,75 m) e parafusar sem contrapeso</h2>
+  <div class="grid2">
+    <div>
+      <ol class="steps">
+        <li><b>Etapa 1A — 3 Pontaletes + 2 Terças + 3 Caibros (SEM levantar tijolos!):</b>
+          <ul>
+            <li>Preencha com massa 2:1 os furos abertos dos tijolos no topo das paredes de `1,20 m` (`z = 1,00 m`) e fixe <b>2 pontaletes de `~62 cm`</b> (parede do meio e da direita) até atingir **`1,82 m`**.</li>
+            <li>Na esquerda (onde o muro tem `1,55 m`), parafuse um <b>3º pontalete curto de `~27 cm`</b> na face interna do muro (de `1,55 m` até `1,82 m`) — <b>não precisa subir tijolo nenhum!</b></li>
+            <li>Fixe a <b>terça do fundo (`1,94 m`)</b> no muro branco, a <b>terça da frente (`1,82 m`)</b> sobre os 3 pontaletes e os <b>3 caibros inclinados (`2,00 m`, `z = 0..1,45 m`)</b> — reduzindo o balanço livre da telha para apenas **`30 cm`**.</li>
+          </ul>
+        </li>
+        <li><b>Etapa 1B — Parafusar telhas + Tela `1/2"` nos vãos:</b>
+          <ul>
+            <li>Assente as 3 telhas Eternit (`2,05 m → 1,75 m`, caimento 17%) e parafuse <b>só nas duas pontas</b> (fundo e ponta dos caibros em `z = 1,45 m`), sempre na crista da onda com broca `1/4"` e parafuso `5/16" × 110 mm` + EPDM.</li>
+            <li>Feche os vãos abertos acima de `1,20 m` (frente e direita) e acima do muro esquerdo de `1,55 m` com <b>tela `1/2"`</b>.</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="mini-grid" style="grid-template-columns:1fr 1fr">
+        <div class="mini-card"><img src="img/passos/obra-1-pontalete-cantoneira.jpg" alt="Pontalete com cantoneira em L"><div class="cap"><span class="num">Detalhe</span>Preencher furo do tijolo com massa 2:1 e fixar pontalete com cantoneira em L.</div></div>
+        <div class="mini-card"><img src="img/passos/telha-2-parafusar-epdm.jpg" alt="Parafuso EPDM"><div class="cap"><span class="num">Detalhe</span>Parafusar só nas pontas na crista da onda com borracha EPDM.</div></div>
+      </div>
+    </div>
+
+    <div class="diagram-box">
+      <svg id="svgTelhado" viewBox="0 0 420 270">
+        <rect x="0" y="235" width="420" height="35" fill="#cbd5e1"/>
+        <rect x="25" y="20" width="18" height="215" fill="#e2e8f0" stroke="#64748b"/>
+        <text x="14" y="130" font-size="10" fill="#475569" transform="rotate(-90 14,130)">Muro fundo</text>
+        <rect x="43" y="135" width="95" height="100" fill="#f8fafc" stroke="#64748b"/>
+        <line x1="138" y1="135" x2="138" y2="235" stroke="#334155" stroke-width="3"/>
+        <text x="90" y="190" font-size="11" fill="#334155" text-anchor="middle">Canil (1,20 m)</text>
+        <rect x="138" y="225" width="105" height="10" fill="#94a3b8"/>
+        <text x="190" y="252" font-size="10" fill="#334155" text-anchor="middle">Patamar 1,00 m</text>
+        <rect x="243" y="228" width="160" height="7" fill="#a16207" opacity=".45"/>
+        <text x="320" y="252" font-size="10" fill="#334155" text-anchor="middle">Solário 2,00 m</text>
+        <g id="t_p1">
+          <rect x="132" y="82" width="10" height="53" fill="#b45309"/>
+          <rect x="43" y="60" width="12" height="10" fill="#92400e"/>
+          <rect x="150" y="76" width="12" height="10" fill="#92400e"/>
+          <text x="168" y="84" font-size="10" fill="#92400e" font-weight="bold">Terça 1,82 m</text>
+          <text x="60" y="68" font-size="10" fill="#92400e" font-weight="bold">Terça 1,94 m</text>
+        </g>
+        <g id="t_p2">
+          <line x1="43" y1="56" x2="218" y2="85" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
+          <text x="135" y="54" font-size="10.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Eternit 1,80 m (17% caimento → 1,75 m beiral)</text>
+        </g>
+        <g id="t_p3" class="screw-anim">
+          <line x1="49" y1="36" x2="49" y2="56" stroke="#dc2626" stroke-width="2.5"/>
+          <circle cx="49" cy="36" r="3.5" fill="#dc2626"/>
+          <line x1="156" y1="54" x2="156" y2="75" stroke="#dc2626" stroke-width="2.5"/>
+          <circle cx="156" cy="54" r="3.5" fill="#dc2626"/>
+          <text x="195" y="42" font-size="10" fill="#dc2626" font-weight="bold">Parafusos 5/16" (sem contrapeso!)</text>
+        </g>
+        <g id="t_p4">
+          <rect x="135" y="82" width="4" height="53" fill="none" stroke="#0369a1" stroke-dasharray="3 2"/>
+          <path d="M 85 115 Q 110 105 155 100" fill="none" stroke="#0284c7" stroke-width="2" class="flow"/>
+          <text x="238" y="112" font-size="10" fill="#0369a1" font-weight="bold">Ar quente sai pela tela 1/2"</text>
+        </g>
+      </svg>
+      <div class="anim-ctrl">
+        <button onclick="setTelhadoStep(1)" class="on" data-ts="1">1. Pontaletes</button>
+        <button onclick="setTelhadoStep(2)" data-ts="2">2. Telha 1,80 m</button>
+        <button onclick="setTelhadoStep(3)" data-ts="3">3. Parafusos</button>
+        <button onclick="setTelhadoStep(4)" data-ts="4">4. Tela + Ar</button>
+        <button onclick="toggleTelhadoAnim()" id="btnPlayT">⏸️ Auto</button>
+      </div>
+    </div>
+  </div>
+  <div class="res3d-row">
+    <div class="res3d">
+      <img src="img/3d/etapa-1a.png" alt="Resultado 3D Etapa 1A">
+      <div class="bar">
+        <span>🧊 3D após 1A: Pontaletes + Terças + Caibros</span>
+        <a href="quintal-completo.html?etapa=1A&view=galinheiroClose" target="_blank">Abrir 1A em 3D →</a>
+      </div>
+    </div>
+    <div class="res3d">
+      <img src="img/3d/etapa-1b.png" alt="Resultado 3D Etapa 1B">
+      <div class="bar">
+        <span>🧊 3D após 1B: Telhas Parafusadas + Tela 1/2"</span>
+        <a href="quintal-completo.html?etapa=1B&view=galinheiroClose" target="_blank">Abrir 1B em 3D →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 2 -->
+<section id="etapa2">
+  <h2><span class="badge">Etapa 2 · Área externa (Econômica, sem coelhos)</span> Solário retangular 3,00 × 2,00 m com 5 estacas</h2>
+  <div class="grid2">
+    <div>
+      <ol class="steps">
+        <li><b>Etapa 2A — Chumbar apenas 5 estacas de eucalipto na terra (`z ≥ 2,05 m`, enterradas `50 cm`):</b>
+          <ul>
+            <li>Sem coelhos, <b>não precisa gastar com mureta de tijolo nem cano de dreno</b>!</li>
+            <li>Com enxada e pá, abra 5 buracos de `50 cm` na terra (`3` grossas nos cantos da frente e batente da porta; `2` finas no meio da frente e início da terra à direita).</li>
+            <li>Chumbe com massa forte (`2 areia : 1 cimento`) mantendo alinhadas com um <b>peso amarrado no barbante</b> (prumo caseiro). <i>Não quebre o patamar cimentado!</i></li>
+          </ul>
+        </li>
+        <li><b>Etapa 2B — Sarrafos (topo + rodapé a 3 cm do chão) + Porta + Tela Hexagonal:</b>
+          <ul>
+            <li>Feche o <b>topo (`1,70 m`)</b> e também o <b>rodapé inferior (`~3 cm` acima da terra)</b> ligando as estacas com sarrafos `5 × 2,5 cm`. <b>Por que `3 cm` acima (nunca direto na terra)?</b> Assim a madeira não apodrece na umidade/chuva e você consegue esticar e grampear a tela bem retinha em cima e embaixo! <i>(Se sobrar `3 cm` de vão por baixo, encoste pedras/tijolos soltos ou dobre a pontinha da tela.)</i></li>
+            <li>Monte a porta `0,80 × 1,50 m` com <b>diagonal + ferrolho + mosquetão/cadeado</b>.</li>
+            <li>Prenda a tela hexagonal `1" × 1,50 m` com grampos `3/4"` nos sarrafos de cima e de baixo. No teto, estique <b>3 fios de arame nº 14</b>; junto ao beiral, amarre em fio esticado entre estacas (<b>nunca na telha!</b>).</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="mini-grid" style="grid-template-columns:1fr 1fr">
+        <div class="mini-card"><img src="img/passos/obra-3-chumbar-estaca.jpg" alt="Chumbar estaca 50 cm"><div class="cap"><span class="num">2A</span>Cavar 50 cm e chumbar as 5 estacas com massa 2:1.</div></div>
+        <div class="mini-card"><img src="img/passos/obra-4-grampear-tela-arame.jpg" alt="Grampear tela no arame"><div class="cap"><span class="num">2B</span>Grampos 3/4" na estaca + amarrar no arame esticado.</div></div>
+      </div>
+    </div>
+
+    <div class="diagram-box">
+      <svg viewBox="0 0 420 260">
+        <rect x="40" y="20" width="220" height="65" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+        <text x="95" y="55" font-size="11" fill="#0f172a" font-weight="bold" text-anchor="middle">Canil 1 (1,30 m)</text>
+        <line x1="150" y1="20" x2="150" y2="85" stroke="#334155" stroke-width="4"/>
+        <text x="205" y="55" font-size="11" fill="#0f172a" font-weight="bold" text-anchor="middle">Canil 2 (1,30 m)</text>
+        <rect x="40" y="85" width="220" height="55" fill="#cbd5e1" stroke="#64748b"/>
+        <text x="150" y="116" font-size="11" fill="#334155" text-anchor="middle">Patamar cimento liso (3,00 × 1,00 m)</text>
+        <rect x="40" y="140" width="220" height="100" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
+        <text x="150" y="192" font-size="12" fill="#92400e" font-weight="bold" text-anchor="middle">Terra 3×2 m (6 m² | total 9 m²)</text>
+        <line x1="260" y1="185" x2="295" y2="215" stroke="#15803d" stroke-width="4"/>
+        <text x="302" y="205" font-size="11" fill="#15803d" font-weight="bold">Porta 0,80 m</text>
+        <rect x="275" y="25" width="48" height="32" fill="#94a3b8" stroke="#475569"/>
+        <text x="299" y="70" font-size="10" fill="#475569" text-anchor="middle">Tampa livre!</text>
+        <circle cx="360" cy="110" r="24" fill="#bbf7d0" stroke="#15803d"/>
+        <text x="360" y="114" font-size="10" fill="#166534" text-anchor="middle">Goiabeira</text>
+        <circle cx="40" cy="240" r="5" fill="#dc2626"/>
+        <circle cx="150" cy="240" r="4" fill="#7c2d12"/><circle cx="260" cy="240" r="5" fill="#dc2626"/>
+        <circle cx="260" cy="142" r="4" fill="#7c2d12"/><circle cx="260" cy="185" r="5" fill="#dc2626"/>
+        <text x="290" y="242" font-size="10" fill="#dc2626">● Estaca Ø 8–10 cm (3)</text>
+        <text x="290" y="255" font-size="10" fill="#7c2d12">● Estaca Ø 5–7 cm (2)</text>
+      </svg>
+    </div>
+  </div>
+  <div class="res3d-row">
+    <div class="res3d">
+      <img src="img/3d/etapa-2a.png" alt="Resultado 3D Etapa 2A">
+      <div class="bar">
+        <span>🧊 3D após 2A: 5 Estacas na terra (sem mureta!)</span>
+        <a href="quintal-completo.html?etapa=2A&view=galinheiro" target="_blank">Abrir 2A em 3D →</a>
+      </div>
+    </div>
+    <div class="res3d">
+      <img src="img/3d/etapa-2b.png" alt="Resultado 3D Etapa 2B">
+      <div class="bar">
+        <span>🧊 3D após 2B: Sarrafos (topo + rodapé) + Porta + Tela</span>
+        <a href="quintal-completo.html?etapa=2B&view=galinheiro" target="_blank">Abrir 2B em 3D →</a>
+      </div>
+    </div>
+    <div class="res3d">
+      <img src="img/3d/detalhe-telhado-tela.png" alt="Zoom 3D do encaixe tela com telhado">
+      <div class="bar">
+        <span>🔍 Zoom 3D: Encaixe da Tela 1/2" (canis) + Tela 1" (solário) no Arame sob o Beiral</span>
+        <a href="quintal-completo.html?etapa=2B&view=encaixeTelhado" target="_blank">Ver Zoom em 3D →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 3 -->
+<section id="etapa3">
+  <h2><span class="badge">Etapa 3 · Interior</span> Canil 1 (dormitório), Canil 2 (50/50) e Patamar</h2>
+  <div class="grid2">
+    <ol class="steps">
+      <li><b>Canil 1 (dormitório):</b>
+        <ul>
+          <li>Fixe 4 calços nas laterais a **`45 cm`** do piso (`30 cm` e `65 cm` da parede do fundo) e apoie **2 poleiros removíveis de `1,30 m`** (`4–5 cm` lixados).</li>
+          <li>Espalhe **`5–8 cm` de maravalha grossa** no chão (nunca serragem fina!).</li>
+          <li>Na grade: cubra com **tela `1/2"`** e prenda a **lona corta-vento apenas na metade inferior** (`60 cm`).</li>
+        </ul>
+      </li>
+      <li><b>Canil 2 (dividido 50% / 50%):</b>
+        <ul>
+          <li>A **`65 cm`** da parede do meio (`X_DIV = 2,10 m`), monte uma **divisória vertical** de sarrafo + tela `1/2"`, isolando as pilhas de **cerâmicas à direita** (`65 cm`).</li>
+          <li>À esquerda (`65 cm`): monte **3 ninhos (`31 × 35 × 32 cm`) em 2 andares** (2 embaixo a `15 cm` + 1 em cima), borda de `10 cm`, **teto inclinado** e 1 ovo falso cada. Cubra a grade com tela `1/2"`.</li>
+        </ul>
+      </li>
+      <li><b>Patamar coberto (`1,00 m`, cimento liso):</b>
+        <ul>
+          <li>Encoste o **comedouro** e o **bebedouro (5 L)** sobre **1 tijolo cada** junto à parede dos canis (100% secos sob o beiral).</li>
+          <li>Coloque a **caixa de banho de terra** (areia + cinza) e pote de **calcário/farinha de ostra**.</li>
+        </ul>
+      </li>
+    </ol>
+    <div class="diagram-box">
+      <svg viewBox="0 0 420 230">
+        <rect x="20" y="30" width="170" height="160" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+        <text x="105" y="20" font-size="11" font-weight="bold" text-anchor="middle">Canil 1 (1,30 m)</text>
+        <rect x="24" y="172" width="162" height="16" fill="#fde68a"/>
+        <text x="105" y="184" font-size="9.5" fill="#92400e" text-anchor="middle">Maravalha grossa (5–8 cm)</text>
+        <line x1="22" y1="115" x2="188" y2="115" stroke="#92400e" stroke-width="6"/>
+        <text x="105" y="106" font-size="10" fill="#78350f" text-anchor="middle">2 poleiros a 45 cm</text>
+        <rect x="215" y="30" width="185" height="160" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+        <text x="307" y="20" font-size="11" font-weight="bold" text-anchor="middle">Canil 2 (dividido 50% / 50%)</text>
+        <line x1="307" y1="30" x2="307" y2="190" stroke="#0369a1" stroke-width="3" stroke-dasharray="5 3"/>
+        <text x="307" y="208" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">Divisória vertical (tela + sarrafo)</text>
+        <rect x="220" y="135" width="40" height="40" fill="#d97706" opacity=".8" stroke="#78350f"/>
+        <rect x="263" y="135" width="40" height="40" fill="#d97706" opacity=".8" stroke="#78350f"/>
+        <rect x="220" y="90" width="40" height="40" fill="#d97706" opacity=".8" stroke="#78350f"/>
+        <polygon points="220,90 260,90 260,82" fill="#92400e"/>
+        <text x="262" y="75" font-size="9.5" fill="#78350f" text-anchor="middle">3 ninhos (2+1)</text>
+        <rect x="315" y="135" width="76" height="52" fill="#94a3b8" stroke="#475569"/>
+        <line x1="315" y1="148" x2="391" y2="148" stroke="#475569"/>
+        <line x1="315" y1="161" x2="391" y2="161" stroke="#475569"/>
+        <line x1="315" y1="174" x2="391" y2="174" stroke="#475569"/>
+        <text x="353" y="126" font-size="10" fill="#334155" text-anchor="middle" font-weight="bold">Cerâmicas</text>
+      </svg>
+    </div>
+  </div>
+  <div class="res3d-row">
+    <div class="res3d">
+      <img src="img/3d/etapa-3.png" alt="Resultado 3D Etapa 3">
+      <div class="bar">
+        <span>🧊 3D após Etapa 3: Poleiros, Ninhos 50/50, Comedouro e Lona</span>
+        <a href="quintal-completo.html?etapa=3&view=galinheiroClose" target="_blank">Abrir Etapa 3 em 3D →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 4 -->
+<section id="etapa4">
+  <h2><span class="badge">Etapa 4 · Rotina</span> Chegada das aves, folhas secas e resultado final</h2>
+  <ol class="steps">
+    <li><b>Lotação recomendada:</b> com solário de `9 m²` e metade do Canil 2 para cerâmicas, <b>8 a 10 poedeiras</b> (Lohmann, Isa Brown ou Embrapa 051 — só fêmeas) vivem com mais conforto.</li>
+    <li><b>Cama na terra:</b> espalhe <b>folhas secas do quintal</b> na terra do solário e revire com ancinho 1×/semana (absorve o cocô e vira adubo sem cheiro).</li>
+    <li><b>Rotina diária (2 minutos):</b> de manhã, abra as duas grades e troque a água; raspe os cocôs do patamar; à noite, confira se todas subiram no poleiro do Canil 1 e feche as duas grades.</li>
+    <li><b>Enchente forte (&gt; 20 cm):</b> em previsão de alagamento de `30 cm`, deixe as aves trancadas nos canis elevados (`18–25 cm`) com água e ração dentro.</li>
+  </ol>
+  <div class="res3d-row">
+    <div class="res3d">
+      <img src="img/3d/etapa-4.png" alt="Resultado Final 3D Etapa 4">
+      <div class="bar">
+        <span>🧊 Resultado Final em 3D (Etapa 4): Galinheiro Completo + Aves</span>
+        <a href="quintal-completo.html?etapa=4&view=galinheiro" target="_blank">Abrir Obra Completa em 3D →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="lb" onclick="this.classList.remove('open')">
+  <img id="lb-img" src="" alt="">
+  <div id="lb-cap"></div>
+</div>
+
+<script>
+let tStep = 1, tTimer = null;
+function setTelhadoStep(n) {
+  tStep = n;
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('t_p' + i).style.opacity = i <= n ? '1' : '0.12';
+  }
+  document.querySelectorAll('[data-ts]').forEach(b => b.classList.toggle('on', +b.dataset.ts === n));
+}
+function toggleTelhadoAnim() {
+  const btn = document.getElementById('btnPlayT');
+  if (tTimer) { clearInterval(tTimer); tTimer = null; btn.textContent = '▶️ Auto'; }
+  else {
+    tTimer = setInterval(() => setTelhadoStep((tStep % 4) + 1), 2200);
+    btn.textContent = '⏸️ Auto';
+  }
+}
+setTelhadoStep(1);
+tTimer = setInterval(() => setTelhadoStep((tStep % 4) + 1), 2200);
+
+// Lightbox para qualquer imagem do guia
+document.querySelectorAll('img').forEach(img => {
+  if (img.id === 'lb-img') return;
+  img.addEventListener('click', () => {
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb-cap').textContent = img.alt || '';
+    document.getElementById('lb').classList.add('open');
+  });
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lb').classList.remove('open'); });
+</script>
+</body>
+</html>

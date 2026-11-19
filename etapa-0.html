@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Etapa 0 Detalhada — Limpeza, Buracos, Cal e Cenário Atual</title>
+<style>
+  :root{--bg:#f8fafc;--card:#ffffff;--tx:#0f172a;--mut:#475569;--bd:#e2e8f0;--acc:#15803d;--acc2:#b45309;--blue:#0369a1}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+  header{background:#0f172a;color:#fff;padding:18px 24px;position:sticky;top:0;z-index:20;box-shadow:0 4px 18px rgba(15,23,42,.18)}
+  .wrap{max-width:1100px;margin:0 auto}
+  .top-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  h1{font-size:19px;margin:0}
+  .sub{color:#94a3b8;font-size:13px;margin-top:2px}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff}
+  .btn.primary{background:#22c55e;border-color:#22c55e;color:#052e16}
+  main{padding:24px 16px 64px}
+  section{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:22px 24px;margin-bottom:22px;box-shadow:0 2px 10px rgba(15,23,42,.04)}
+  h2{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:#fef3c7;color:#92400e}
+  .badge.green{background:#dcfce7;color:#166534}
+  .badge.blue{background:#e0f2fe;color:#075985}
+
+  .mat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin-top:12px}
+  .mat-card{border:1px solid var(--bd);border-radius:10px;padding:10px;background:#fff;text-align:center;display:flex;flex-direction:column;gap:6px}
+  .mat-card img{width:100%;height:110px;object-fit:contain;background:#fff;cursor:zoom-in}
+  .mat-card .n{font-size:12.5px;font-weight:700}
+  .mat-card .d{font-size:11.5px;color:var(--mut);line-height:1.35}
+
+  .anim-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+  @media(max-width:860px){.anim-wrap{grid-template-columns:1fr}}
+  .svg-box{background:#f1f5f9;border:1px solid var(--bd);border-radius:12px;padding:14px}
+  .svg-box svg{width:100%;height:auto;display:block}
+  .ctrl{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .ctrl button{padding:7px 11px;border:1px solid #cbd5e1;border-radius:7px;background:#fff;cursor:pointer;font-size:12px;font-weight:600;color:var(--tx)}
+  .ctrl button.on{background:#0f172a;color:#fff;border-color:#0f172a}
+
+  .step-detail{background:#f8fafc;border:1px solid var(--bd);border-radius:12px;padding:16px}
+  .step-detail h3{margin:0 0 8px;font-size:15px;color:#0f172a}
+  .step-detail p{margin:0 0 10px;font-size:13.5px}
+  .obvious{background:#fffbeb;border-left:4px solid var(--acc2);padding:10px 13px;border-radius:0 8px 8px 0;font-size:12.5px;color:#78350f;margin-top:10px}
+  .tip{background:#f0fdf4;border-left:4px solid var(--acc);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;margin:10px 0;color:#14532d}
+
+  .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+  figure{margin:0;background:#f8fafc;border:1px solid var(--bd);border-radius:10px;overflow:hidden}
+  figure img{width:100%;height:185px;object-fit:cover;display:block;cursor:zoom-in}
+  figcaption{padding:10px 12px;font-size:12px;color:#334155;line-height:1.45}
+
+  #lb{position:fixed;inset:0;background:rgba(15,23,42,.88);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;cursor:zoom-out}
+  #lb.open{display:flex}
+  #lb img{max-width:94vw;max-height:86vh;border-radius:10px;background:#fff}
+
+  @keyframes blinkRed{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+  .hi{animation:blinkRed 1.2s ease-in-out infinite}
+  .show-step{animation:fadeSlide .35s ease}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top-row">
+      <div>
+        <h1>Etapa 0 Detalhada — Preparação, Limpeza, Buracos &amp; Cal</h1>
+        <div class="sub">Tudo o que você precisa para o Dia 1, baseado exatamente nas fotos do seu quintal</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn" href="guia-montagem.html">← Voltar ao Guia Completo</a>
+        <a class="btn primary" href="quintal-completo.html?etapa=0&view=galinheiroClose" target="_blank">🧊 Ver Etapa 0 em 3D</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1. MATERIAIS E FERRAMENTAS EXCLUSIVOS DA ETAPA 0 -->
+<section>
+  <h2><span class="badge blue">Só para a Etapa 0</span> Materiais, Ferramentas e EPIs que você vai usar aqui</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:2px">Não precisa de furadeira, serrote nem estaca ainda — nesta etapa é só limpeza, tampar buracos e passar cal:</p>
+  <div class="mat-grid">
+    <div class="mat-card"><img src="img/materiais/agua-sanitaria-cal.jpg" alt="Água sanitária e cal hidratada"><div class="n">Água Sanitária (2 L) + Cal Hidratada (4 kg)</div><div class="d"><b>Atenção:</b> peça <b>cal hidratada</b> (ou cal de pintura), NÃO cal virgem!</div></div>
+    <div class="mat-card"><img src="img/materiais/cimento-areia.jpg" alt="Um pouco de cimento e areia"><div class="n">Cimento + Areia (pouquinho)</div><div class="d">Só ~1/3 de balde de massa (3 areia : 1 cimento) p/ tampar os buracos das madeiras velhas.</div></div>
+    <div class="mat-card"><img src="img/ferramentas/balde-18l.jpg" alt="Balde"><div class="n">2 Baldes comuns</div><div class="d">1 p/ diluir água sanitária; 1 p/ misturar a cal com água.</div></div>
+    <div class="mat-card"><img src="img/ferramentas/luvas.jpg" alt="Luvas"><div class="n">Luvas de borracha/obra</div><div class="d">Obrigatórias p/ mexer com cal, cimento, água sanitária e fezes de rato.</div></div>
+    <div class="mat-card"><img src="img/ferramentas/mascara-pff2.jpg" alt="Máscara PFF2"><div class="n">Máscara PFF2</div><div class="d">Protege do pó da cal e de qualquer poeira de fezes de rato.</div></div>
+    <div class="mat-card"><img src="img/ferramentas/enxada.jpg" alt="Vassoura, escova e mangueira"><div class="n">Em casa: Vassoura dura + Mangueira + Trincha/Rolo</div><div class="d">Escova/vassoura piaçava p/ esfregar o limo verde; broxa ou rolo barato p/ passar a cal.</div></div>
+  </div>
+</section>
+
+<!-- 2. ANIMAÇÃO PASSO A PASSO NO CENÁRIO ATUAL -->
+<section>
+  <h2><span class="badge">Passo a Passo Animado</span> Do cenário atual (suas fotos) até a base pronta</h2>
+  <div class="anim-wrap">
+    <div class="svg-box">
+      <svg id="svgE0" viewBox="0 0 560 340">
+        <!-- Céu / fundo -->
+        <rect x="0" y="0" width="560" height="340" fill="#e2e8f0"/>
+        <!-- Muro do fundo branco -->
+        <rect x="70" y="20" width="460" height="230" fill="#f8fafc" stroke="#cbd5e1"/>
+        <!-- Muro esquerdo contínuo 1,55 m -->
+        <polygon points="10,70 70,95 70,275 10,305" fill="#f1f5f9" stroke="#94a3b8"/>
+        <text x="16" y="185" font-size="10" fill="#475569" transform="rotate(-12 16,185)">Muro esq. 1,55 m</text>
+
+        <!-- Terra -->
+        <polygon points="10,305 70,275 530,275 550,335 10,335" fill="#a8896c" opacity=".55"/>
+        <!-- Patamar cimentado -->
+        <polygon points="75,260 445,260 465,288 60,288" fill="#94a3b8" stroke="#64748b"/>
+        <text x="260" y="280" font-size="10" fill="#1e293b" font-weight="bold" text-anchor="middle">Patamar cimentado (3,00 × 1,00 m)</text>
+
+        <!-- Estrutura dos 2 Canis (mureta 1,20 m) -->
+        <rect x="85" y="135" width="350" height="125" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>
+        <!-- Canil 1 interior -->
+        <rect x="95" y="148" width="145" height="112" fill="#94a3b8" id="c1_wall"/>
+        <!-- Canil 2 interior -->
+        <rect x="275" y="148" width="150" height="112" fill="#94a3b8" id="c2_wall"/>
+        <!-- Divisória do meio -->
+        <rect x="240" y="135" width="35" height="125" fill="#cbd5e1" stroke="#64748b"/>
+
+        <!-- Infiltração / limo verde (some no passo 5) -->
+        <g id="g_limo" opacity=".85">
+          <path d="M100,152 Q125,185 110,225 M130,152 Q145,195 135,230 M160,152 Q175,180 165,215 M290,152 Q310,190 300,220 M340,152 Q355,185 345,215" stroke="#15803d" stroke-width="5" fill="none" opacity=".55"/>
+        </g>
+
+        <!-- Cal branca (aparece no passo 6) -->
+        <g id="g_cal" opacity="0">
+          <rect x="95" y="148" width="145" height="112" fill="#ffffff" stroke="#cbd5e1"/>
+          <rect x="275" y="148" width="150" height="112" fill="#ffffff" stroke="#cbd5e1"/>
+          <text x="167" y="205" font-size="11" fill="#15803d" font-weight="bold" text-anchor="middle">2 demãos de cal!</text>
+          <text x="350" y="205" font-size="11" fill="#15803d" font-weight="bold" text-anchor="middle">Seco 24 h</text>
+        </g>
+
+        <!-- Madeiras escuras nos buracos (some no passo 3) -->
+        <g id="g_mad_velha">
+          <rect x="82" y="132" width="356" height="9" fill="#451a03"/>
+          <rect x="90" y="140" width="12" height="16" fill="#290f02"/>
+          <rect x="248" y="140" width="16" height="16" fill="#290f02"/>
+          <rect x="415" y="140" width="12" height="16" fill="#290f02"/>
+        </g>
+
+        <!-- Buracos tampados com massa (aparece no passo 4) -->
+        <g id="g_buracos_ok" opacity="0">
+          <rect x="90" y="138" width="14" height="14" fill="#64748b" stroke="#0f172a"/>
+          <rect x="248" y="138" width="16" height="14" fill="#64748b" stroke="#0f172a"/>
+          <rect x="415" y="138" width="14" height="14" fill="#64748b" stroke="#0f172a"/>
+        </g>
+
+        <!-- Baldes no Canil 2 (some no passo 2) -->
+        <g id="g_baldes">
+          <rect x="295" y="220" width="26" height="35" fill="#2563eb" rx="2"/>
+          <rect x="330" y="210" width="28" height="45" fill="#dc2626" rx="2"/>
+          <rect x="370" y="225" width="24" height="30" fill="#eab308" rx="2"/>
+        </g>
+
+        <!-- Bolinhas escuras no patamar (some no passo 4) -->
+        <g id="g_fezes">
+          <circle cx="150" cy="272" r="2.5" fill="#1e293b"/><circle cx="168" cy="276" r="2.5" fill="#1e293b"/>
+          <circle cx="210" cy="268" r="2.5" fill="#1e293b"/><circle cx="310" cy="274" r="2.5" fill="#1e293b"/>
+          <circle cx="345" cy="269" r="2.5" fill="#1e293b"/>
+        </g>
+
+        <!-- Telhas baixas atuais (para referência do cenário atual) -->
+        <path d="M68,125 L445,125 L452,135 L62,135 Z" fill="#94a3b8" stroke="#475569"/>
+
+        <!-- Tralha em cima do telhado (some no passo 1) -->
+        <g id="g_tralha">
+          <rect x="95" y="112" width="190" height="10" fill="#78350f" rx="2"/>
+          <rect x="180" y="104" width="210" height="8" fill="#cbd5e1" stroke="#64748b" rx="2"/>
+          <ellipse cx="260" cy="108" rx="18" ry="6" fill="none" stroke="#334155" stroke-width="3"/>
+        </g>
+
+        <!-- Grade Canil 1 aberta -->
+        <rect x="95" y="148" width="58" height="110" fill="none" stroke="#334155" stroke-width="2.5"/>
+        <line x1="114" y1="148" x2="114" y2="258" stroke="#334155" stroke-width="1.5"/>
+        <line x1="134" y1="148" x2="134" y2="258" stroke="#334155" stroke-width="1.5"/>
+
+        <!-- Destaque animado do passo ativo -->
+        <g id="g_destaque"></g>
+      </svg>
+
+      <div class="ctrl">
+        <button onclick="setStep(0)" class="on" data-s="0">Cenário Atual</button>
+        <button onclick="setStep(1)" data-s="1">1. Tirar Tralha</button>
+        <button onclick="setStep(2)" data-s="2">2. Esvaziar Canis</button>
+        <button onclick="setStep(3)" data-s="3">3. Madeiras Velhas</button>
+        <button onclick="setStep(4)" data-s="4">4. Tampar Buracos</button>
+        <button onclick="setStep(5)" data-s="5">5. Lavar c/ Cloro</button>
+        <button onclick="setStep(6)" data-s="6">6. Cal + 24h</button>
+        <button onclick="togglePlay()" id="btnPlay">⏸️ Auto</button>
+      </div>
+    </div>
+
+    <div class="step-detail" id="stepDetail">
+      <!-- preenchido por JS -->
+    </div>
+  </div>
+</section>
+
+<!-- 3. FOTOS REAIS DO SEU QUINTAL + O QUE FAZER EM CADA UMA -->
+<section>
+  <h2><span class="badge green">Suas Fotos Reais</span> O que olhar e fazer em cada canto</h2>
+  <div class="photos">
+    <figure>
+      <img src="fotos-18-11/07.jpg" alt="Foto 07 - Canis de frente">
+      <figcaption><b>Foto 07:</b> Tire todos os baldes/latas do Canil 2 e deixe o Canil 1 e a metade esquerda do Canil 2 livres. Varra as folhas e bolinhas do patamar <b>molhando antes</b>.</figcaption>
+    </figure>
+    <figure>
+      <img src="fotos-18-11/10.jpg" alt="Foto 10 - Tralha no telhado">
+      <figcaption><b>Foto 10:</b> Tire todas as tábuas, canos e cordas de cima da telha. Ali embaixo se escondem escorpiões, baratas e ratos.</figcaption>
+    </figure>
+    <figure>
+      <img src="fotos-18-11/11.jpg" alt="Foto 11 - Madeiras velhas e limo verde">
+      <figcaption><b>Foto 11:</b> Quando tirar as telhas p/ subir o telhado, arranque essas madeiras escuras encaixadas no alto da parede, <b>tampe os buracos com massa</b> e esfregue o limo verde com água sanitária.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/3d/etapa-0.png" alt="Resultado 3D após Etapa 0">
+      <figcaption><b>Resultado 3D após Etapa 0:</b> Sem tralha, sem madeiras velhas, buracos tampados e paredes caiadas de branco, prontas para subir o telhado na Etapa 1!</figcaption>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<div id="lb" onclick="this.classList.remove('open')"><img id="lb-img" src="" alt=""></div>
+
+<script>
+const STEPS = [
+  {
+    title: "Cenário Atual (igual às suas fotos)",
+    desc: "Hoje os canis estão com tábuas e canos em cima das telhas, baldes no Canil 2, madeiras escuras velhas nos buracos das paredes de 1,20 m, limo verde de infiltração no fundo e bolinhas escuras no patamar.",
+    obvious: "Não coloque nenhuma ave antes de limpar, tampar os buracos e esperar 24 h da cal secar.",
+    hi: `<rect x="92" y="102" width="300" height="24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6 4" class="hi"/>`
+  },
+  {
+    title: "Passo 1 · Tirar toda a tralha de cima da telha",
+    desc: "Suba numa escada firme, de luvas, e retire todas as tábuas, canos de PVC e cordas de cima do telhado. Jogue fora o que estiver podre.",
+    obvious: "Óbvio importante: use luvas grossas e olhe antes de enfiar a mão debaixo das tábuas — é o esconderijo clássico de escorpião e aranha!",
+    hi: `<rect x="90" y="100" width="305" height="26" fill="none" stroke="#dc2626" stroke-width="3" class="hi"/>`
+  },
+  {
+    title: "Passo 2 · Esvaziar os 2 canis",
+    desc: "Retire todos os baldes, latas e objetos de dentro do Canil 2 e deixe os dois canis totalmente vazios para poder lavar e caiar sem atrapalhar.",
+    obvious: "Se quiser guardar suas pilhas de cerâmicas na metade direita (0,65 m) do Canil 2, faça isso DEPOIS de lavar e passar a cal nas paredes.",
+    hi: `<rect x="285" y="205" width="120" height="54" fill="none" stroke="#dc2626" stroke-width="3" class="hi"/>`
+  },
+  {
+    title: "Passo 3 · Retirar as madeiras escuras dos buracos",
+    desc: "Ao levantar/retirar as 3 telhas para fazer a Etapa 1, arranque também aquelas madeiras escuras antigas apoiadas nos buracos das muretas de 1,20 m.",
+    obvious: "Não deixe madeira velha e úmida ali: além de podre, ela abriga cupim e piolho de galinha.",
+    hi: `<rect x="80" y="130" width="360" height="28" fill="none" stroke="#dc2626" stroke-width="3" class="hi"/>`
+  },
+  {
+    title: "Passo 4 · Tampar os buracos + limpar o patamar",
+    desc: "Misture um pouco de massa (3 partes de areia : 1 de cimento) no carrinho de mão e preencha os buracos/entalhes deixados pelas madeiras velhas. No patamar, molhe as bolinhas escuras com água sanitária diluída antes de varrer.",
+    obvious: "NUNCA varra fezes de rato a seco: a poeira faz mal para o pulmão. Molhe com água + água sanitária, espere 10 min e varra com luva e máscara.",
+    hi: `<rect x="86" y="134" width="346" height="22" fill="none" stroke="#16a34a" stroke-width="3" class="hi"/>`
+  },
+  {
+    title: "Passo 5 · Lavar tudo com água sanitária (e enxaguar)",
+    desc: "Misture 1 copo (200 ml) de água sanitária em um balde de 10 L de água. Esfregue o piso e as paredes (principalmente o limo verde do fundo) com vassoura/escova dura. Enxágue com mangueira e espere secar.",
+    obvious: "Nunca misture água sanitária com outros produtos de limpeza. E enxágue bem para não sobrar cloro no chão antes da cal.",
+    hi: `<rect x="95" y="148" width="330" height="112" fill="none" stroke="#0284c7" stroke-width="3" class="hi"/>`
+  },
+  {
+    title: "Passo 6 · Passar 2 demãos de cal hidratada + esperar 24 h",
+    desc: "Dilua 4 kg de cal hidratada em ~6 a 8 L de água no balde até ficar igual a um 'leite grosso'. Passe com broxa ou rolo de cima para baixo nos 2 canis. Espere 2–4 h secar e dê a 2ª demão. Aguarde 24 h antes de colocar as aves.",
+    obvious: "Compre CAL HIDRATADA (de pintura), não cal virgem! E só passe depois que a parede lavada estiver seca, senão a cal descasca.",
+    hi: `<rect x="95" y="148" width="330" height="112" fill="none" stroke="#16a34a" stroke-width="3" class="hi"/>`
+  }
+];
+
+let cur = 0, timer = null;
+function setStep(n) {
+  cur = n;
+  document.getElementById('g_tralha').style.opacity = n >= 1 ? '0.08' : '1';
+  document.getElementById('g_baldes').style.opacity = n >= 2 ? '0.08' : '1';
+  document.getElementById('g_mad_velha').style.opacity = n >= 3 ? '0' : '1';
+  document.getElementById('g_buracos_ok').style.opacity = n >= 4 ? '1' : '0';
+  document.getElementById('g_fezes').style.opacity = n >= 4 ? '0' : '1';
+  document.getElementById('g_limo').style.opacity = n >= 5 ? '0.08' : '0.85';
+  document.getElementById('g_cal').style.opacity = n >= 6 ? '1' : '0';
+  document.getElementById('g_destaque').innerHTML = STEPS[n].hi;
+
+  const s = STEPS[n];
+  document.getElementById('stepDetail').innerHTML =
+    `<div class="show-step"><h3>${s.title}</h3><p>${s.desc}</p><div class="obvious"><b>💡 Explicando o óbvio:</b> ${s.obvious}</div></div>`;
+  document.querySelectorAll('[data-s]').forEach(b => b.classList.toggle('on', +b.dataset.s === n));
+}
+function togglePlay() {
+  const b = document.getElementById('btnPlay');
+  if (timer) { clearInterval(timer); timer = null; b.textContent = '▶️ Auto'; }
+  else { timer = setInterval(() => setStep((cur + 1) % STEPS.length), 3200); b.textContent = '⏸️ Auto'; }
+}
+setStep(0);
+timer = setInterval(() => setStep((cur + 1) % STEPS.length), 3200);
+
+document.querySelectorAll('img').forEach(img => {
+  if (img.id === 'lb-img') return;
+  img.addEventListener('click', () => {
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb').classList.add('open');
+  });
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lb').classList.remove('open'); });
+</script>
+</body>
+</html>
