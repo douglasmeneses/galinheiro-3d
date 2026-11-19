@@ -36,13 +36,13 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
     - **Metade direita (`0,65 m`):** fechada do piso ao teto com sarrafo + tela `1/2"` para guardar **pilhas de cerâmicas de piso e parede** direto no chão (pesadas demais para prateleira).
     - **Metade esquerda (`0,65 m`):** **3 ninhos (`31 × 35 × 32 cm`) em 2 andares** (2 embaixo a `15 cm` do piso + 1 em cima), com borda de `10 cm`, teto inclinado contra poleiro e 1 ovo falso cada.
 - **Cobertura (`2,10 m` fundo → `1,75 m` beiral, caimento ~19%) e fim do contrapeso:**
-  - **Inclinação mínima da Tropical 5 mm: 10° (18%)** (página oficial da Eternit, conferida em 19/11). A versão anterior (`2,05 m`, 16,7%) ficava abaixo disso. Balanço máximo, número de apoios e regra de fixação da 5 mm **não estão** no site nem no PDF legível: confirmar no SAC Eternit `0800 021 1709`. Referência de outra fabricante (Brasilit 5 mm): balanço máximo `40 cm`.
+  - **Inclinação mínima da Tropical 5 mm: 10° (18%)** (página oficial da Eternit, conferida em 19/11). A versão anterior (`2,05 m`, 16,7%) ficava abaixo disso. **Regras práticas da Eternit para a Tropical 5 mm (PDF oficial, lido em 19/11):** telha de 1,83 m pede **2 apoios** (vão livre máx. `1,69 m`); balanço longitudinal sem calha **mín. `25` / máx. `40 cm`**, medido do furo de fixação; balanço lateral **máx. `10 cm`**; fixar nos apoios, na **2ª e 5ª crista**, parafuso galvanizado `8 mm × 110 mm` + arruela metálica + arruela de vedação, sem apertar demais; furo de **`10 mm` na telha** (a `5 cm` ou mais da borda) e **`7,5 mm` na madeira**; recobrimento lateral `1/4` de onda (`5 cm`). O projeto atende: apoios no fundo e na testeira (vão `1,40 m`), balanço da frente `~35 cm`, telhas centralizadas com `10 cm` de cada lado. PDF: `https://www.eternit.com.br/portal/Principal/arquivos/listas/65/ETE12023_Atualiza%C3%A7%C3%A3o%20Regras%20Praticas%20Telhas%20de%20fibrocimento_Tropical_Revis%C3%A3o%20MKT%20e%20SAC.pdf`.
   - Antes, as telhas ficavam soltas com tábuas pesadas em cima como contrapeso (esconderijo de ratos/escorpiões).
   - **Solução estrutural (auditada):**
     - **Terça do fundo (`z = 0,05 m`, `y = 2,05 m`)** sobre **3 pontaletes próprios** (`~80 cm` no topo da parede do meio e da direita, com cantoneira; `~44 cm` no muro esquerdo), **sem tocar a parede do fundo, que é do vizinho** (decidido em 19/11). O muro esquerdo de `1,55 m` pode ser furado (liberado pelo Douglas em 19/11): os 2 pontaletes curtos da esquerda ficam parafusados nele. Fresta de `~2 cm` vedada com fita aluminizada autoadesiva, combinada com o vizinho.
     - **Terça da frente sobre as paredes dos canis (`z = 1,00 m`, `y = 1,86 m`)**, apoiada em **2 pontaletes de `~66 cm`** (topo das paredes de `1,20 m`, furos do tijolo preenchidos, **cantoneira em L**) e num **3º pontalete curto de `~31 cm`** parafusado na face interna do muro esquerdo de `1,55 m`.
     - **3 caibros inclinados de `2,00 m`** (`z = 0` até `z = 1,45 m`) + **testeira** (caibro de `3 m` pregado na ponta dos 3, rente por cima): apoio da telha em toda a largura em `z = 1,45 m`, balanço livre de **`~30 cm`**. Caibros `5 × 5 cm`; das sobras de `1 m` saem os 3 pontaletes.
-    - **Parafusamento:** `5/16" × 110 mm` com arruela + borracha EPDM **somente nas pontas** (terça do fundo e testeira em `z = 1,45 m`, deixando o meio livre para dilatação), furando com broca `1/4"` **sempre na crista (topo) da onda**.
+    - **Parafusamento:** `5/16" × 110 mm` com arruela + borracha EPDM **somente nas pontas** (terça do fundo e testeira em `z = 1,45 m`, deixando o meio livre para dilatação), na **2ª e 5ª crista**, furo de `10 mm` na telha e `7,5 mm` na madeira (regra Eternit; a broca `1/4"` do vídeo dava furo justo demais, sem folga para dilatar).
     - **Ventilação:** vãos abertos acima de `1,20 m` (canis) e `1,55 m` (muro) fechados com **tela soldada `1/2"`** (a pinteiro hexagonal tem fio fino e timbu rasga) (ar quente e amônia saem por cima; ratos/gatos não entram).
 - **Patamar (`3,00 × 1,00 m`, cimento liso):**
   - Como a telha de `1,80 m` cobre `75 cm` do patamar e deixa os últimos `25 cm` descobertos, o patamar fica **sem maravalha** (cimento liso, raspado com pazinha em 1 min/dia).
@@ -73,7 +73,7 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
 
 1. **Massa de cimento e areia** (*Cleoney Soares*, `vtam7yYjJ3g`): usar sempre o mesmo balde/lata; **3–4 areia : 1 cimento** para assentar tijolo e **2 : 1** para chumbar estacas/pontaletes; misturar a seco até ficar cinza uniforme; água aos poucos até ficar viscosa e modelável (não farofa, não aguada).
 2. **Assentar tijolo** (*Faça Sua Obra*, `a1zyansPNp0`): molhar tijolos/base antes; erguer os cantos primeiro com **prumo** (peso "lambendo" a face) e nível; esticar **linha de pedreiro** entre os cantos; assentar com `1,5–2 cm` de massa na base e na lateral.
-3. **Parafusar Eternit 5 mm** (*Pelegrim*, `ZtxeuNQ40qc`): prender só nas pontas (não travar o meio); furar com broca `1/4"` para madeira na **crista da onda**; apertar parafuso `5/16" × 110 mm` com torque baixo até a borracha vedar (**nunca bater com martelo**).
+3. **Parafusar Eternit 5 mm** (*Pelegrim*, `ZtxeuNQ40qc`): prender só nas pontas (não travar o meio); furar na **crista da onda** (pela regra da Eternit: `10 mm` na telha, `7,5 mm` na madeira); apertar parafuso `5/16" × 110 mm` com torque baixo até a borracha vedar (**nunca bater com martelo**).
 4. **Cortar madeira no serrote** (*Schuab Construção*, `jjZDPUR2GhA`): riscar os **4 lados** com esquadro; serrar `~2 cm` por face girando a peça; fazer **pré-furo** antes de pregar sarrafos de `2,5 cm`.
 
 ---
@@ -81,7 +81,7 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
 ## 5. Lista Consolidada de Materiais, Ferramentas e Fornecedores
 
 ### Ferramentas e EPIs
-Furadeira, broca `1/4"` madeira, brocas vídea `8 mm` e `10 mm`, serrote, esquadro, trena, prumo, nível de bolha, linha de pedreiro, colher de pedreiro, enxada, cavadeira, alicate/torquês, chave de boca ou parafusadeira, luvas e máscara PFF2.
+Furadeira, broca `7,5 mm` madeira, brocas vídea `8 mm` e `10 mm`, serrote, esquadro, trena, prumo, nível de bolha, linha de pedreiro, colher de pedreiro, enxada, cavadeira, alicate/torquês, chave de boca ou parafusadeira, luvas e máscara PFF2.
 
 ### Materiais (iguais à lista do `guia-montagem.html`, revisada em 19/11)
 - **Limpeza/Vedação:** 2 L água sanitária, 4 kg cal hidratada, 1 rolo de fita aluminizada autoadesiva `10–15 cm × 3 m` (ou selante PU).
