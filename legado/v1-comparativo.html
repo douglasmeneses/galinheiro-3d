@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:28px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f4f6f8;color:#1e293b;width:1360px}
+  h1{margin:0 0 6px;font-size:24px}
+  .sub{margin:0 0 22px;color:#475569;font-size:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .card{background:#fff;border:1px solid #cbd5e1;border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(15,23,42,.06)}
+  .badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;margin-bottom:6px}
+  .b1{background:#dcfce7;color:#166534}
+  .b2{background:#dbeafe;color:#1e40af}
+  h2{margin:0 0 10px;font-size:19px}
+  ul{margin:12px 0 0;padding-left:18px;font-size:14px;line-height:1.5;color:#334155}
+  li strong{color:#0f172a}
+  svg{width:100%;height:auto;display:block;border-radius:8px;background:#eef5ea}
+</style>
+</head>
+<body>
+  <h1>Comparativo v1 (menor custo) — Planta vista de cima</h1>
+  <p class="sub">Mesma base dos canis existentes, sem mureta de tijolo e sem concreto nas estacas. Escala proporcional (em metros).</p>
+
+  <div class="grid">
+    <!-- FORMA 1 -->
+    <div class="card">
+      <span class="badge b1">MAIS BARATA (RECOMENDADA)</span>
+      <h2>Forma 1 — Só na frente do Canil 1 (~1,40 × 2,20 m)</h2>
+      <svg viewBox="0 0 580 430">
+        <defs>
+          <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="10" stroke="#94a3b8" stroke-width="2"/>
+          </pattern>
+        </defs>
+        <!-- Quintal livre -->
+        <rect x="0" y="0" width="580" height="430" fill="#e8f1e4"/>
+        <!-- Muros -->
+        <rect x="28" y="24" width="520" height="22" fill="#78716c"/>
+        <rect x="28" y="24" width="22" height="380" fill="#78716c"/>
+        <text x="288" y="39" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">MURO DO FUNDO</text>
+        <text x="39" y="220" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" transform="rotate(-90 39 220)">MURO DO VIZINHO (ESQUERDA)</text>
+
+        <!-- Canil 1 (dormitório) -->
+        <rect x="50" y="46" width="170" height="120" fill="#fef3c7" stroke="#475569" stroke-width="4"/>
+        <text x="135" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#78350f">CANIL 1</text>
+        <text x="135" y="114" text-anchor="middle" font-size="12" fill="#92400e">Dormitório (1,30 × 1,00 m)</text>
+        <text x="135" y="132" text-anchor="middle" font-size="11" fill="#92400e">Maravalha + poleiro</text>
+
+        <!-- Canil 2 (depósito) -->
+        <rect x="220" y="46" width="170" height="120" fill="#e2e8f0" stroke="#475569" stroke-width="4"/>
+        <text x="305" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">CANIL 2</text>
+        <text x="305" y="114" text-anchor="middle" font-size="12" fill="#475569">Depósito (grade original)</text>
+        <text x="305" y="132" text-anchor="middle" font-size="11" fill="#475569">Ração e ferramentas</text>
+
+        <!-- Patamar cimentado -->
+        <rect x="50" y="166" width="340" height="115" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+        <text x="135" y="220" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Patamar (dentro do cercado)</text>
+        <text x="305" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">Patamar LIVRE</text>
+        <text x="305" y="234" text-anchor="middle" font-size="11" fill="#334155">Acesso direto ao depósito</text>
+
+        <!-- Grades -->
+        <line x1="56" y1="166" x2="214" y2="166" stroke="#1e293b" stroke-width="5" stroke-dasharray="6,4"/>
+        <line x1="226" y1="166" x2="384" y2="166" stroke="#1e293b" stroke-width="5" stroke-dasharray="6,4"/>
+
+        <!-- Piquete de terra (só Canil 1) -->
+        <rect x="50" y="281" width="178" height="115" fill="#b48a60"/>
+        <text x="139" y="335" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">TERRA 1,20 m</text>
+        <text x="139" y="353" text-anchor="middle" font-size="11" fill="#fef3c7">Área p/ ciscar (~1,7 m²)</text>
+
+        <!-- Tela única (linha laranja tracejada) -->
+        <polyline points="228,166 228,396 50,396" fill="none" stroke="#ea580c" stroke-width="5"/>
+        <!-- Indicação de gancho/abertura na lateral -->
+        <rect x="219" y="310" width="18" height="55" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+        <text x="244" y="340" font-size="11" font-weight="700" fill="#c2410c">Tela c/ gancho</text>
+        <text x="244" y="354" font-size="11" fill="#c2410c">(abre se precisar entrar)</text>
+
+        <!-- Estacas (3) -->
+        <circle cx="228" cy="281" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+        <circle cx="228" cy="396" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+        <circle cx="56" cy="396" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+
+        <!-- Seta de acesso Canil 2 -->
+        <path d="M 455 245 L 395 205" stroke="#16a34a" stroke-width="3" marker-end="url(#arr)"/>
+        <text x="410" y="265" font-size="12" font-weight="700" fill="#15803d">Você entra direto</text>
+        <text x="410" y="280" font-size="12" fill="#15803d">sem passar por porta</text>
+
+        <!-- Legenda rápida -->
+        <circle cx="412" cy="325" r="6" fill="#5c3a21"/>
+        <text x="424" y="329" font-size="12" fill="#1e293b">3 estacas (sem concreto)</text>
+        <line x1="406" y1="350" x2="420" y2="350" stroke="#ea580c" stroke-width="4"/>
+        <text x="424" y="354" font-size="12" fill="#1e293b">Tela única (~6,5 m + teto)</text>
+      </svg>
+      <ul>
+        <li><strong>Sem porta de madeira:</strong> economiza dobradiça, ferrolho, mola e sarrafos.</li>
+        <li><strong>Espaço total (~4,2 m²):</strong> comporta bem <strong>4 a 6 frangas</strong> para validar o teste.</li>
+        <li><strong>Para evoluir pra v2:</strong> reaproveita tudo e só estende a lateral direita.</li>
+      </ul>
+    </div>
+
+    <!-- FORMA 2 -->
+    <div class="card">
+      <span class="badge b2">JÁ NO TAMANHO DA V2</span>
+      <h2>Forma 2 — Largura total (~3,00 × 2,20 m)</h2>
+      <svg viewBox="0 0 580 430">
+        <rect x="0" y="0" width="580" height="430" fill="#e8f1e4"/>
+        <!-- Muros -->
+        <rect x="28" y="24" width="520" height="22" fill="#78716c"/>
+        <rect x="28" y="24" width="22" height="380" fill="#78716c"/>
+        <text x="288" y="39" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">MURO DO FUNDO</text>
+        <text x="39" y="220" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" transform="rotate(-90 39 220)">MURO DO VIZINHO (ESQUERDA)</text>
+
+        <!-- Canil 1 -->
+        <rect x="50" y="46" width="170" height="120" fill="#fef3c7" stroke="#475569" stroke-width="4"/>
+        <text x="135" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#78350f">CANIL 1</text>
+        <text x="135" y="114" text-anchor="middle" font-size="12" fill="#92400e">Dormitório (1,30 × 1,00 m)</text>
+        <text x="135" y="132" text-anchor="middle" font-size="11" fill="#92400e">Maravalha + poleiro</text>
+
+        <!-- Canil 2 -->
+        <rect x="220" y="46" width="170" height="120" fill="#e2e8f0" stroke="#475569" stroke-width="4"/>
+        <text x="305" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">CANIL 2</text>
+        <text x="305" y="114" text-anchor="middle" font-size="12" fill="#475569">Depósito (grade original)</text>
+        <text x="305" y="132" text-anchor="middle" font-size="11" fill="#475569">Dentro do cercado</text>
+
+        <!-- Patamar todo cercado -->
+        <rect x="50" y="166" width="340" height="115" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+        <text x="220" y="220" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Patamar inteiro dentro do cercado (~3,00 × 1,00 m)</text>
+
+        <!-- Grades -->
+        <line x1="56" y1="166" x2="214" y2="166" stroke="#1e293b" stroke-width="5" stroke-dasharray="6,4"/>
+        <line x1="226" y1="166" x2="384" y2="166" stroke="#1e293b" stroke-width="5" stroke-dasharray="6,4"/>
+
+        <!-- Terra larga -->
+        <rect x="50" y="281" width="340" height="115" fill="#b48a60"/>
+        <text x="220" y="335" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">TERRA 1,20 m × 3,00 m</text>
+        <text x="220" y="355" text-anchor="middle" font-size="11" fill="#fef3c7">Área p/ ciscar (~3,6 m²)</text>
+
+        <!-- Tela cercando tudo -->
+        <polyline points="390,166 390,396 50,396" fill="none" stroke="#ea580c" stroke-width="5"/>
+        <!-- Porta -->
+        <rect x="308" y="388" width="76" height="16" rx="3" fill="#fde047" stroke="#854d0e" stroke-width="2"/>
+        <text x="346" y="400" text-anchor="middle" font-size="11" font-weight="700" fill="#713f12">PORTA</text>
+
+        <!-- Estacas (5) -->
+        <circle cx="390" cy="281" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+        <circle cx="390" cy="396" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+        <circle cx="304" cy="396" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+        <circle cx="178" cy="396" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+        <circle cx="56" cy="396" r="8" fill="#5c3a21" stroke="#fff" stroke-width="2"/>
+
+        <!-- Legenda rápida -->
+        <circle cx="412" cy="305" r="6" fill="#5c3a21"/>
+        <text x="424" y="309" font-size="12" fill="#1e293b">5 estacas</text>
+        <line x1="406" y1="330" x2="420" y2="330" stroke="#ea580c" stroke-width="4"/>
+        <text x="424" y="334" font-size="12" fill="#1e293b">~10–11 m tela + teto</text>
+        <rect x="406" y="348" width="14" height="10" fill="#fde047" stroke="#854d0e"/>
+        <text x="424" y="357" font-size="12" fill="#1e293b">Exige porta p/ acessar</text>
+        <text x="424" y="372" font-size="12" fill="#1e293b">o Canil 2 (depósito)</text>
+      </svg>
+      <ul>
+        <li><strong>Exige porta desde o dia 1:</strong> sem ela você não entra para abrir o Canil 2.</li>
+        <li><strong>Espaço total (~7,8 m²):</strong> já comporta o plantel cheio (6–12 aves).</li>
+        <li><strong>Mais próxima da v2:</strong> depois é só subir a mureta e reforçar madeira/tela.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

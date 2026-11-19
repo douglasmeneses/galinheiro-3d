@@ -92,8 +92,9 @@ const QX = 12.0, QZ = 10.0;
 const C1 = [0, 1.30], C2 = [1.45, 2.75], X_EXT = 2.90, W = 3.00;
 const Z_CANIL = 1.00, Z_PATAMAR = 2.00, Z_FRENTE = 4.00;
 const Y_PATAMAR = 0.10, Y_PISO = 0.18, Y_TETO_CANIL = 1.20;
-const Z_BEIRAL = 1.75, Y_BEIRAL = 1.75, Y_TELHADO_FUNDO = 2.05; // 3 folhas 1,10 × 1,80 m (17% caimento)
-const MURETA = 0.0, TOPO = 1.70;
+const Z_BEIRAL = 1.75, Y_BEIRAL = 1.75, Y_TELHADO_FUNDO = 2.10; // 3 folhas 1,10 × 1,80 m (~19%; Tropical 5 mm pede no mínimo 18%)
+const MURETA = 0.20, TOPO = 1.70; // 20 cm de mureta + tela de 1,50 m = topo
+const Y_CANIL_TELHA = Y_TELHADO_FUNDO - (Y_TELHADO_FUNDO - Y_BEIRAL) * (1.00 / (Z_BEIRAL + 0.04)) - 0.06;
 const PORTA = [Z_FRENTE - 0.95, Z_FRENTE - 0.15];
 const ABERTA = 1.25;
 
@@ -639,41 +640,47 @@ const grades = [grade(...C1, true), grade(...C2, false)];
   const yParede = Y_TELHADO_FUNDO - dy * (0.97 / dz) - 0.05;
   caixa(0.02, W, Y_TELHADO_FUNDO - 0.11, Y_TELHADO_FUNDO - 0.05, 0.02, 0.08, M.madeira, E.e1a);
   caixa(0.02, W, yParede - 0.06, yParede, 0.94, 1.00, M.madeira, E.e1a);
-  // 3 pontaletes: 2 nas paredes dos canis (1,20 -> 1,82 m) + 1 curto no muro esquerdo (1,55 -> 1,82 m)
+  // 3 pontaletes: 2 nas paredes dos canis (1,20 -> 1,86 m) + 1 curto no muro esquerdo (1,55 -> 1,86 m)
   for (const x of [1.34, 2.80]) caixa(x, x + 0.07, Y_TETO_CANIL, yParede - 0.06, 0.94, 1.00, M.madeira, E.e1a);
   caixa(0.01, 0.08, 1.55, yParede - 0.06, 0.94, 1.00, M.madeira, E.e1a);
   // 3 caibros inclinados (z=0 até z=1,45 m -> balanço livre da telha cai para apenas 30 cm!)
   for (const x of [0.06, 1.37, 2.83]) {
     barra(0.032, [x, Y_TELHADO_FUNDO - 0.02, 0.02], [x, Y_TELHADO_FUNDO - dy * (1.45 / dz) - 0.02, 1.45], M.madeira, E.e1a, 8);
   }
+  // Testeira na ponta dos caibros: apoio da telha em toda a largura para os parafusos da frente
+  const yPonta = Y_TELHADO_FUNDO - dy * (1.45 / dz) - 0.02;
+  caixa(0.02, W, yPonta - 0.03, yPonta + 0.03, 1.42, 1.47, M.madeira, E.e1a);
   // Tela de 1/2" fechando exatamente o vão aberto acima dos canis (frente + direita + acima do muro esquerdo de 1,55 m)
   tela('fina', [0.02, Y_TETO_CANIL, 1.00], [X_EXT, yParede, 1.00], E.e1b);
   telaTrapezio('fina', X_EXT, 0.02, 1.00, Y_TETO_CANIL, Y_TELHADO_FUNDO - 0.05, yParede, E.e1b);
   telaTrapezio('fina', 0.01, 0.02, 1.00, 1.55, Y_TELHADO_FUNDO - 0.05, yParede, E.e1b);
 }
 
-// Etapa 2A (5 Estacas de eucalipto só na terra — sem mureta de tijolo!)
+// Etapa 2A (mureta de 1 fiada na frente e na lateral direita + dreno + 5 estacas socadas)
 const XS = W - 0.06, ZS = Z_FRENTE - 0.06, S = 0.05, E_SAR = 0.025, XT = W - 0.02;
 for (const [x, z] of [[0.06, ZS], [1.50, ZS], [XS, ZS], [XS, 2.05], [XS, PORTA[0] - 0.04]]) {
   barra(0.04, [x, 0, z], [x, TOPO, z], M.eucalipto, E.e2a);
 }
+caixa(0, W, 0, MURETA, Z_FRENTE - 0.10, Z_FRENTE - 0.01, M.tijolo, E.e2a);
+caixa(W - 0.10, W - 0.01, 0, MURETA, Z_CANIL, Z_FRENTE - 0.10, M.tijolo, E.e2a);
+barra(0.02, [0.30, 0.05, Z_FRENTE - 0.13], [0.30, 0.05, Z_FRENTE + 0.04], new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.5 }), E.e2a, 12);
 
-// Etapa 2B (Sarrafos no topo + rodapé inferior a 3 cm do chão + Porta 0,80 m + Tela hexagonal + Arames de amarração)
+// Etapa 2B (Sarrafos no topo + base sobre a mureta + Porta 0,80 m + Tela hexagonal + Arames de amarração)
 caixa(0, W, TOPO - S, TOPO, ZS - 0.06, ZS - 0.035, M.madeira, E.e2b);
 caixa(XS - 0.06, XS - 0.035, TOPO - S, TOPO, Z_CANIL, ZS, M.madeira, E.e2b);
 caixa(0.06 - E_SAR / 2, 0.06 + E_SAR / 2, TOPO - S, TOPO, Z_BEIRAL, ZS, M.madeira, E.e2b);
-// Rodapé inferior a 3 cm do chão (nunca direto na terra para não apodrecer; facilita grampear a tela)
-caixa(0, W, 0.03, 0.03 + S, ZS - 0.06, ZS - 0.035, M.madeira, E.e2b);
-caixa(XS - 0.06, XS - 0.035, 0.03, 0.03 + S, Z_CANIL, PORTA[0], M.madeira, E.e2b);
-caixa(XS - 0.06, XS - 0.035, 0.03, 0.03 + S, PORTA[1], ZS, M.madeira, E.e2b);
-tela('hex', [0, 0.03, Z_FRENTE - 0.015], [W, TOPO, Z_FRENTE - 0.015], E.e2b);
+// Sarrafo de base em cima da mureta (madeira longe da terra; a tela de 1,50 m vai dele até o topo)
+caixa(0, W, MURETA, MURETA + S, ZS - 0.06, ZS - 0.035, M.madeira, E.e2b);
+caixa(XS - 0.06, XS - 0.035, MURETA, MURETA + S, Z_CANIL, PORTA[0], M.madeira, E.e2b);
+caixa(XS - 0.06, XS - 0.035, MURETA, MURETA + S, PORTA[1], ZS, M.madeira, E.e2b);
+tela('hex', [0, MURETA, Z_FRENTE - 0.015], [W, TOPO, Z_FRENTE - 0.015], E.e2b);
 // Lateral esquerda: acima do muro de 1,55 m até a linha do teto (1,70 m) + triângulo sob o telhado (1,00..1,75 m)
 tela('hex', [0.005, 1.55, Z_BEIRAL], [0.005, TOPO, Z_FRENTE], E.e2b);
-telaTrapezio('hex', 0.005, Z_CANIL, Z_BEIRAL, 1.55, 1.82, Y_BEIRAL, E.e2b);
+telaTrapezio('hex', 0.005, Z_CANIL, Z_BEIRAL, 1.55, Y_CANIL_TELHA, Y_BEIRAL, E.e2b);
 // Lateral direita: da parede do canil até a porta + pós-porta + fechamento triangular sob o telhado (1,00..1,75 m)
-tela('hex', [XT, 0.03, Z_CANIL], [XT, TOPO, PORTA[0]], E.e2b);
-tela('hex', [XT, 0.03, PORTA[1]], [XT, TOPO, Z_FRENTE - 0.015], E.e2b);
-telaTrapezio('hex', XT, Z_CANIL, Z_BEIRAL, TOPO, 1.82, Y_BEIRAL, E.e2b);
+tela('hex', [XT, MURETA, Z_CANIL], [XT, TOPO, PORTA[0]], E.e2b);
+tela('hex', [XT, MURETA, PORTA[1]], [XT, TOPO, Z_FRENTE - 0.015], E.e2b);
+telaTrapezio('hex', XT, Z_CANIL, Z_BEIRAL, TOPO, Y_CANIL_TELHA, Y_BEIRAL, E.e2b);
 // Teto do solário (1,75..4,00 m) + 3 fios de arame nº 14 + fio transversal no beiral (tela NÃO amarra na telha!)
 tela('hex', [0, TOPO + 0.003, Z_BEIRAL], [W, TOPO + 0.003, Z_FRENTE], E.e2b);
 tela('hex', [0, Y_BEIRAL, Z_BEIRAL], [W, TOPO, Z_BEIRAL], E.e2b);
@@ -688,8 +695,8 @@ for (const x of [0.75, 1.50, 2.25]) barra(0.005, [x, TOPO, Z_BEIRAL], [x, TOPO, 
   tela('hex', [0, S, S], [0, h - S, w - S], p); E.e2b.add(p);
 }
 
-// 12 Aves
-const aves = Array.from({ length: 12 }, () => {
+// 10 aves (lotação recomendada 8–10)
+const aves = Array.from({ length: 10 }, () => {
   const g = new THREE.Group(), m = new THREE.MeshStandardMaterial({ color: 0x9c5a2d, roughness: 0.8 });
   const c = new THREE.Mesh(new THREE.CapsuleGeometry(0.08, 0.14, 6, 10), m); c.rotation.z = Math.PI / 2; c.position.y = 0.17; g.add(c);
   const cab = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), m); cab.position.set(0.11, 0.25, 0); g.add(cab);
@@ -702,7 +709,7 @@ const DIA = [
   [2.30, 1.50, Y_PATAMAR + 0.05, 0.9], [1.72, 1.35, Y_PATAMAR, Math.PI / 2],
   [NINHOS[0][0] + W_NINHO / 2, 0.19, Y_NINHO + 0.01, -Math.PI / 2],
 ];
-const NOITE = Array.from({ length: 12 }, (_, i) => [C1[0] + 0.13 + (i % 6) * 0.21, Z_POLEIROS[i < 6 ? 0 : 1], Y_POLEIRO + 0.02, -Math.PI / 2]);
+const NOITE = Array.from({ length: 10 }, (_, i) => [C1[0] + 0.13 + (i % 5) * 0.21, Z_POLEIROS[i < 5 ? 0 : 1], Y_POLEIRO + 0.02, -Math.PI / 2]);
 
 // =====================================================================
 // 3. LEGENDAS E CÂMERAS

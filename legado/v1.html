@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Galinheiro v1-a, v1-b e v1-c – Projeto 3D</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#cfe3ee;color:#1f2933}
+  #ui{position:absolute;top:12px;left:12px;width:310px;background:rgba(255,255,255,.95);border-radius:10px;padding:12px 14px;box-shadow:0 4px 18px rgba(0,0,0,.18);font-size:13px;line-height:1.4;max-height:calc(100% - 24px);overflow:auto}
+  #ui h1{font-size:15px;margin:0 0 4px}
+  #ui h2{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:#52606d;margin:11px 0 5px}
+  .modes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+  .modes button{padding:7px 4px;border:2px solid #cbd5e1;border-radius:8px;background:#f8fafc;cursor:pointer;font-size:12px;font-weight:700;color:#334155}
+  .modes button.active{border-color:#ea580c;background:#fff7ed;color:#c2410c}
+  .views{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  .views button{padding:6px;border:1px solid #9aa5b1;border-radius:6px;background:#f5f7fa;cursor:pointer;font-size:12px}
+  .views button:hover{background:#e4e7eb}
+  label{display:flex;gap:6px;align-items:center;margin:4px 0;cursor:pointer}
+  #info{margin-top:8px;padding:8px 10px;background:#f1f5f9;border-radius:8px;font-size:12px}
+  #info ul{margin:4px 0 0;padding-left:16px}
+  .muted{color:#616e7c;font-size:11.5px;margin-top:6px}
+</style>
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<div id="ui">
+  <h1>Galinheiro v1 — 3 Versões (3D)</h1>
+  <div class="muted">Arraste para girar · roda = zoom · botão direito = mover.</div>
+
+  <h2>Versão</h2>
+  <div class="modes">
+    <button id="bA" class="active">v1-a<br><small>Base 30d</small></button>
+    <button id="bB">v1-b<br><small>+Altura</small></button>
+    <button id="bC">v1-c<br><small>4 meses</small></button>
+  </div>
+
+  <div id="info"></div>
+
+  <h2>Vistas rápidas</h2>
+  <div class="views">
+    <button data-view="persp">Perspectiva</button>
+    <button data-view="interior">Interior Canil 1</button>
+    <button data-view="front">Frente</button>
+    <button data-view="top">Planta (topo)</button>
+  </div>
+
+  <h2>Ver detalhes</h2>
+  <label><input type="checkbox" id="tRoof" checked> Mostrar telhado (desmarque p/ ver dentro)</label>
+  <label><input type="checkbox" id="tWalls" checked> Mostrar muros do vizinho</label>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const X1 = 1.30, XM = 1.42, X2 = 2.72, W = 2.88, X_R = XM - 0.03;
+const ZC = 1.00, ZP = 2.00, ZT = 3.20, YP = 0.10, ZB = 1.35;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xcfe3ee);
+const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.05, 100);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.maxPolarAngle = Math.PI * 0.495;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8a7a60, 0.95));
+const sun = new THREE.DirectionalLight(0xfff4e0, 1.5);
+sun.position.set(6, 9, 7);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 30 });
+scene.add(sun);
+
+function canvasTex(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+const meshFineTex = canvasTex(64, 64, (x, w) => {
+  x.strokeStyle = '#6f777d'; x.lineWidth = 2.4;
+  for (let i = 0; i <= 4; i++) {
+    const p = i * w / 4;
+    x.beginPath(); x.moveTo(p, 0); x.lineTo(p, w); x.stroke();
+    x.beginPath(); x.moveTo(0, p); x.lineTo(w, p); x.stroke();
+  }
+});
+const meshHexTex = canvasTex(128, 111, (x, w, h) => {
+  const r = w / (2 * Math.sqrt(3)), dx = Math.sqrt(3) * r;
+  x.strokeStyle = '#9aa3aa'; x.lineWidth = 3;
+  const hex = (cx, cy) => {
+    x.beginPath();
+    for (let i = 0; i <= 6; i++) {
+      const a = Math.PI / 6 + i * Math.PI / 3;
+      const px = cx + r * Math.cos(a), py = cy + r * Math.sin(a);
+      i ? x.lineTo(px, py) : x.moveTo(px, py);
+    }
+    x.stroke();
+  };
+  for (let row = -1; row <= 3; row++)
+    for (let k = -1; k <= 3; k++)
+      hex(k * dx + (row % 2 ? dx / 2 : 0), row * 1.5 * r * (h / (3 * r)));
+});
+const roofTex = canvasTex(64, 4, (x, w, h) => {
+  const g = x.createLinearGradient(0, 0, w, 0);
+  g.addColorStop(0, '#8d918f'); g.addColorStop(.5, '#c4c7c4'); g.addColorStop(1, '#8d918f');
+  x.fillStyle = g; x.fillRect(0, 0, w, h);
+});
+const blockTex = canvasTex(256, 128, (x, w, h) => {
+  x.fillStyle = '#9a978f'; x.fillRect(0, 0, w, h);
+  x.strokeStyle = '#7d7a73'; x.lineWidth = 3;
+  for (let r = 0; r < 4; r++) {
+    const y = r * h / 4;
+    x.beginPath(); x.moveTo(0, y); x.lineTo(w, y); x.stroke();
+    const off = r % 2 ? w / 4 : 0;
+    for (let c = 0; c <= 2; c++) { const px = off + c * w / 2; x.beginPath(); x.moveTo(px, y); x.lineTo(px, y + h / 4); x.stroke(); }
+  }
+});
+blockTex.repeat.set(5, 2.75);
+
+const std = (color, o = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.9, ...o });
+const M = {
+  concrete: std(0xbdb8ad), caiado: std(0xf2efe6), terra: std(0x8b6b47), grass: std(0x7da35a),
+  wood: std(0xb07a45), euca: std(0x6e4f33), metal: std(0x3a3d40, { metalness: 0.6, roughness: 0.5 }),
+  mara: std(0xe8d08e), roof: new THREE.MeshStandardMaterial({ map: roofTex, roughness: 0.85 }),
+  block: new THREE.MeshStandardMaterial({ map: blockTex, roughness: 0.95 }),
+  brickNew: std(0xc97b55),
+  lona: new THREE.MeshStandardMaterial({ color: 0xe8f4ff, transparent: true, opacity: 0.42, side: THREE.DoubleSide, roughness: 0.2 }),
+  nest: std(0xd4a373)
+};
+
+const env = new THREE.Group(); scene.add(env);
+const walls = new THREE.Group(); scene.add(walls);
+const roofGrp = new THREE.Group(); scene.add(roofGrp);
+const dyn = new THREE.Group(); scene.add(dyn);
+
+function box(x0, x1, y0, y1, z0, z1, mat, parent) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, y1 - y0, z1 - z0), mat);
+  m.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+  m.castShadow = m.receiveShadow = true;
+  parent.add(m); return m;
+}
+function rod(r, a, b, mat, parent, seg = 10) {
+  a = new THREE.Vector3(...a); b = new THREE.Vector3(...b);
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, a.distanceTo(b), seg), mat);
+  m.position.copy(a).add(b).multiplyScalar(0.5);
+  m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize());
+  m.castShadow = m.receiveShadow = true;
+  parent.add(m); return m;
+}
+function telaMat(hex, w, h) {
+  const t = (hex ? meshHexTex : meshFineTex).clone();
+  const s = hex ? 0.11 : 0.06;
+  t.repeat.set(w / s, h / s); t.needsUpdate = true;
+  return new THREE.MeshStandardMaterial({ map: t, transparent: true, depthWrite: false, side: THREE.DoubleSide, alphaTest: 0.05 });
+}
+function telaX(hex, z, x0, x1, y0, y1, parent) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(x1 - x0, y1 - y0), telaMat(hex, x1 - x0, y1 - y0));
+  m.position.set((x0 + x1) / 2, (y0 + y1) / 2, z); parent.add(m);
+}
+function telaZ(hex, x, z0, z1, y0, y1, parent) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(z1 - z0, y1 - y0), telaMat(hex, z1 - z0, y1 - y0));
+  m.rotation.y = Math.PI / 2; m.position.set(x, (y0 + y1) / 2, (z0 + z1) / 2); parent.add(m);
+}
+function telaY(hex, y, x0, x1, z0, z1, parent) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(x1 - x0, z1 - z0), telaMat(hex, x1 - x0, z1 - z0));
+  m.rotation.x = -Math.PI / 2; m.position.set((x0 + x1) / 2, y, (z0 + z1) / 2); parent.add(m);
+}
+
+// Terreno e muros fixos
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(16, 16), M.grass);
+ground.rotation.x = -Math.PI / 2; ground.position.set(1.5, 0, 3); ground.receiveShadow = true; env.add(ground);
+const terra = new THREE.Mesh(new THREE.PlaneGeometry(X_R, ZT - ZP), M.terra);
+terra.rotation.x = -Math.PI / 2; terra.position.set(X_R / 2, 0.004, (ZP + ZT) / 2); terra.receiveShadow = true; env.add(terra);
+box(-0.15, 0, 0, 2.5, -0.15, 4.2, M.block, walls);
+box(-0.15, 4.2, 0, 2.5, -0.15, 0, M.block, walls);
+box(0, W, 0, YP, 0, ZP, M.concrete, env); // patamar
+
+function grade(x0, x1, y0, h, z, rotY, hasLona, parent) {
+  const g = new THREE.Group(); g.position.set(x0, y0, z); g.rotation.y = rotY; parent.add(g);
+  const w = x1 - x0;
+  box(0, w, 0, 0.02, -0.01, 0.01, M.metal, g);
+  box(0, w, h - 0.02, h, -0.01, 0.01, M.metal, g);
+  box(0, 0.02, 0, h, -0.01, 0.01, M.metal, g);
+  box(w - 0.02, w, 0, h, -0.01, 0.01, M.metal, g);
+  for (let x = 0.12; x < w - 0.05; x += 0.12) rod(0.006, [x, 0, 0], [x, h, 0], M.metal, g, 6);
+  if (hasLona) {
+    const l = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.04, 0.45), M.lona);
+    l.position.set(w / 2, 0.24, 0.015); g.add(l);
+  }
+}
+
+function franga(x, z, y, rot, adult, parent) {
+  const g = new THREE.Group();
+  const s = adult ? 1.15 : 0.78;
+  const mat = std(adult ? 0x9b3d16 : 0x8b4a1f, { roughness: 0.8 });
+  const body = new THREE.Mesh(new THREE.SphereGeometry(0.07, 14, 10), mat);
+  body.scale.set(1.4, 1, 1); body.position.y = 0.11; g.add(body);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.035, 10, 8), mat);
+  head.position.set(0.09, 0.18, 0); g.add(head);
+  const comb = new THREE.Mesh(new THREE.BoxGeometry(0.03, adult ? 0.035 : 0.015, 0.008), std(0xd62828));
+  comb.position.set(0.09, 0.22, 0); g.add(comb);
+  g.position.set(x, y, z); g.rotation.y = rot; g.scale.setScalar(s);
+  parent.add(g);
+}
+
+function buildVersion(ver) {
+  dyn.clear(); roofGrp.clear();
+  const isB = ver === 'b', isC = ver === 'c';
+  const dh = isB ? 0.50 : 0; // +50 cm na v1-b
+  const hCanil = 1.00 + dh;
+  const hWall = 1.62 + dh;
+  const hFence = 1.48 + (isB ? 0.35 : 0);
+  const ybBack = 1.85 + dh, ybFront = 1.56 + dh;
+  const zF = ZT - 0.04;
+
+  // Paredes dos canis (base + acréscimo de tijolo na v1-b)
+  box(X1, XM, YP, 1.62, 0, ZC, M.concrete, dyn);
+  box(X2, W, YP, 1.62, 0, ZC, M.concrete, dyn);
+  if (!isB) {
+    box(0, W, 1.10, 1.62, ZC - 0.10, ZC, M.concrete, dyn);
+  } else {
+    box(XM, W, 1.10, 1.62, ZC - 0.10, ZC, M.concrete, dyn); // Canil 2 mantém altura original
+    box(X1, XM, 1.62, hWall, 0, ZC, M.brickNew, dyn);
+    box(X2, W, 1.62, hWall, 0, ZC, M.brickNew, dyn);
+    box(0, W, 1.62, hWall, ZC - 0.10, ZC, M.brickNew, dyn); // verga sobe junto com alvenaria nova
+  }
+
+  // Interior do Canil 1 caiado + maravalha
+  box(0.001, X1, YP, hCanil + 0.10, 0.001, 0.02, M.caiado, dyn);
+  box(X1 - 0.012, X1, YP, hCanil + 0.10, 0.02, ZC - 0.10, M.caiado, dyn);
+  box(0, X1, YP, YP + 0.05, 0, ZC, M.mara, dyn);
+
+  // Poleiro sobre tijolos (cabo de vassoura)
+  const py = YP + (isC ? 0.36 : 0.28);
+  box(0.06, 0.16, YP + 0.05, py - 0.02, 0.32, 0.50, M.brickNew, dyn);
+  box(X1 - 0.16, X1 - 0.06, YP + 0.05, py - 0.02, 0.32, 0.50, M.brickNew, dyn);
+  rod(0.018, [0.05, py, 0.41], [X1 - 0.05, py, 0.41], M.wood, dyn);
+
+  // Comedouro e bebedouro improvisados sobre tijolos (perto da frente do canil)
+  box(0.20, 0.38, YP + 0.05, YP + 0.14, 0.68, 0.86, M.brickNew, dyn);
+  rod(0.09, [0.29, YP + 0.14, 0.77], [0.29, YP + 0.26, 0.77], std(0xd97706), dyn, 16);
+  box(0.86, 1.04, YP + 0.05, YP + 0.14, 0.68, 0.86, M.brickNew, dyn);
+  rod(0.08, [0.95, YP + 0.14, 0.77], [0.95, YP + 0.34, 0.77], std(0x38bdf8, { transparent: true, opacity: 0.75 }), dyn, 16);
+
+  // Ninhos (só na v1-c desde o dia 1)
+  if (isC) {
+    box(0.05, 0.40, YP + 0.05, YP + 0.35, 0.05, 0.35, M.nest, dyn);
+    box(0.42, 0.77, YP + 0.05, YP + 0.35, 0.05, 0.35, M.nest, dyn);
+    box(0.08, 0.37, YP + 0.06, YP + 0.12, 0.08, 0.32, M.mara, dyn);
+    box(0.45, 0.74, YP + 0.06, YP + 0.12, 0.08, 0.32, M.mara, dyn);
+  }
+
+  // Telhado de fibrocimento
+  const dz = ZB + 0.05, dy = ybBack - ybFront, len = Math.hypot(dz, dy);
+  const roof = new THREE.Mesh(new THREE.BoxGeometry(W + 0.12, 0.012, len), M.roof);
+  roofTex.repeat.set((W + 0.12) / 0.18, 1);
+  roof.rotation.x = Math.atan2(dy, dz);
+  roof.position.set(W / 2 + 0.03, (ybBack + ybFront) / 2 + 0.006, (ZB - 0.05) / 2);
+  roof.castShadow = roof.receiveShadow = true;
+  roofGrp.add(roof);
+
+  // Grades
+  grade(0, X1, YP, isB ? 1.45 : 1.00, ZC - 0.02, -0.80, !isC, dyn);
+  grade(XM, X2, YP, 1.00, ZC - 0.02, 0, false, dyn);
+
+  // Cercado v1 (Forma 1 + porta simples na lateral direita)
+  for (const [x, z] of [[0.05, zF], [X_R, zF], [X_R, ZP + 0.05]]) rod(0.035, [x, 0, z], [x, hFence, z], M.euca, dyn);
+  box(0, X_R, hFence - 0.04, hFence, zF, zF + 0.03, M.wood, dyn);
+  box(X_R - 0.02, X_R + 0.01, hFence - 0.04, hFence, ZC, zF, M.wood, dyn);
+  box(0, X_R, hFence - 0.04, hFence, ZB - 0.04, ZB, M.wood, dyn);
+
+  // Porta simples na lateral direita
+  const zD0 = ZP + 0.12, zD1 = zF - 0.08, hDoor = hFence - 0.05;
+  box(X_R - 0.02, X_R + 0.01, 0.03, hDoor, zD0, zD0 + 0.04, M.wood, dyn);
+  box(X_R - 0.02, X_R + 0.01, 0.03, hDoor, zD1 - 0.04, zD1, M.wood, dyn);
+  box(X_R - 0.02, X_R + 0.01, 0.03, 0.07, zD0, zD1, M.wood, dyn);
+  box(X_R - 0.02, X_R + 0.01, hDoor - 0.04, hDoor, zD0, zD1, M.wood, dyn);
+  rod(0.012, [X_R, 0.07, zD1 - 0.04], [X_R, hDoor - 0.04, zD0 + 0.04], M.wood, dyn);
+  box(X_R + 0.01, X_R + 0.03, 0.25, 0.33, zD0, zD0 + 0.02, M.metal, dyn);
+  box(X_R + 0.01, X_R + 0.03, hDoor - 0.30, hDoor - 0.22, zD0, zD0 + 0.02, M.metal, dyn);
+  box(X_R + 0.01, X_R + 0.04, 0.90, 0.93, zD1 - 0.06, zD1 + 0.02, M.metal, dyn);
+
+  // Tela
+  const hex = isC;
+  telaX(hex, zF, 0, X_R, 0, hFence, dyn);
+  telaZ(hex, X_R, ZP, zF, 0, hFence, dyn);
+  telaZ(hex, X_R, ZC, ZP, YP, hFence, dyn);
+  telaY(hex, hFence, 0, X_R, ZB - 0.05, zF, dyn);
+
+  // Aves
+  if (isC) {
+    franga(0.55, 2.55, 0, 0.5, true, dyn);
+    franga(0.95, 2.85, 0, 2.3, true, dyn);
+    franga(0.45, 1.55, YP, -0.4, true, dyn);
+    franga(0.75, 0.55, YP + 0.05, 1.4, true, dyn);
+  } else {
+    franga(0.50, 2.45, 0, 0.5, false, dyn);
+    franga(0.95, 2.80, 0, 2.3, false, dyn);
+    franga(0.40, 2.90, 0, -0.8, false, dyn);
+    franga(0.70, 1.50, YP, 1.1, false, dyn);
+    franga(0.60, 0.50, YP + 0.05, -0.3, false, dyn);
+  }
+}
+
+const INFO = {
+  a: '<strong>v1-a (Menor custo, aves 30 dias):</strong><ul><li>Mantém canil (1,00 m) e telhado atuais</li><li><strong>Porta simples</strong> na lateral direita</li><li>Tela pinteiro 1" + lona corta-vento</li><li>4 a 6 frangas (~30 dias)</li></ul>',
+  b: '<strong>v1-b (+50 cm na altura do canil):</strong><ul><li>Sobe alvenaria (+3 fiadas) e ergue o telhado</li><li>Abertura do canil sobe de 1,00 → <strong>~1,50 m</strong></li><li>Cercado sobe para <strong>~1,83 m</strong> (entra quase em pé)</li><li>Custa mais caro e dá obra de pedreiro</li></ul>',
+  c: '<strong>v1-c (Aves já maduras de 4 meses):</strong><ul><li>Mesma estrutura da v1-a, mas com <strong>tela comum 2"</strong></li><li>Dispensa lona corta-vento</li><li>Já entra <strong>2 ninhos</strong> no Canil 1 (caixote/balde)</li><li>3 a 4 galinhas já botando em ~2–4 semanas</li></ul>'
+};
+const btns = { a: document.getElementById('bA'), b: document.getElementById('bB'), c: document.getElementById('bC') };
+const info = document.getElementById('info');
+function setVer(v) {
+  buildVersion(v);
+  for (const k of ['a', 'b', 'c']) btns[k].classList.toggle('active', k === v);
+  info.innerHTML = INFO[v];
+}
+btns.a.onclick = () => setVer('a');
+btns.b.onclick = () => setVer('b');
+btns.c.onclick = () => setVer('c');
+setVer('a');
+
+document.getElementById('tRoof').onchange = e => roofGrp.visible = e.target.checked;
+document.getElementById('tWalls').onchange = e => walls.visible = e.target.checked;
+
+const VIEWS = {
+  persp: [[5.4, 3.1, 6.4], [1.2, 0.65, 1.7]],
+  interior: [[1.15, 1.35, 2.25], [0.55, 0.35, 0.45]],
+  front: [[1.3, 1.1, 6.8], [1.3, 0.7, 1.6]],
+  top:   [[1.3, 7.6, 1.65], [1.3, 0, 1.6]]
+};
+function setView(k) { const [p, t] = VIEWS[k]; camera.position.set(...p); controls.target.set(...t); controls.update(); }
+document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => setView(b.dataset.view));
+setView('persp');
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+window.__ready = true;
+</script>
+</body>
+</html>
