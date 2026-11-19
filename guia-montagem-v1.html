@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Canil 1 + Solário 3,00 × 3,00 m (casca da v2) — Guia Visual v1</title>
+<title>Canil 1 + cercado de PVC 1,40 × 1,50 m (provisório, 1–3 meses) — Guia Visual v1</title>
 <style>
   :root{--bg:#f8fafc;--card:#ffffff;--tx:#0f172a;--mut:#475569;--bd:#e2e8f0;--acc:#15803d;--acc2:#b45309;--blue:#0369a1}
   *{box-sizing:border-box}
@@ -17,8 +17,6 @@
   .btn:hover{background:rgba(255,255,255,.2)}
   .btn.primary{background:#22c55e;border-color:#22c55e;color:#052e16}
   .btn.primary:hover{background:#4ade80}
-  .btn.dark{background:#0f172a;color:#fff;border-color:#0f172a;font-size:12px;padding:6px 11px}
-  .btn.dark:hover{background:#1e293b}
   nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   nav a{color:#cbd5e1;text-decoration:none;font-size:12px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.07)}
   nav a:hover{background:rgba(255,255,255,.16);color:#fff}
@@ -73,7 +71,8 @@
   tr:hover td{background:#f8fafc}
   .chk{width:18px;height:18px;accent-color:var(--acc);cursor:pointer}
   .mat-thumb{width:64px;height:64px;object-fit:contain;border-radius:8px;border:1px solid var(--bd);background:#fff;cursor:zoom-in;display:block}
-  .thumb-pair{display:flex;gap:6px;align-items:center}
+
+  pre.balcao{background:#0f172a;color:#f8fafc;padding:14px 16px;border-radius:10px;font-size:13px;line-height:1.55;border:1px solid #334155;margin:12px 0}
 
   #lb{position:fixed;inset:0;background:rgba(15,23,42,.88);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;cursor:zoom-out}
   #lb.open{display:flex}
@@ -89,8 +88,8 @@
   <div class="wrap">
     <div class="top-row">
       <div>
-        <h1>Canil 1 + Solário 3,00 × 3,00 m (casca da v2)</h1>
-        <div class="sub">5 frangas de 35 dias · João Pessoa/PB · Parte de fora já nas linhas finais da v2 (sem mureta e sem telhado novo ainda) · Clique em qualquer imagem para ampliar</div>
+        <h1>Canil 1 + cercado de PVC 1,40 × 1,50 m (provisório, 1–3 meses)</h1>
+        <div class="sub">5 frangas de 35 dias · João Pessoa/PB · Cercado leve e o mais barato possível na frente do Canil 1 · Clique em qualquer imagem para ampliar</div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <a class="btn primary" href="quintal-completo.html?versao=v1" target="_blank">🧊 Abrir v1 em 3D</a>
@@ -99,15 +98,16 @@
       </div>
     </div>
     <nav>
-      <a href="#comece-aqui">✅ Comece aqui: 25 passos e custo</a>
+      <a href="#comece-aqui">✅ Comece aqui: 23 passos e custo</a>
+      <a href="#madeireira">🪵 Madeireira</a>
       <a href="#resumo">🐣 Escolha &amp; Medidas</a>
       <a href="#ferramentas">🧰 Ferramentas &amp; EPIs</a>
       <a href="#materiais">📦 Materiais v1</a>
-      <a href="#oficina">🛠️ Oficina (Caiar, Estaca, Bucha)</a>
+      <a href="#oficina">🛠️ Oficina (Caiar, PVC, Bucha)</a>
       <a href="#etapa0">0. Medidas, Limpeza &amp; Vãos</a>
-      <a href="#etapa1">1. Canis 1 e 2</a>
-      <a href="#etapa2">2. 5 Estacas &amp; Sarrafos</a>
-      <a href="#etapa3">3. Tela, Porta, Rodapé &amp; Teto</a>
+      <a href="#etapa1">1. Canil 1</a>
+      <a href="#etapa2">2. Estrutura (Madeira &amp; PVC)</a>
+      <a href="#etapa3">3. Tela do Cercado</a>
       <a href="#etapa4">4. Bebedouro, Banho &amp; Aves</a>
       <a href="#rotina">🗓️ Rotina</a>
       <a href="#pixilinga">🦟 Pixilinga</a>
@@ -121,119 +121,158 @@
 
 <!-- COMECE AQUI -->
 <section id="comece-aqui">
-  <h2><span class="badge">Comece aqui</span> Os 25 passos, lista de compras e custo</h2>
+  <h2><span class="badge">Comece aqui</span> Os 23 passos, custo e notas</h2>
 
   <h3>Passo a passo resumido (marque ao terminar)</h3>
   <p style="font-size:13px;font-weight:700;margin:10px 0 4px">Etapa 0 · Limpeza e vãos → <a href="#etapa0">ver etapa</a></p>
   <ol class="steps" style="list-style:none;padding-left:0">
-    <li><label><input type="checkbox" class="chk"> <b>1.</b> Tirar a tralha.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>2.</b> Lavar.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>3.</b> Caiar o Canil 1 e a viga.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>4.</b> Pôr as 5 tiras <code>1/2"</code> nos vãos do Canil 1.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>1.</b> Tirar as tábuas velhas e a lona do Canil 1.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>2.</b> Lavar e deixar secar.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>3.</b> Caiar o Canil 1 e a viga, com 2 demãos e máscara PFF2.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>4.</b> Grampear e amarrar as 5 tiras de tela <code>1/2"</code> nos 4 vãos entre a parede e a telha.</label> <a href="#etapa0" style="font-size:12px">(#etapa0)</a></li>
   </ol>
 
-  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Etapa 1 · Canis → <a href="#etapa1">ver etapa</a></p>
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Etapa 1 · Canil 1 → <a href="#etapa1">ver etapa</a></p>
   <ol class="steps" style="list-style:none;padding-left:0">
-    <li><label><input type="checkbox" class="chk"> <b>5.</b> Tela <code>1/2"</code> na grade do Canil 1.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>6.</b> Tela <code>1/2"</code> na grade do Canil 2 (fica fechada).</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>7.</b> Suportes + poleiro.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>8.</b> Tabuleiro + areia.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>9.</b> Maravalha.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>10.</b> Comedouro.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>5.</b> Tela <code>1/2"</code> na grade.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>6.</b> Suportes de <code>45 cm</code> + poleiro solto.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>7.</b> Moldura do tabuleiro no piso + areia.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>8.</b> Maravalha.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>9.</b> Comedouro.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></li>
   </ol>
 
   <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Etapa 2 · Estrutura → <a href="#etapa2">ver etapa</a></p>
   <ol class="steps" style="list-style:none;padding-left:0">
-    <li><label><input type="checkbox" class="chk"> <b>11.</b> Marcar e socar as 5 estacas com o topo a <code>1,70 m</code>.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>12.</b> Sarrafos de topo a <code>1,70 m</code> (frente, direita, esquerda no muro).</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>13.</b> Sarrafos de base a <code>0,20 m</code> (frente e direita).</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>14.</b> Sarrafo no topo da parede dos canis, <code>z 1,00</code>, para a rampa.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>15.</b> Sarrafos do trecho do patamar, na parede e no cimento.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>10.</b> Parafusar o <code>S1</code> no topo da parede do Canil 1 (bucha <code>8 mm</code>).</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>11.</b> Parafusar o <code>S2</code> inclinado no muro.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>12.</b> Parafusar o <code>S3</code> no cimento da calçada, em <code>x = 1,40</code>.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>13.</b> Cortar os canos com serrote: <code>2</code> de <code>1,80 m</code>, <code>1</code> da divisória (medir do cimento até <code>1,50 m</code> da terra), <code>1</code> de <code>1,40 m</code> e <code>1</code> de <code>1,50 m</code>.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>14.</b> Enterrar os 2 pés da frente <code>30 cm</code> na terra, a <code>1,50 m</code> da parede dos canis (um junto do muro, outro em <code>x = 1,40</code>). Socar com terra e pedra e conferir o prumo.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>15.</b> Prender o pé da divisória com 2 abraçadeiras tipo D + buchas <code>8 mm</code>.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>16.</b> Encaixar os 3 joelhos e as barras do topo e amarrar a quina frente-direita com abraçadeira de nylon.</label> <a href="#etapa2" style="font-size:12px">(#etapa2)</a></li>
   </ol>
 
-  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Etapa 3 · Fechamento → <a href="#etapa3">ver etapa</a></p>
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Etapa 3 · Tela → <a href="#etapa3">ver etapa</a></p>
   <ol class="steps" style="list-style:none;padding-left:0">
-    <li><label><input type="checkbox" class="chk"> <b>16.</b> Tela hexagonal na frente e na direita, de <code>0,20</code> a <code>1,70 m</code>.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>17.</b> Faixa de tela em cima do muro.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>18.</b> Porta de <code>0,80 × 1,50</code> sobre a soleira temporária.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>19.</b> Rodapé + saia de <code>50 cm</code>, com pedras.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>20.</b> Fios de arame: 1 transversal em <code>z 1,75</code> e 5 longitudinais.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>21.</b> Teto de tela a <code>1,70 m</code>.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>22.</b> Rampa de tela do topo da parede até o fio de <code>z 1,75</code>.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>17.</b> Tela no lado direito.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>18.</b> Tela no teto inclinado.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>19.</b> Frente amarrada com ganchos (é a entrada).</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>20.</b> Saia de <code>30 cm</code> na terra com pedras.</label> <a href="#etapa3" style="font-size:12px">(#etapa3)</a></li>
   </ol>
 
   <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Etapa 4 · Aves → <a href="#etapa4">ver etapa</a></p>
   <ol class="steps" style="list-style:none;padding-left:0">
-    <li><label><input type="checkbox" class="chk"> <b>23.</b> Balde de bicos sobre o patamar.</label> <a href="#etapa4" style="font-size:12px">(#etapa4)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>24.</b> Banho de terra + folhas.</label> <a href="#etapa4" style="font-size:12px">(#etapa4)</a></li>
-    <li><label><input type="checkbox" class="chk"> <b>25.</b> Soltar as frangas, com um bebedouro comum nos primeiros dias.</label> <a href="#etapa4" style="font-size:12px">(#etapa4)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>21.</b> Balde de bicos no <code>S1</code>, sobre a calçada.</label> <a href="#etapa4" style="font-size:12px">(#etapa4)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>22.</b> Banho de terra + folhas secas.</label> <a href="#etapa4" style="font-size:12px">(#etapa4)</a></li>
+    <li><label><input type="checkbox" class="chk"> <b>23.</b> Soltar as 5 frangas, com um bebedouro comum nos primeiros dias.</label> <a href="#etapa4" style="font-size:12px">(#etapa4)</a></li>
   </ol>
-  <p style="font-size:13px;margin:8px 0 18px"><label><input type="checkbox" class="chk"> <b>Depois, com ~16 semanas:</b> ninho de balde + ração de postura.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></p>
+  <p style="font-size:13px;margin:8px 0 18px"><label><input type="checkbox" class="chk"> <b>Depois (~16 semanas):</b> ninho de balde + ração de postura.</label> <a href="#etapa1" style="font-size:12px">(#etapa1)</a></p>
 
-  <h3>Lista de compras e custo estimado (anúncios online de 19/11/2026)</h3>
+  <h3>Custo estimado (faixas de anúncios online de 19/11/2026; <code>*</code> = estimativa sem anúncio)</h3>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>Item</th><th>Quantidade</th><th>R$</th></tr>
+        <tr><th>Item</th><th>R$</th></tr>
       </thead>
       <tbody>
-        <tr><td>Tela hexagonal <code>1" × 1,50 m</code> (por metro)</td><td>~16 m</td><td>190–260</td></tr>
-        <tr><td>Tela soldada galvanizada <code>1/2"</code> (altura 1 m, por metro): grade do Canil 1, grade do Canil 2 e tiras</td><td>~4,5 m</td><td>113–240</td></tr>
-        <tr><td>Estacas de eucalipto tratado <code>2,20 m</code></td><td>3 grossas <code>Ø 8–10</code> + 2 finas <code>Ø 5–7</code></td><td>63–120</td></tr>
-        <tr><td>Sarrafo <code>5 × 2,5 × 300 cm</code></td><td>9 (~24 m)</td><td>54–234</td></tr>
-        <tr><td>Arame liso nº 14</td><td>20 m</td><td>15–25 *</td></tr>
-        <tr><td>Arame recozido nº 18 + grampos <code>3/4"</code></td><td>1 rolo + 1 caixa</td><td>25–35 *</td></tr>
-        <tr><td>Dobradiças + ferrolho da porta</td><td>1 kit</td><td>25–40 *</td></tr>
-        <tr><td>Pregos, buchas <code>8 mm</code> e parafusos</td><td>1 pacote de cada</td><td>20–30 *</td></tr>
-        <tr><td>Poleiro <code>4–5 cm × 1,30 m</code> (madeira sem tratamento)</td><td>1</td><td>0–10 *</td></tr>
-        <tr><td>Tábuas do tabuleiro + soleira da porta</td><td>sobras</td><td>0–30 *</td></tr>
-        <tr><td>Areia</td><td>1 saco</td><td>5–10 *</td></tr>
-        <tr><td>Cal hidratada</td><td>20 kg</td><td>13–34</td></tr>
-        <tr><td>Maravalha grossa</td><td>1 fardo</td><td>25–40 *</td></tr>
-        <tr><td>Galão 20 L + cano <code>100 mm</code></td><td>1</td><td>20–40 *</td></tr>
-        <tr><td>Balde 10 L + kit de 10 bicos nipple</td><td>1 + 1</td><td>30–45</td></tr>
-        <tr><td>Balde 20 L (ninho, ~16 semanas)</td><td>1</td><td>15–25 *</td></tr>
-        <tr style="background:#f0fdf4"><td><b>Total da obra (nova v1)</b></td><td><b>—</b></td><td><b>≈ R$ 610 – 1.220</b></td></tr>
-        <tr><td>5 frangas de 35 dias, vacinadas</td><td>5</td><td>100–175</td></tr>
-        <tr style="background:#f0fdf4"><td><b>Total com as aves (sem ração)</b></td><td><b>—</b></td><td><b>≈ R$ 710 – 1.400</b></td></tr>
+        <tr><td>2 barras de PVC soldável <code>25 mm × 6 m</code></td><td>54–84</td></tr>
+        <tr><td>3 joelhos <code>90°</code> <code>25 mm</code> *</td><td>6–12</td></tr>
+        <tr><td>Tela hexagonal <code>1" × 1,50 m</code>, <code>6 m</code></td><td>72–96</td></tr>
+        <tr><td>Tela soldada <code>1/2"</code>, <code>3 m</code></td><td>75–160</td></tr>
+        <tr><td>3 sarrafos + caibro + pregos</td><td>28–103</td></tr>
+        <tr><td>Arame, grampos, abraçadeiras, buchas *</td><td>40–60</td></tr>
+        <tr><td>Cal, areia, maravalha, kit de bicos</td><td>61–114</td></tr>
+        <tr style="background:#f0fdf4"><td><b>Total da obra</b></td><td><b>≈ R$ 340 – 630</b></td></tr>
+        <tr><td>5 frangas</td><td>100–175</td></tr>
+        <tr style="background:#f0fdf4"><td><b>Com as aves (sem ração)</b></td><td><b>≈ R$ 440 – 805</b></td></tr>
       </tbody>
     </table>
   </div>
 
-  <p style="font-size:12px;color:var(--mut);margin-top:10px">Faixas de anúncios online de 19/11/2026; itens com <code>*</code> são estimativa sem anúncio conferido (peça orçamento em loja de João Pessoa).</p>
-  <p style="font-size:12px;color:var(--mut);margin-top:6px"><b>Notas sobre o custo:</b> essa opção custa <code>~R$ 190–460</code> a mais que um cercado reduzido, mas <b>não é gasto extra</b>: é a parte de fora da v2 comprada adiantada. Na passagem para a v2, falta comprar o material da mureta (<code>~R$ 80–130 + frete</code>, ver <code>CONTEXTO-COMPLETO-PROJETO.md</code>), o telhado novo e o interior do Canil 2. Ração ainda não cotada. Ferramentas estão na seção Ferramentas e não entram no total.</p>
-  <p style="font-size:13px;margin-top:10px">Detalhe de cada material com foto (separado entre peças finais da v2 e temporárias): <a href="#materiais">ver Materiais v1</a>.</p>
+  <p style="font-size:12px;color:var(--mut);margin-top:10px"><b>Notas:</b></p>
+  <ul style="font-size:12.5px;color:var(--mut);margin:4px 0 0;padding-left:18px;line-height:1.55">
+    <li>A tela <code>1/2"</code> e o interior custam o mesmo em qualquer versão, e vão para a v2.</li>
+    <li>Do cercado, só se perdem os canos (<code>~R$ 60–100</code>) e os sarrafos <code>S1–S3</code>. As telas viram material da v2.</li>
+    <li>Preços de loja de João Pessoa não conferidos. Balde de 10 L e galão de 20 L são de casa; ração não entra no total.</li>
+  </ul>
+  <p style="font-size:13px;margin-top:10px">Lista exata de compra na <a href="#madeireira">Madeireira e Loja de construção</a> · Fotos e destino na v2 em <a href="#materiais">Materiais v1</a>.</p>
+</section>
+
+<!-- MADEIREIRA -->
+<section id="madeireira">
+  <h2><span class="badge warn">Madeireira</span> Lista exata para pedir na madeireira</h2>
+
+  <ul style="font-size:13.5px;line-height:1.7;padding-left:20px;margin:8px 0 12px">
+    <li><b>3 sarrafos</b> de <code>2,5 × 5 cm</code> com <code>3 metros</code></li>
+    <li><b>1 pedaço de caibro</b> <code>5 × 5 cm</code> com <code>1,30 m</code>, <b>sem tratamento</b> (poleiro)</li>
+    <li><b>1/4 kg</b> de prego <code>18×27</code></li>
+  </ul>
+
+  <h3>Plano de corte dos sarrafos (em cm)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sarrafo</th><th>Cortes (cm)</th><th>Sobra (cm)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>1</b></td><td><code>140</code> (<code>S1</code>, parede do canil) + <code>150</code> (<code>S2</code>, muro)</td><td><code>10</code></td></tr>
+        <tr><td><b>2</b></td><td><code>100</code> (<code>S3</code>, calçada) + <code>45 + 45</code> (suportes do poleiro) + <code>50 + 50</code> (lados curtos do tabuleiro)</td><td><code>10</code></td></tr>
+        <tr><td><b>3</b></td><td><code>130 + 130</code> (lados compridos do tabuleiro)</td><td><code>40</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Texto simples para mostrar no balcão</h3>
+  <pre class="balcao" style="white-space:pre-wrap">Bom dia! Preciso de:
+- 3 sarrafos de 2,5 x 5 cm com 3 metros cada
+- 1 pedaço de caibro 5 x 5 cm com 1,30 m, SEM tratamento (para poleiro)
+- 1/4 kg de prego 18x27</pre>
+
+  <div class="tip">
+    <b>Dica (sarrafo ≠ caibro ≠ ripa):</b> peça sempre pela <b>medida</b>, porque o nome muda por região. <b>Sarrafo</b> (<code>2,5 × 5 cm</code>) não é <b>caibro</b> (<code>5 × 5 cm</code> ou mais) nem <b>ripa</b> (<code>~1,5 × 5 cm</code>).
+  </div>
+
+  <h3>Loja de material de construção (fora da madeireira)</h3>
+  <ul style="font-size:13.5px;line-height:1.65;padding-left:20px;margin-bottom:0">
+    <li><b>2 barras</b> de tubo PVC soldável <code>25 mm × 6 m</code> + <b>3 joelhos <code>90°</code></b> de <code>25 mm</code> (não precisa de cola).</li>
+    <li><b>Tela hexagonal <code>1" × 1,50 m</code>:</b> <code>6 m</code>.</li>
+    <li><b>Tela soldada <code>1/2"</code>:</b> <code>3 m</code>.</li>
+    <li><b>Arame recozido nº 18:</b> <code>1 rolo</code> · <b>Grampos <code>3/4"</code>:</b> <code>1 caixa</code> · <b>Abraçadeiras de nylon:</b> <code>1 pacote</code>.</li>
+    <li><b>2 abraçadeiras tipo D de <code>3/4"</code></b> · <b>~18 buchas <code>8 mm</code> com parafuso</b>.</li>
+    <li><b>Cal hidratada:</b> <code>20 kg</code> · <b>Areia:</b> <code>1 saco</code> · <b>Maravalha:</b> <code>1 fardo</code> · <b>Kit de 10 bicos nipple</b>.</li>
+    <li><b>Balde de 10 L</b> e <b>galão de 20 L</b>: de casa (mais 1 balde de 20 L para o ninho com ~16 semanas).</li>
+  </ul>
 </section>
 
 <!-- RESUMO E MEDIDAS -->
 <section id="resumo">
-  <h2><span class="badge">v1 = casca da v2</span> Solário 3,00 × 3,00 m já nas linhas finais da v2</h2>
-  <p style="font-size:13px;color:var(--mut);margin-top:4px">Na nova v1, a parte de fora é montada já nas coordenadas definitivas da <b>v2</b> (<code>CONTEXTO-COMPLETO-PROJETO.md</code>, 8–10 aves), para não desmontar nem perder nada depois. Fica faltando só a mureta e o telhado novo, mais umas poucas peças temporárias.</p>
+  <h2><span class="badge">v1 · Cercado de PVC</span> Canil 1 + cercado provisório de PVC 1,40 × 1,50 m</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">A v1 é provisória, para <b>1 a 3 meses</b>, e tem de ser o mais barata possível. O cercado é pequeno, de cano PVC com tela, só na frente do Canil 1: na calçada e num pedaço de terra. À noite, a segurança é o <b>Canil 1 fechado no ferrolho</b> com tela soldada <code>1/2"</code> na grade e nos 4 vãos; de dia, o PVC com tela segura as frangas e afasta gato e pássaro.</p>
 
   <div class="mini-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-bottom:12px">
     <div class="mini-card" style="padding:14px;background:#f0fdf4;border-color:#bbf7d0">
-      <div style="font-weight:700;font-size:13.5px;color:#166534;margin-bottom:6px">📐 Solário final (3,00 × 3,00 m · ~9 m²)</div>
+      <div style="font-weight:700;font-size:13.5px;color:#166534;margin-bottom:6px">📐 Cercado 1,40 × 1,50 m (~2,1 m² fora)</div>
       <div style="font-size:12.5px;line-height:1.5">
-        <code>x 0–3,00</code> e <code>z 1,00–4,00</code>: <code>3 × 1 m</code> de patamar mais <code>3 × 2 m</code> de terra. <b>5 estacas</b> socadas com topo a <code>1,70 m</code>, sarrafos de topo (<code>1,70 m</code>) e de base (<code>0,20 m</code>), porta <code>0,80 × 1,50 m</code> na direita e teto plano a <code>1,70 m</code>.
+        <code>x 0–1,40</code> (do muro ao meio da divisória) e <code>z 1–2,50</code> (<code>1 m</code> de calçada + <code>0,50 m</code> de terra). Somando <code>1,3 m²</code> do Canil 1, dá <code>~3,4 m²</code> totais para 5 frangas por 1–3 meses.
       </div>
     </div>
     <div class="mini-card" style="padding:14px;background:#eff6ff;border-color:#bfdbfe">
-      <div style="font-weight:700;font-size:13.5px;color:#1e40af;margin-bottom:6px">🧱 Sem mureta e sem telhado novo ainda</div>
+      <div style="font-weight:700;font-size:13.5px;color:#1e40af;margin-bottom:6px">🔧 PVC 25 mm sem cola + 3 sarrafos</div>
       <div style="font-size:12.5px;line-height:1.5">
-        Embaixo do sarrafo de base (<code>0,20 m</code>) entra um <b>rodapé + saia temporário</b> de <code>50 cm</code> (com pedras por fora) e uma <b>soleira</b> na porta. Entre a telha velha e o teto plano entra uma <b>rampa de tela</b> (reaproveitada na v2).
+        <b>2 pés na frente</b> enterrados <code>30 cm</code> na terra (<code>1,50 m</code> livres), <b>1 pé na divisória</b> preso com 2 abraçadeiras tipo D e <b>2 barras no topo</b>. Tudo encaixado nos 3 joelhos sem cola e amarrado com abraçadeiras de nylon e arame.
       </div>
     </div>
     <div class="mini-card" style="padding:14px;background:#fffbeb;border-color:#fde68a">
-      <div style="font-weight:700;font-size:13.5px;color:#92400e;margin-bottom:6px">🔒 Canil 2 fechado c/ tela 1/2"</div>
+      <div style="font-weight:700;font-size:13.5px;color:#92400e;margin-bottom:6px">🚪 Sem porta: entrada pela frente</div>
       <div style="font-size:12.5px;line-height:1.5">
-        O Canil 2 fica dentro do solário, com a grade fechada e telada com <b>tela soldada 1/2"</b> (as aves não usam na v1). A tela vira uma caixa fechada contra rato que entre pelo telhado do Canil 2 — já é peça da v2 no lugar.
+        A tela da frente (<code>1,40 × 1,50 m</code>) é presa no cano com <b>4 ou 5 ganchos de arame</b> — solte os ganchos para entrar. O lado esquerdo é o próprio muro (<code>1,57–1,62 m</code>, mais alto que o cercado) e não leva tela.
       </div>
     </div>
   </div>
 
   <div class="grid2">
     <div>
-      <h3>Coordenadas e medidas (iguais às do 3D, em metros)</h3>
+      <h3>Coordenadas e peças (iguais às do 3D, em metros)</h3>
       <p style="font-size:12px;color:var(--mut);margin:0 0 6px"><code>x</code> a partir do muro esquerdo · <code>z</code> a partir da parede do fundo dos canis.</p>
       <div class="table-wrap">
         <table>
@@ -241,19 +280,17 @@
             <tr><th>Peça</th><th>Onde / Medida</th></tr>
           </thead>
           <tbody>
-            <tr><td><b>Canil 1</b></td><td><code>x 0–1,30</code>, <code>z 0–1,00</code> (piso <code>~12–13 cm</code> acima da terra)</td></tr>
-            <tr><td><b>Divisória e Canil 2</b></td><td>Divisória <code>x 1,30–1,45</code>; Canil 2 <code>x 1,45–2,75</code>; parede externa até <code>x 2,90</code> (grade fechada c/ tela <code>1/2"</code>)</td></tr>
-            <tr><td><b>Patamar (cimento)</b></td><td><code>z 1,00–2,00</code>, <code>~12–13 cm</code> acima da terra (<code>3 × 1 m</code>)</td></tr>
-            <tr><td><b>Terra do solário</b></td><td><code>z 2,00–4,00</code> (<code>3 × 2 m</code>)</td></tr>
-            <tr><td><b>Solário (igual à v2)</b></td><td><code>x 0–3,00</code>, <code>z 1,00–4,00</code> (<code>3,00 × 3,00 m</code>, <code>~9 m²</code>)</td></tr>
-            <tr><td><b>Telha velha (fica na v1)</b></td><td>Borda da frente a <code>1,20–1,30 m</code> do patamar (<code>~1,32 m</code> da terra); topo da parede da frente dos canis a <code>~1,16 m</code> do patamar</td></tr>
-            <tr><td><b>3 estacas grossas</b> (<code>Ø 8–10 cm × 2,20 m</code>)</td><td><code>(0,06; 3,94)</code> frente-esq., <code>(2,94; 3,94)</code> frente-dir. e <code>(2,94; 3,01)</code> batente da porta (<code>50 cm</code> socadas, topo a <code>1,70 m</code>)</td></tr>
-            <tr><td><b>2 estacas finas</b> (<code>Ø 5–7 cm × 2,20 m</code>)</td><td><code>(1,50; 3,94)</code> meio da frente e <code>(2,94; 2,05)</code> início da terra à direita (<code>50 cm</code> socadas, topo a <code>1,70 m</code>)</td></tr>
-            <tr><td><b>Sarrafos de topo e base</b></td><td>Topo a <code>1,70 m</code> (frente, direita e esquerda no muro); base a <code>0,20 m</code> da terra (frente e direita, pregados nas estacas)</td></tr>
-            <tr><td><b>Lateral direita</b></td><td><code>x = 2,94</code>: tela de <code>z 1 → 3,05</code>, porta, tela de <code>z 3,85 → 4,00</code> (<code>z 1–2</code> preso em sarrafo na parede do canil e no patamar c/ bucha <code>8 mm</code>)</td></tr>
-            <tr><td><b>Porta 0,80 × 1,50 m</b></td><td>Na lateral direita, <code>z 3,05–3,85</code>, de <code>0,20</code> a <code>1,70 m</code>, com diagonal, ferrolho e soleira temporária (<code>0,80 × 0,20 m</code>)</td></tr>
-            <tr><td><b>Teto plano + Rampa</b></td><td>Teto plano a <code>1,70 m</code> (<code>x 0–3,00</code>, <code>z 1,75–4,00</code>, 5 fios em <code>x 0,5..2,5</code> + fio transversal em <code>z 1,75</code>); rampa temporária de <code>z 1,00</code> (<code>~1,15 m</code> do patamar) até <code>z 1,75</code></td></tr>
-            <tr><td><b>Muro esquerdo</b></td><td><code>x = 0</code> (medido <code>1,57–1,62 m</code> da terra); faixa de tela hexagonal do topo do muro até <code>1,70 m</code></td></tr>
+            <tr><td><b>Canil 1 (dormitório)</b></td><td><code>x 0–1,30</code>, <code>z 0–1,00</code> (<code>~1,3 m²</code>, piso <code>~13 cm</code> acima da terra)</td></tr>
+            <tr><td><b>Calçada (patamar)</b></td><td><code>z 1–2</code> (<code>~13 cm</code> acima da terra; dentro do cercado: <code>1,40 × 1,00 m</code>)</td></tr>
+            <tr><td><b>Terra do cercado</b></td><td><code>z 2–2,50</code> (<code>1,40 × 0,50 m</code>; <code>30 cm</code> de saia de tela por fora com pedras)</td></tr>
+            <tr><td><b>Teto inclinado</b></td><td>Do <code>S1</code> (<code>z = 1</code>, <code>~1,15 m</code> do patamar / <code>≈ 1,28 m</code> da terra, abaixo da telha velha e sem prender nela) até a barra da frente (<code>z = 2,50</code>, <code>1,50 m</code>)</td></tr>
+            <tr><td><b>S1 (sarrafo <code>1,40 m</code>)</b></td><td>Parafusado com bucha <code>8 mm</code> no topo da parede da frente do Canil 1 (<code>x 0–1,40</code>); segura o teto e o balde de bicos</td></tr>
+            <tr><td><b>S2 (sarrafo <code>1,50 m</code>)</b></td><td>Parafusado inclinado no muro esquerdo (<code>x = 0</code>), de <code>≈ 1,28 m</code> até <code>1,50 m</code> (em <code>z = 2,50</code>)</td></tr>
+            <tr><td><b>S3 (sarrafo <code>1,00 m</code>)</b></td><td>Parafusado no cimento da calçada ao longo de <code>x = 1,40</code> (<code>z 1–2</code>); prende o pé da tela à direita</td></tr>
+            <tr><td><b>2 pés de PVC na frente</b></td><td><code>1,80 m</code> cada, em <code>(0,05; 2,50)</code> e <code>(1,40; 2,50)</code>, enterrados <code>30 cm</code> na terra e socados (<code>1,50 m</code> livres)</td></tr>
+            <tr><td><b>1 pé de PVC na divisória</b></td><td>Em <code>(1,40; 1,00)</code> sobre a calçada, encostado na cara da divisória; medir do cimento até <code>1,50 m</code> da terra; 2 abraçadeiras tipo D <code>3/4"</code></td></tr>
+            <tr><td><b>Barras do topo + 3 joelhos</b></td><td>Frente (<code>1,40 m</code>, <code>x 0–1,40</code>) e lado direito (<code>1,50 m</code>, <code>z 1–2,50</code>) a <code>1,50 m</code>; 3 joelhos <code>90°</code> + amarração na quina frente-direita</td></tr>
+            <tr><td><b>Muro esquerdo (<code>x = 0</code>)</b></td><td>Medido <code>1,57–1,62 m</code> da terra, mais alto que o cercado; não leva tela</td></tr>
           </tbody>
         </table>
       </div>
@@ -263,62 +300,67 @@
       <svg viewBox="0 0 430 300">
         <!-- Canil 1 & Divisória & Canil 2 -->
         <rect x="35" y="18" width="110" height="58" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-        <text x="90" y="45" font-size="10.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Canil 1 (dormitório)</text>
-        <text x="90" y="59" font-size="9" fill="#475569" text-anchor="middle">x 0–1,30 | z 0–1,00</text>
+        <text x="90" y="43" font-size="10.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Canil 1 (dormitório)</text>
+        <text x="90" y="57" font-size="8.5" fill="#475569" text-anchor="middle">x 0–1,30 | z 0–1,00</text>
 
         <rect x="145" y="18" width="13" height="58" fill="#94a3b8"/>
+        <text x="151" y="13" font-size="8" fill="#475569" text-anchor="middle">x=1,40</text>
 
-        <rect x="158" y="18" width="112" height="58" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
-        <text x="214" y="43" font-size="10.5" fill="#334155" font-weight="bold" text-anchor="middle">Canil 2 (fechado)</text>
-        <text x="214" y="57" font-size="8.5" fill="#475569" text-anchor="middle">x 1,45–2,75 | grade c/ tela 1/2"</text>
+        <rect x="158" y="18" width="112" height="58" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <text x="214" y="43" font-size="10" fill="#64748b" font-weight="bold" text-anchor="middle">Canil 2 (fora da v1)</text>
+        <text x="214" y="57" font-size="8" fill="#64748b" text-anchor="middle">fica para a v2</text>
 
-        <!-- Parede externa direita do Canil 2 até 2,90 -->
-        <rect x="270" y="18" width="14" height="58" fill="#94a3b8"/>
+        <!-- Calçada / Patamar z 1..2 -->
+        <rect x="35" y="76" width="235" height="65" fill="#cbd5e1" stroke="#64748b"/>
+        <text x="215" y="106" font-size="9" fill="#475569" text-anchor="middle">Calçada livre (x &gt; 1,40)</text>
+        <rect x="35" y="76" width="116" height="65" fill="#e2e8f0"/>
+        <text x="93" y="103" font-size="9.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Calçada do cercado</text>
+        <text x="93" y="117" font-size="8.5" fill="#475569" text-anchor="middle">1,40 × 1,00 m (z 1–2)</text>
 
-        <!-- Patamar z 1..2 -->
-        <rect x="35" y="76" width="254" height="56" fill="#cbd5e1" stroke="#64748b"/>
-        <text x="162" y="101" font-size="10" fill="#334155" font-weight="bold" text-anchor="middle">Patamar de cimento (z 1,00–2,00 · 3 × 1 m)</text>
-        <text x="162" y="115" font-size="8.5" fill="#475569" text-anchor="middle">Balde de bicos p/ direita · rampa de tela acima (z 1,00→1,75)</text>
+        <!-- Balde de bicos no S1 canto direito sobre calçada -->
+        <circle cx="133" cy="89" r="9" fill="#dbeafe" stroke="#0369a1" stroke-width="2"/>
+        <text x="133" y="92" font-size="7.5" fill="#0369a1" font-weight="bold" text-anchor="middle">10L</text>
+        <text x="160" y="91" font-size="8" fill="#0369a1" font-weight="bold">← Balde bicos no S1 (calçada)</text>
 
-        <!-- Terra z 2..4 -->
-        <rect x="35" y="132" width="254" height="112" fill="#fef3c7" fill-opacity=".65" stroke="#b45309" stroke-width="1"/>
-        <text x="162" y="185" font-size="11" fill="#92400e" font-weight="bold" text-anchor="middle">Solário 3,00 × 3,00 m (~9 m²)</text>
-        <text x="162" y="200" font-size="9.5" fill="#92400e" text-anchor="middle">Terra z 2,00–4,00 (3 × 2 m) · teto plano 1,70 m</text>
-
-        <!-- Contorno do solário v1=v2 -->
-        <rect x="35" y="76" width="254" height="168" fill="none" stroke="#15803d" stroke-width="2.5"/>
+        <!-- Terra z 2..2,50 dentro do cercado -->
+        <rect x="35" y="141" width="116" height="50" fill="#fef3c7" fill-opacity=".8" stroke="#b45309"/>
+        <text x="93" y="164" font-size="9.5" fill="#92400e" font-weight="bold" text-anchor="middle">Terra (z 2–2,50)</text>
+        <text x="93" y="177" font-size="8" fill="#92400e" text-anchor="middle">1,40 × 0,50 m · folhas + banho</text>
 
         <!-- Muro esquerdo -->
-        <rect x="25" y="18" width="10" height="232" fill="#64748b"/>
-        <text x="17" y="135" font-size="9" fill="#334155" transform="rotate(-90 17,135)" text-anchor="middle">Muro esq. (1,57–1,62 m + faixa até 1,70 m)</text>
+        <rect x="25" y="18" width="10" height="225" fill="#64748b"/>
+        <text x="17" y="130" font-size="8.5" fill="#334155" transform="rotate(-90 17,130)" text-anchor="middle">Muro esq. (1,57–1,62 m · S2 inclinado)</text>
 
-        <!-- Fio transversal z=1,75 -->
-        <line x1="35" y1="118" x2="289" y2="118" stroke="#0369a1" stroke-width="2" stroke-dasharray="5 3"/>
-        <text x="300" y="116" font-size="8.5" fill="#0369a1" font-weight="bold">Fio z 1,75 (fim da rampa,</text>
-        <text x="300" y="126" font-size="8.5" fill="#0369a1" font-weight="bold">início do teto 1,70 m)</text>
+        <!-- S1, S2, S3 -->
+        <line x1="35" y1="76" x2="151" y2="76" stroke="#b45309" stroke-width="3.5"/>
+        <text x="93" y="72" font-size="8" fill="#92400e" font-weight="bold" text-anchor="middle">S1 (1,40 m)</text>
 
-        <!-- Saia de tela por fora na frente e direita na terra -->
-        <rect x="35" y="244" width="265" height="13" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4 2"/>
-        <rect x="289" y="132" width="11" height="125" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4 2"/>
-        <text x="162" y="271" font-size="9.5" fill="#92400e" font-weight="bold" text-anchor="middle">Rodapé + saia temporária 50 cm (20 pé + 30 chão c/ pedras)</text>
+        <line x1="151" y1="76" x2="151" y2="141" stroke="#b45309" stroke-width="3.5"/>
+        <text x="160" y="122" font-size="8.5" fill="#92400e" font-weight="bold">S3 (1,00 m na calçada)</text>
 
-        <!-- Porta 0,80 x 1,50 na direita z 3,05..3,85 -->
-        <line x1="289" y1="191" x2="322" y2="225" stroke="#15803d" stroke-width="4"/>
-        <text x="326" y="206" font-size="9.5" fill="#15803d" font-weight="bold">Porta 0,80 × 1,50 m</text>
-        <text x="326" y="218" font-size="8.5" fill="#15803d">(z 3,05–3,85 + soleira)</text>
+        <!-- Contorno PVC (x 0..1,40, z 1..2,50) -->
+        <line x1="39" y1="191" x2="151" y2="191" stroke="#0369a1" stroke-width="3"/>
+        <line x1="151" y1="76" x2="151" y2="191" stroke="#0369a1" stroke-width="2.5"/>
 
-        <!-- 5 Estacas -->
-        <circle cx="40" cy="240" r="5.5" fill="#7c2d12"/>
-        <circle cx="162" cy="240" r="4.5" fill="#b45309"/>
-        <circle cx="284" cy="240" r="5.5" fill="#7c2d12"/>
-        <circle cx="284" cy="188" r="5.5" fill="#7c2d12"/>
-        <circle cx="284" cy="136" r="4.5" fill="#b45309"/>
+        <!-- Saia 30 cm na terra -->
+        <path d="M 35 191 L 35 204 L 164 204 L 164 141" fill="none" stroke="#15803d" stroke-width="1.8" stroke-dasharray="4 2"/>
+        <text x="102" y="217" font-size="8.5" fill="#166534" font-weight="bold" text-anchor="middle">Saia 30 cm na terra c/ pedras (frente + lado dir.)</text>
+        <text x="102" y="230" font-size="8.5" fill="#0369a1" font-weight="bold" text-anchor="middle">Frente (z=2,50): ENTRADA c/ 4–5 ganchos</text>
 
-        <text x="298" y="140" font-size="8.5" fill="#92400e" font-weight="bold">Fina (2,94; 2,05)</text>
-        <text x="298" y="185" font-size="8.5" fill="#7c2d12" font-weight="bold">Grossa batente (2,94; 3,01)</text>
-        <text x="298" y="244" font-size="8.5" fill="#7c2d12" font-weight="bold">Grossa (2,94; 3,94)</text>
-        <text x="162" y="232" font-size="8.5" fill="#92400e" font-weight="bold" text-anchor="middle">Fina (1,50; 3,94)</text>
-        <text x="42" y="232" font-size="8.5" fill="#7c2d12" font-weight="bold">Grossa (0,06; 3,94)</text>
+        <!-- 3 pés de PVC -->
+        <circle cx="151" cy="76" r="5" fill="#0369a1"/>
+        <circle cx="39" cy="191" r="5" fill="#0369a1"/>
+        <circle cx="151" cy="191" r="5" fill="#0369a1"/>
+
+        <text x="163" y="76" font-size="8.5" fill="#0369a1" font-weight="bold">Pé divisória (1,40; 1,00)</text>
+        <text x="163" y="194" font-size="8.5" fill="#0369a1" font-weight="bold">Pé frente-dir. (1,40; 2,50) · 30 cm terra</text>
+        <text x="45" y="185" font-size="8" fill="#0369a1" font-weight="bold">(0,05; 2,50)</text>
+
+        <!-- Legenda área total -->
+        <rect x="275" y="145" width="142" height="54" rx="8" fill="#fff" stroke="#cbd5e1"/>
+        <text x="346" y="164" font-size="9.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Cercado v1 = 1,40 × 1,50 m</text>
+        <text x="346" y="178" font-size="8.5" fill="#475569" text-anchor="middle">~2,1 m² fora + 1,3 m² canil</text>
+        <text x="346" y="191" font-size="8.5" fill="#15803d" font-weight="bold" text-anchor="middle">Teto: ≈1,28 m → 1,50 m</text>
       </svg>
     </div>
   </div>
@@ -326,34 +368,33 @@
 
 <!-- FERRAMENTAS E EPIS -->
 <section id="ferramentas">
-  <h2><span class="badge blue">Ferramentas &amp; EPIs</span> O que precisa para montar a v1 (sem alvenaria e sem mexer em telha)</h2>
+  <h2><span class="badge blue">Ferramentas &amp; EPIs</span> O que precisa para montar o cercado de PVC</h2>
   <div class="tip">
-    <b>Na v1 não tem massa nem tijolo:</b> não precisa de colher de pedreiro nem masseira. Para alinhar as 5 estacas na vertical, improvise o <b>prumo caseiro</b> amarrando uma pedra ou parafuso pesado num barbante.
+    <b>Obra enxuta:</b> o mesmo <b>serrote</b> corta os sarrafos, o caibro e os canos PVC de 25 mm (depois basta tirar a rebarba com uma lixa). Não precisa de massa, tijolo nem prumo de obra pesada para peça grossa — para os 2 pés da frente, confira o alinhamento no olho ou com um fio simples.
   </div>
   <div class="tool-grid">
-    <div class="tool-card"><img src="img/ferramentas/furadeira.jpg" alt="Furadeira"><div class="tname">1. Furadeira</div><div class="tuse">Furar muro/alvenaria/patamar e fazer pré-furo nos sarrafos</div></div>
-    <div class="tool-card"><img src="img/ferramentas/brocas-videa.jpg" alt="Broca vídea 8 mm"><div class="tname">2. Broca Vídea 8 mm</div><div class="tuse">Furos para buchas 8 mm (suportes do poleiro e sarrafos)</div></div>
-    <div class="tool-card"><img src="img/ferramentas/broca-madeira.jpg" alt="Broca fina madeira"><div class="tname">3. Broca fina madeira</div><div class="tuse">Pré-furo antes de pregar sarrafos de 2,5 cm para não rachar</div></div>
-    <div class="tool-card"><img src="img/ferramentas/serrote.jpg" alt="Serrote"><div class="tname">4. Serrote</div><div class="tuse">Cortar sarrafos, poleiro e tábuas do tabuleiro/soleira</div></div>
-    <div class="tool-card"><img src="img/ferramentas/trena.jpg" alt="Trena"><div class="tname">5. Trena</div><div class="tuse">Conferir coordenadas das 5 estacas, alturas e cortes de tela</div></div>
-    <div class="tool-card"><img src="img/ferramentas/chave-martelo.jpg" alt="Chave e martelo"><div class="tname">6. Chave + Martelo</div><div class="tuse">Parafusos das buchas, pregos e grampos 3/4"</div></div>
-    <div class="tool-card"><img src="img/ferramentas/alicate-torques.jpg" alt="Alicate"><div class="tname">7. Alicate</div><div class="tuse">Cortar telas e torcer arame nº 14 e nº 18</div></div>
-    <div class="tool-card"><img src="img/ferramentas/cavadeira.jpg" alt="Cavadeira"><div class="tname">8. Cavadeira (ou enxada)</div><div class="tuse">Abrir os 5 buracos de 50 cm das estacas</div></div>
-    <div class="tool-card"><img src="img/ferramentas/enxada.jpg" alt="Enxada"><div class="tname">9. Enxada / Pá</div><div class="tuse">Devolver terra com pedras e mexer folhas/banho de terra</div></div>
-    <div class="tool-card"><img src="img/ferramentas/balde-18l.jpg" alt="Balde comum"><div class="tname">10. Balde comum</div><div class="tuse">Misturar cal hidratada com água para caiar</div></div>
-    <div class="tool-card"><img src="img/ferramentas/luvas.jpg" alt="Luvas"><div class="tname">11. Luvas</div><div class="tuse">Proteger mãos com tela, cal e ao serrar eucalipto</div></div>
-    <div class="tool-card"><img src="img/ferramentas/mascara-pff2.jpg" alt="Máscara PFF2"><div class="tname">12. Máscara PFF2</div><div class="tuse"><b>Obrigatória:</b> cal hidratada e poeira ao serrar eucalipto</div></div>
-    <div class="tool-card" style="opacity:.85"><img src="img/ferramentas/prumo.jpg" alt="Prumo caseiro"><div class="tname">Prumo caseiro</div><div class="tuse">Pedra ou porca pesada amarrada no barbante</div></div>
-    <div class="tool-card" style="opacity:.85"><img src="img/ferramentas/esquadro.jpg" alt="Esquadro"><div class="tname">Esquadro</div><div class="tuse">Riscar os 4 lados dos sarrafos e alinhar a porta</div></div>
+    <div class="tool-card"><img src="img/ferramentas/serrote.jpg" alt="Serrote"><div class="tname">1. Serrote</div><div class="tuse">Cortar os sarrafos, o caibro do poleiro e os canos PVC 25 mm</div></div>
+    <div class="tool-card"><img src="img/ferramentas/furadeira.jpg" alt="Furadeira"><div class="tname">2. Furadeira</div><div class="tuse">Furar parede/muro/calçada (bucha 8 mm) e fazer pré-furo nos sarrafos</div></div>
+    <div class="tool-card"><img src="img/ferramentas/brocas-videa.jpg" alt="Broca vídea 8 mm"><div class="tname">3. Broca Vídea 8 mm</div><div class="tuse">Furos para buchas 8 mm (S1, S2, S3, suportes e abraçadeiras tipo D)</div></div>
+    <div class="tool-card"><img src="img/ferramentas/broca-madeira.jpg" alt="Broca fina madeira"><div class="tname">4. Broca fina madeira</div><div class="tuse">Pré-furo antes de pregar a moldura do tabuleiro para não rachar</div></div>
+    <div class="tool-card"><img src="img/ferramentas/chave-martelo.jpg" alt="Chave e martelo"><div class="tname">5. Chave + Martelo</div><div class="tuse">Parafusos das buchas 8 mm, pregos 18×27 e grampos 3/4"</div></div>
+    <div class="tool-card"><img src="img/ferramentas/alicate-torques.jpg" alt="Alicate"><div class="tname">6. Alicate</div><div class="tuse">Cortar telas, dobrar ganchos da frente e torcer arame nº 18</div></div>
+    <div class="tool-card"><img src="img/ferramentas/trena.jpg" alt="Trena"><div class="tname">7. Trena</div><div class="tuse">Marcar os 2 pés da frente (1,50 m × 1,40 m), altura e cortes</div></div>
+    <div class="tool-card"><img src="img/ferramentas/cavadeira.jpg" alt="Cavadeira"><div class="tname">8. Cavadeira (ou enxada)</div><div class="tuse">Abrir os 2 buracos de 30 cm na terra para os pés da frente</div></div>
+    <div class="tool-card"><img src="img/ferramentas/enxada.jpg" alt="Enxada"><div class="tname">9. Enxada / Pá</div><div class="tuse">Devolver terra com pedras, mexer folhas e fazer banho de terra</div></div>
+    <div class="tool-card"><img src="img/ferramentas/balde-18l.jpg" alt="Balde comum"><div class="tname">10. Balde comum</div><div class="tuse">Misturar cal hidratada com água para caiar o Canil 1</div></div>
+    <div class="tool-card"><img src="img/ferramentas/luvas.jpg" alt="Luvas"><div class="tname">11. Luvas</div><div class="tuse">Proteger as mãos ao cortar tela, mexer com cal e serrar</div></div>
+    <div class="tool-card"><img src="img/ferramentas/mascara-pff2.jpg" alt="Máscara PFF2"><div class="tname">12. Máscara PFF2</div><div class="tuse"><b>Obrigatória:</b> cal hidratada e poeira</div></div>
+    <div class="tool-card" style="opacity:.85"><img src="img/ferramentas/esquadro.jpg" alt="Esquadro"><div class="tname">Esquadro</div><div class="tuse">Riscar sarrafos e conferir o canto do tabuleiro</div></div>
   </div>
-  <p style="font-size:12px;color:var(--mut);margin-top:10px"><b>Outros itens de uso na obra e manejo:</b> broxa ou pincel (para caiar), vassoura, pau para socar terra, peneira (para o tabuleiro), mangueira (para lavar o balde-ninho) e papel branco ou lenço (para conferir pixilinga à noite).</p>
+  <p style="font-size:12px;color:var(--mut);margin-top:10px"><b>Outros itens simples de casa:</b> lixa (para tirar a rebarba dos cortes no cano PVC), broxa ou pincel (para caiar), vassoura, pau para socar terra e pedra, peneira (para o tabuleiro), mangueira e papel branco ou lenço (para conferir pixilinga à noite).</p>
 </section>
 
 <!-- MATERIAIS -->
 <section id="materiais">
-  <h2><span class="badge">Lista de Compras v1</span> Materiais: peças da v2 já no lugar vs temporárias</h2>
+  <h2><span class="badge">Lista de Materiais v1</span> O que fica na v2 vs o que sai na v2</h2>
   <div class="alert">
-    <b>Aviso de orçamento:</b> preços e total (<code>≈ R$ 610 – 1.220</code> na obra; <code>≈ R$ 710 – 1.400</code> com as 5 frangas) estão em <a href="#comece-aqui">Comece aqui</a>. Os itens do grupo temporário de tela saem dos mesmos <code>~16 m</code> de tela hexagonal e <code>~4,5 m</code> de tela soldada <code>1/2"</code> listados no primeiro bloco.
+    <b>Resumo do orçamento:</b> preços e totais (<code>≈ R$ 340 – 630</code> na obra; <code>≈ R$ 440 – 805</code> com as 5 frangas) estão em <a href="#comece-aqui">Comece aqui</a>. Os detalhes para pedir na loja estão em <a href="#madeireira">Madeireira</a>.
   </div>
   <div class="table-wrap">
     <table>
@@ -361,72 +402,63 @@
         <tr><th>✓</th><th>Foto</th><th>Etapa / Uso</th><th>Material</th><th>Especificação</th><th>Quantidade</th></tr>
       </thead>
       <tbody>
-        <tr><td colspan="6" style="background:#f0fdf4;font-weight:700;color:#166534;font-size:12px">PEÇAS DA v2 JÁ NO LUGAR (continuam na v2 sem desmontar)</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-hexagonal.jpg" alt="Tela hexagonal 1 polegada"></td><td>Etapa 3</td><td>Tela hexagonal <code>1" × 1,50 m</code> (por metro)</td><td>Laterais, frente (<code>0,20–1,70 m</code>), faixa no muro, porta e teto plano (os <code>~16 m</code> já incluem a rampa e o rodapé + saia temporários)</td><td>~16 m</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-soldada-meia.jpg" alt="Tela soldada 1/2"></td><td>Etapas 0 e 1</td><td>Tela soldada galvanizada <code>1/2"</code> (alt. 1 m, por metro)</td><td>Grade do Canil 1, grade do Canil 2 (fechada contra rato) e 5 tiras dos vãos</td><td>~4,5 m</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><div class="thumb-pair"><img class="mat-thumb" src="img/materiais/estaca-grossa.jpg" alt="Estacas grossas de eucalipto"><img class="mat-thumb" src="img/materiais/estaca-fina.jpg" alt="Estacas finas de eucalipto"></div></td><td>Etapa 2</td><td>Estacas de eucalipto tratado <code>2,20 m</code></td><td>Socadas <code>50 cm</code> sem concreto, topo a <code>1,70 m</code>: 3 grossas <code>Ø 8–10 cm</code> + 2 finas <code>Ø 5–7 cm</code></td><td>3 grossas + 2 finas</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/sarrafo.jpg" alt="Sarrafos"></td><td>Etapas 2 e 3</td><td>Sarrafo <code>5 × 2,5 × 300 cm</code></td><td>Topo a <code>1,70 m</code> (frente, direita, muro), base a <code>0,20 m</code> (frente e direita), trecho do patamar, topo da parede (rampa) e porta</td><td>9</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/arame-liso-14.jpg" alt="Arame liso nº 14"></td><td>Etapa 3</td><td>Arame liso nº 14</td><td>5 fios longitudinais (<code>x 0,5 / 1,0 / 1,5 / 2,0 / 2,5</code>) + 1 fio transversal em <code>z 1,75</code></td><td>20 m</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/grampos-arame-18.jpg" alt="Arame recozido e grampos"></td><td>Etapas 0 e 3</td><td>Arame recozido nº 18 + grampos <code>3/4"</code></td><td>Amarrar tela nos fios/vãos e grampear tela nos sarrafos e estacas</td><td>1 rolo + 1 caixa</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/kit-porta.jpg" alt="Kit da porta"></td><td>Etapa 3</td><td>Dobradiças + ferrolho da porta</td><td>Para a porta <code>0,80 × 1,50 m</code> na lateral direita (<code>z 3,05–3,85</code>)</td><td>1 kit</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/pregos-buchas-8mm.jpg" alt="Pregos e buchas 8 mm"></td><td>Etapas 1, 2 e 3</td><td>Pregos, buchas <code>8 mm</code> e parafusos</td><td>Pregos p/ sarrafos e porta; buchas <code>8 mm</code> e parafusos p/ muro, parede dos canis, patamar e suportes do poleiro</td><td>1 pacote de cada</td></tr>
-
-        <tr><td colspan="6" style="background:#fffbeb;font-weight:700;color:#92400e;font-size:12px">TEMPORÁRIAS (só existem na v1; saem na passagem para a v2)</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-hexagonal.jpg" alt="Rodapé e saia de tela"></td><td>Etapa 3</td><td>Rodapé + saia de <code>50 cm</code> (do rolo de <code>~16 m</code>)</td><td><code>20 cm</code> em pé (chão até sarrafo de base) + <code>30 cm</code> no chão por fora com pedras (<code>~5,2 m</code>); no patamar sem saia. <b>Perde-se na v2.</b></td><td>3 tiras de <code>0,50 m</code> (de <code>~1,75 m</code> do rolo)</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tabuas-ninhos.jpg" alt="Soleira da porta"></td><td>Etapa 3</td><td>Soleira da porta (<code>0,80 × 0,20 m</code>)</td><td>Tábua entre a estaca do batente e a base, embaixo da porta. Sai quando a mureta for feita (<b>perde-se</b>).</td><td>Sobras (junto c/ tabuleiro)</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-hexagonal.jpg" alt="Rampa de tela"></td><td>Etapa 3</td><td>Rampa de tela hexagonal (do rolo de <code>~16 m</code>)</td><td>Do sarrafo em <code>z 1,00</code> (<code>~1,15 m</code> do patamar, sem amarrar na telha) ao fio em <code>z 1,75</code>. <b>Reaproveitada</b> nos triângulos laterais e faixa vertical da v2.</td><td>~3 m (incluso no rolo)</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-soldada-meia.jpg" alt="Tiras dos vãos Canil 1"></td><td>Etapa 0</td><td>5 tiras de tela <code>1/2"</code> nos vãos do Canil 1 (do rolo de <code>~4,5 m</code>)</td><td><code>15 cm × 1,00 m</code> nos 4 lados entre parede e telha velha. Saem com a telha velha e <b>vão para os vãos de ventilação da v2</b>.</td><td>0,75 m (5 tiras, incluso nos 4,5 m)</td></tr>
-
-        <tr><td colspan="6" style="background:#eff6ff;font-weight:700;color:#1e40af;font-size:12px">INTERIOR E MANEJO (Canil 1 e solário — seguem para a v2)</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/poleiro.jpg" alt="Poleiro"></td><td>Etapa 1</td><td>Poleiro <code>4–5 cm × 1,30 m</code></td><td>Madeira <b>não tratada</b>, solto sobre 2 suportes (sem parafuso no poleiro)</td><td>1</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tabuas-ninhos.jpg" alt="Tábuas do tabuleiro"></td><td>Etapa 1</td><td>Tábuas do tabuleiro (<code>1,30 × 0,55 m</code>, borda <code>5 cm</code>)</td><td>Sobras de tábua (embaixo do poleiro, junto com a soleira)</td><td>Sobras</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/cimento-areia.jpg" alt="Areia"></td><td>Etapas 1 e 4</td><td>Areia</td><td><code>~3 cm</code> no tabuleiro de dejetos e no banho de terra</td><td>1 saco</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/agua-sanitaria-cal.jpg" alt="Cal hidratada"></td><td>Etapa 0</td><td>Cal hidratada</td><td>Caiar paredes internas do Canil 1 e a viga velha</td><td>20 kg</td></tr>
+        <tr><td colspan="6" style="background:#f0fdf4;font-weight:700;color:#166534;font-size:12px">FICA NA v2 (tela 1/2" da grade e todo o interior do Canil 1)</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-soldada-meia.jpg" alt="Tela soldada 1/2"></td><td>Etapas 0 e 1</td><td>Tela soldada galvanizada <code>1/2"</code></td><td><b>Grade do Canil 1</b> (fica na v2) + <b>5 tiras de <code>15 cm × 1,00 m</code></b> nos 4 vãos (saem com a telha velha e vão para os vãos de ventilação da v2)</td><td>3 m</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/caibro-madeira.jpg" alt="Caibro 5x5 cm para poleiro"></td><td>Etapa 1</td><td>Caibro <code>5 × 5 cm × 1,30 m</code></td><td>Madeira <b>sem tratamento</b>, poleiro solto sobre 2 suportes (sem parafuso no poleiro)</td><td>1 pedaço (1,30 m)</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/sarrafo.jpg" alt="Sarrafos do interior"></td><td>Etapa 1</td><td>Suportes do poleiro e moldura do tabuleiro</td><td>Saem dos <b>sarrafos 2 e 3</b>: <code>2 × 45 cm</code> (suportes) + <code>2 × 130 cm</code> e <code>2 × 50 cm</code> (moldura <code>1,30 × 0,55 m</code>, borda <code>5 cm</code>, <b>sem fundo</b>)</td><td>Parte dos 3 sarrafos</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/agua-sanitaria-cal.jpg" alt="Cal hidratada"></td><td>Etapa 0</td><td>Cal hidratada</td><td>2 demãos nas paredes internas do Canil 1 e na viga velha</td><td>20 kg</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/cimento-areia.jpg" alt="Areia"></td><td>Etapas 1 e 4</td><td>Areia</td><td><code>~3 cm</code> na moldura do tabuleiro (direto no cimento) e no banho de terra</td><td>1 saco</td></tr>
         <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/maravalha-grossa.jpg" alt="Maravalha grossa"></td><td>Etapa 1</td><td>Maravalha grossa</td><td>Cama de <code>8–10 cm</code> no piso do Canil 1</td><td>1 fardo</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/comedouro-bebedouro.jpg" alt="Comedouro galão e cano"></td><td>Etapa 1</td><td>Galão 20 L + cano <code>100 mm</code></td><td>Comedouro pendurado no canto da frente à direita do Canil 1</td><td>1</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/ferramentas/balde-18l.jpg" alt="Balde 10 L com bicos nipple"></td><td>Etapa 4</td><td>Balde 10 L + kit de 10 bicos nipple</td><td>Com tampa, pendurado no sarrafo da direita sobre o patamar</td><td>1 + 1</td></tr>
-        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/ferramentas/balde-18l.jpg" alt="Balde 20 L ninho"></td><td>Etapa 1 (~16 sem.)</td><td>Balde 20 L (ninho)</td><td>Deitado, plástico sem emenda, com borda na boca (entra com <code>~16 semanas</code>)</td><td>1</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/comedouro-bebedouro.jpg" alt="Comedouro galão 20 L"></td><td>Etapa 1</td><td>Galão 20 L + cano <code>100 mm</code></td><td>Comedouro dentro do Canil 1 (galão de casa)</td><td>1</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/comedouro-bebedouro.jpg" alt="Balde 10 L com kit de bicos nipple"></td><td>Etapa 4</td><td>Balde 10 L (de casa) + kit de 10 bicos nipple</td><td>Pendurado com arame no <code>S1</code> (canto direito, sobre a calçada) — <b>nunca no PVC</b></td><td>1 + 1</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/comedouro-bebedouro.jpg" alt="Balde 20 L para ninho"></td><td>Etapa 1 (~16 sem.)</td><td>Balde 20 L (ninho)</td><td>Deitado, plástico sem emenda, entra com <code>~16 semanas</code> (vira 1 dos 3 ninhos da v2)</td><td>1</td></tr>
+
+        <tr><td colspan="6" style="background:#fffbeb;font-weight:700;color:#92400e;font-size:12px">SAI NA v2 (canos e sarrafos S1–S3 perdem-se; telas do cercado viram retalho na v2)</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/cano-pvc-40mm.jpg" alt="Cano PVC soldável 25 mm (imagem ilustrativa do tubo PVC)"></td><td>Etapa 2</td><td>Tubo PVC soldável <code>25 mm × 6 m</code> + 3 joelhos <code>90°</code> de <code>25 mm</code></td><td>2 pés da frente (<code>1,80 m</code>), 1 pé na divisória, barra da frente (<code>1,40 m</code>) e barra do lado (<code>1,50 m</code>), <b>sem cola</b>. <b>Perde-se na v2.</b></td><td>2 barras + 3 joelhos</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/sarrafo.jpg" alt="Sarrafos S1, S2 e S3"></td><td>Etapa 2</td><td>Sarrafos <code>S1</code> (<code>1,40 m</code>), <code>S2</code> (<code>1,50 m</code>) e <code>S3</code> (<code>1,00 m</code>)</td><td>Do conjunto de <b>3 sarrafos <code>2,5 × 5 × 300 cm</code></b> + <code>1/4 kg</code> prego <code>18×27</code>. <code>S1–S3</code> saem na v2 (furos tapados com massa).</td><td>3 sarrafos (total da obra) + 1/4 kg prego</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/tela-hexagonal.jpg" alt="Tela hexagonal 1 polegada"></td><td>Etapa 3</td><td>Tela hexagonal <code>1" × 1,50 m</code></td><td>Lado direito, teto inclinado, frente (entrada com ganchos) e saia de <code>30 cm</code>. Na v2, <b>vira retalho para os triângulos e emendas</b>.</td><td>6 m</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/grampos-arame-18.jpg" alt="Arame recozido nº 18 e grampos"></td><td>Etapas 0, 2 e 3</td><td>Arame recozido nº 18 + grampos <code>3/4"</code> + abraçadeiras de nylon</td><td>Amarrar tela nos canos/ganchos, prender quina do PVC e grampear tela em <code>S1–S3</code></td><td>1 rolo + 1 caixa + 1 pacote</td></tr>
+        <tr><td><input type="checkbox" class="chk"></td><td><img class="mat-thumb" src="img/materiais/pregos-buchas-8mm.jpg" alt="Buchas 8 mm e abraçadeiras"></td><td>Etapas 1 e 2</td><td>2 abraçadeiras tipo D <code>3/4"</code> + ~18 buchas <code>8 mm</code> com parafuso</td><td>Prender o pé de PVC da divisória e fixar <code>S1</code>, <code>S2</code>, <code>S3</code> e suportes na alvenaria/calçada</td><td>2 + ~18</td></tr>
       </tbody>
     </table>
   </div>
-  <p style="font-size:12px;color:var(--mut);margin-top:8px"><b>Itens extras de manejo e aves da v1:</b> 5 frangas de poedeira comercial (35 dias, vacinadas), ração de crescimento (até ~16 semanas) e de postura (depois), 1 ovo falso (para o ninho com ~16 semanas), folhas secas do quintal e cinza de lenha, pedras para segurar a saia por fora, bebedouro comum nos primeiros dias para treinar o bico, e pote de calcário ou farinha de ostra quando começarem a botar.</p>
+  <p style="font-size:12px;color:var(--mut);margin-top:8px"><b>Itens extras de manejo e aves da v1:</b> 5 frangas de poedeira comercial (35 dias, vacinadas), ração de crescimento (até ~16 semanas) e de postura (depois), 1 ovo falso (para o ninho com ~16 semanas), folhas secas do quintal e cinza de lenha, pedras para segurar a saia de <code>30 cm</code> por fora, bebedouro comum nos primeiros dias para treinar o bico, e pote de calcário ou farinha de ostra quando começarem a botar.</p>
 </section>
 
 <!-- OFICINA DO INICIANTE -->
 <section id="oficina">
-  <h2><span class="badge warn">Oficina do Iniciante</span> Técnicas da v1: caiar, socar estaca sem concreto, cortar madeira e pôr bucha</h2>
-  <p style="font-size:13px;color:var(--mut);margin-top:4px">Na v1 não há mistura de massa nem alvenaria de tijolo. As 4 técnicas abaixo resolvem toda a montagem:</p>
+  <h2><span class="badge warn">Oficina do Iniciante</span> Caiar, cortar/encaixar PVC, enterrar pé, bucha 8 mm e tela</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">Sem massa nem tijolo na v1. As técnicas abaixo cobrem toda a montagem:</p>
 
-  <h3>1. Como caiar o Canil 1 e a viga velha (técnica da v1)</h3>
+  <h3>1. Como caiar o Canil 1 e a viga velha (2 demãos)</h3>
   <div class="mini-grid">
-    <div class="mini-card"><img src="img/materiais/agua-sanitaria-cal.jpg" alt="Cal hidratada com água"><div class="cap"><span class="num">1.1</span><b>Limpar antes + EPI:</b> tire toda a tralha, tábuas velhas e poeira solta. Vista <b>luvas e máscara PFF2</b> antes de abrir o saco de cal hidratada.</div></div>
+    <div class="mini-card"><img src="img/materiais/agua-sanitaria-cal.jpg" alt="Cal hidratada com água"><div class="cap"><span class="num">1.1</span><b>Limpar antes + EPI:</b> tire tábuas velhas, lona e poeira solta. Vista <b>luvas e máscara PFF2</b> antes de abrir o saco de cal hidratada.</div></div>
     <div class="mini-card"><img src="img/ferramentas/balde-18l.jpg" alt="Misturar cal no balde"><div class="cap"><span class="num">1.2</span><b>Misturar no balde:</b> misture <b>cal hidratada com água</b> mexendo bem até ficar lisa e sem pelotas, na textura de tinta rala.</div></div>
-    <div class="mini-card"><img src="img/passos/tijolo-1-molhar.jpg" alt="Aplicar nas paredes e viga"><div class="cap"><span class="num">1.3</span><b>Passar nas paredes e viga:</b> aplique com <b>broxa ou pincel</b> nas paredes internas do Canil 1 e na viga velha, entrando bem nas trincas. Tira o limo verde e elimina esconderijo de ácaro (pixilinga). Deixe secar bem antes de colocar as aves.</div></div>
+    <div class="mini-card"><img src="img/passos/tijolo-1-molhar.jpg" alt="Passar 2 demãos de cal"><div class="cap"><span class="num">1.3</span><b>Passar 2 demãos:</b> aplique com <b>broxa ou pincel</b> nas paredes internas do Canil 1 e na viga velha, entrando nas trincas. Tira o limo verde e elimina esconderijo de ácaro. Espere secar bem.</div></div>
   </div>
 
-  <h3>2. Como socar as 5 estacas sem concreto (técnica da v1)</h3>
+  <h3>2. Como cortar e encaixar PVC (serrote, lixar a rebarba, sem cola) e enterrar os 2 pés</h3>
   <div class="mini-grid">
-    <div class="mini-card"><img src="img/passos/obra-3-chumbar-estaca.jpg" alt="Buraco de 50 cm na terra"><div class="cap"><span class="num">2.1</span><b>Cavar 50 cm:</b> marque com <b>trena</b> e abra os 5 buracos com <b>cavadeira ou enxada</b> nos pontos finais da v2 (3 grossas e 2 finas, ver <a href="#etapa2">Etapa 2</a>).</div></div>
-    <div class="mini-card"><img src="img/passos/tijolo-2-prumo.jpg" alt="Alinhar com prumo caseiro"><div class="cap"><span class="num">2.2</span><b>Alinhar com prumo caseiro:</b> mantenha a estaca alinhada usando um <b>peso amarrado no barbante</b> e deixe todas com o topo a <code>1,70 m</code> da terra.</div></div>
-    <div class="mini-card"><img src="img/ferramentas/enxada.jpg" alt="Socar terra em camadas"><div class="cap"><span class="num">2.3</span><b>Socar aos poucos, sem concreto:</b> devolva a terra aos poucos com <b>enxada/pá</b>, misturada com pedras, socando bem com um pau a cada camada.</div></div>
+    <div class="mini-card"><img src="img/passos/madeira-2-serrar-girando.jpg" alt="Cortar PVC com serrote e lixar rebarba"><div class="cap"><span class="num">2.1</span><b>Cortar PVC com serrote e lixar a rebarba:</b> marque o comprimento com <b>trena</b> e serre girando o tubo devagar para o corte ficar reto. Passe uma <b>lixa</b> na ponta para tirar a rebarba por fora e por dentro.</div></div>
+    <div class="mini-card"><img src="img/materiais/cano-pvc-40mm.jpg" alt="Encaixar joelhos sem cola e amarrar"><div class="cap"><span class="num">2.2</span><b>Encaixar sem cola:</b> empurre as pontas firmes nos <b>3 joelhos <code>90°</code> de <code>25 mm</code></b> (sem cola, para desmontar fácil na v2). Na quina frente-direita, amarre a barra do lado com <b>abraçadeira de nylon</b> e <b>arame nº 18</b>.</div></div>
+    <div class="mini-card"><img src="img/ferramentas/cavadeira.jpg" alt="Enterrar pé de cano 30 cm socando terra e pedra"><div class="cap"><span class="num">2.3</span><b>Enterrar pé de cano (<code>30 cm</code>):</b> abra os 2 buracos de <code>30 cm</code> com <b>cavadeira ou enxada</b>, apoie os pés de <code>1,80 m</code> (ficam <code>1,50 m</code> acima da terra), confira o prumo e devolva <b>terra com pedras</b> socando firme com um pau a cada camada.</div></div>
   </div>
 
-  <h3>3. Cortar madeira, furar com bucha 8 mm e prender tela</h3>
+  <h3>3. Bucha 8 mm, madeira e grampear/amarrar tela</h3>
   <div class="mini-grid">
-    <div class="mini-card"><img src="img/passos/madeira-1-riscar-4-lados.jpg" alt="Riscar os 4 lados"><div class="cap"><span class="num">3.1</span><b>Riscar os 4 lados:</b> encoste o <b>esquadro</b> e risque toda a volta da madeira com lápis, não só a face de cima.</div></div>
-    <div class="mini-card"><img src="img/passos/madeira-2-serrar-girando.jpg" alt="Serrar girando 90 graus"><div class="cap"><span class="num">3.2</span><b>Serrar girando 90° e pré-furo:</b> corte com <b>serrote</b> uma face por vez seguindo o risco e girando a peça. Faça <b>pré-furo</b> (<b>furadeira + broca fina de madeira</b>) antes de pregar sarrafos de 2,5 cm.</div></div>
-    <div class="mini-card"><img src="img/ferramentas/brocas-videa.jpg" alt="Furar e pôr bucha 8 mm"><div class="cap"><span class="num">3.3</span><b>Furar e pôr bucha 8 mm:</b> use <b>furadeira com broca vídea <code>8 mm</code></b> na alvenaria (muro esquerdo, frente da parede dos canis, lateral do Canil 2 e patamar), tire o pó, encaixe a bucha rente e aperte o parafuso com <b>chave</b>.</div></div>
-    <div class="mini-card"><img src="img/passos/obra-4-grampear-tela-arame.jpg" alt="Grampear e amarrar tela"><div class="cap"><span class="num">3.4</span><b>Prender tela:</b> use <b>martelo com grampos <code>3/4"</code></b> nos sarrafos/estacas e <b>alicate com arame recozido nº 18</b> nos arames e emendas. <b>Nunca amarrar na borda da telha.</b></div></div>
+    <div class="mini-card"><img src="img/passos/madeira-1-riscar-4-lados.jpg" alt="Riscar sarrafos e fazer pré-furo"><div class="cap"><span class="num">3.1</span><b>Cortar sarrafos e pré-furo:</b> risque com <b>esquadro</b>, serre com <b>serrote</b> e faça <b>pré-furo</b> (<b>broca fina de madeira</b>) antes de pregar o tabuleiro com <b>pregos <code>18×27</code></b> para não rachar.</div></div>
+    <div class="mini-card"><img src="img/ferramentas/brocas-videa.jpg" alt="Furar alvenaria com broca vídea 8 mm"><div class="cap"><span class="num">3.2</span><b>Furar e pôr bucha <code>8 mm</code>:</b> use <b>furadeira + broca vídea <code>8 mm</code></b> na parede dos canis (<code>S1</code> e suportes), no muro (<code>S2</code>), na calçada (<code>S3</code>) e na divisória (abraçadeiras tipo D). Tire o pó, encaixe a bucha rente e aperte o parafuso.</div></div>
+    <div class="mini-card"><img src="img/passos/obra-4-grampear-tela-arame.jpg" alt="Grampear tela no sarrafo e amarrar no cano"><div class="cap"><span class="num">3.3</span><b>Grampear e amarrar tela:</b> use <b>martelo com grampos <code>3/4"</code></b> nos sarrafos (<code>S1</code>, <code>S2</code>, <code>S3</code>) e <b>alicate com arame recozido nº 18</b> nos canos PVC e emendas. <b>Nunca prender nada na telha.</b></div></div>
   </div>
 </section>
 
 <!-- ETAPA 0 -->
 <section id="etapa0">
-  <h2><span class="badge warn">Etapa 0 · Medidas, Limpeza e Vãos</span> Conferir medidas de 19/11, tirar a tralha, lavar, caiar e fechar vãos</h2>
+  <h2><span class="badge warn">Etapa 0 · Medidas, Limpeza e Vãos</span> Passos 1 a 4 — conferir medidas de 19/11, limpar, caiar e fechar vãos</h2>
 
   <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:16px 18px;margin:12px 0 18px">
     <h3 style="margin:0 0 6px;font-size:15.5px;color:#92400e">📏 Medidas tiradas no local em 19/11/2026 (trena)</h3>
-    <p style="font-size:13px;color:#78350f;margin:0 0 12px">Medidas reais tiradas com a <b>trena</b> em 19/11 (<code>fotos-19-11/LEIA.md</code>). Elas definem as 5 tiras de tela <code>1/2"</code> do Canil 1, a altura do sarrafo da rampa (<code>~1,15 m</code> do patamar) e a faixa de tela acima do muro esquerdo até <code>1,70 m</code>.</p>
+    <p style="font-size:13px;color:#78350f;margin:0 0 12px">Medidas reais tiradas com a <b>trena</b> em 19/11 (<code>fotos-19-11/LEIA.md</code>). Elas definem as 5 tiras de tela <code>1/2"</code> do Canil 1, a altura do sarrafo <code>S1</code> (<code>~1,15 m</code> do patamar, abaixo da telha velha) e confirmam que o muro esquerdo é mais alto que o cercado.</p>
 
     <div class="res3d-row" style="margin-bottom:14px">
       <div class="res3d">
@@ -454,12 +486,12 @@
 
     <div class="grid2" style="margin-top:0">
       <div style="font-size:12.5px;line-height:1.55">
-        <p style="margin:0 0 8px"><b>O que cada medida definiu na nova v1:</b></p>
+        <p style="margin:0 0 8px"><b>O que cada medida definiu na v1 de PVC:</b></p>
         <ul style="margin:0;padding-left:18px">
-          <li style="margin-bottom:6px"><b>M1 — Borda da telha velha (1,20–1,30 m do patamar / ~1,32 m da terra):</b> o topo da parede da frente dos canis fica a <code>~1,16 m</code> do patamar. O sarrafo da rampa vai a <b><code>~1,15 m</code> do patamar</b> (logo abaixo da borda da telha), e dali a rampa de tela sobe até o fio transversal em <code>z = 1,75 / 1,70 m</code>.</li>
+          <li style="margin-bottom:6px"><b>M1 — Borda da telha velha (1,20–1,30 m do patamar):</b> o topo da parede da frente dos canis fica a <code>~1,16 m</code> do patamar. O sarrafo <code>S1</code> vai ali a <b><code>~1,15 m</code> do patamar (<code>≈ 1,28 m</code> da terra)</b>, logo abaixo da telha e sem prender nela, de onde o teto inclinado sobe até <code>1,50 m</code> na frente.</li>
           <li style="margin-bottom:6px"><b>M2 — Vãos parede–telha nos 4 lados do Canil 1:</b> <code>4 / 9 cm</code> na frente (<code>M2A</code>) e <code>~5 cm</code> na esquerda, fundo e divisória (<code>M2B–M2D</code>). Como todos passam de <code>2 cm</code> (passa rato), <b>os 4 lados do Canil 1 levam 5 tiras de tela <code>1/2"</code></b>.</li>
-          <li style="margin-bottom:6px"><b>M3 — Altura do muro esquerdo (1,57 m e 1,62 m da terra):</b> como o teto da nova v1 já fica na altura da v2 (<code>1,70 m</code>), <b>entra uma faixa de tela hexagonal do topo do muro (<code>1,57–1,62 m</code>) até o sarrafo de topo a <code>1,70 m</code></b>.</li>
-          <li><b>M4 — Largura até o meio da divisória:</b> marca onde termina o Canil 1 e começa o Canil 2 (<code>x 1,30–1,45</code>). Na nova v1, o solário vai até <code>x = 3,00 m</code> (casca da v2), passando pela frente dos dois canis.</li>
+          <li style="margin-bottom:6px"><b>M3 — Altura do muro esquerdo (1,57 m e 1,62 m da terra):</b> o muro é mais alto que o cercado (<code>1,28 → 1,50 m</code>), então <b>não leva tela na esquerda</b> — só o sarrafo <code>S2</code> inclinado parafusado no muro.</li>
+          <li><b>M4 — Largura até o meio da divisória:</b> marca o limite direito do cercado de PVC (<code>x = 1,40 m</code> a partir do muro).</li>
         </ul>
       </div>
 
@@ -479,7 +511,7 @@
               <tr><td><code>M2D</code></td><td>Maior vão na parede divisória (entre canis)</td><td style="border-left:1px solid var(--bd)"><b>~5 cm</b> (onda)</td></tr>
               <tr><td><code>M3A</code></td><td>Muro esquerdo na beira do patamar (1 m da grade)</td><td style="border-left:1px solid var(--bd)"><b>1,57 m</b></td></tr>
               <tr><td><code>M3B</code></td><td>Muro esquerdo a 2 m da grade</td><td style="border-left:1px solid var(--bd)"><b>1,62 m</b></td></tr>
-              <tr><td><code>M4</code></td><td>Largura muro esquerdo → meio da divisória</td><td style="border-left:1px solid var(--bd)"><b>Conferida (19/11)</b></td></tr>
+              <tr><td><code>M4</code></td><td>Largura muro esquerdo → meio da divisória</td><td style="border-left:1px solid var(--bd)"><b>Conferida (19/11); cercado usa 1,40 m</b></td></tr>
             </tbody>
           </table>
         </div>
@@ -498,25 +530,24 @@
   </div>
 
   <ol class="steps">
-    <li><b>Passo 1 · Tirar a tralha:</b> com <b>luvas</b>, <b>vassoura</b> e <b>pá/enxada</b>, esvazie o Canil 1 e retire todas as <b>tábuas velhas soltas</b> e a <b>lona velha</b> entre a parede e a telha (esconderijo de ácaro vermelho e outros bichos).</li>
-    <li><b>Passo 2 · Lavar:</b> varra, lave o piso e as paredes do Canil 1 (com <b>vassoura</b> e <b>mangueira</b>) e deixe secar bem.</li>
-    <li><b>Passo 3 · Caiar o Canil 1 e a viga:</b> vestindo <b>luvas</b> e <b>máscara PFF2</b>, misture <b>cal hidratada com água</b> no <b>balde</b> e aplique com <b>broxa ou pincel</b> nas paredes internas do Canil 1 e na viga velha antes de as aves entrarem. Fecha microfrestas contra ácaro e <b>tira o limo verde</b>. Deixe secar bem.</li>
-    <li><b>Passo 4 · Pôr as 5 tiras <code>1/2"</code> nos vãos do Canil 1:</b> todos os vãos entre parede e telha passam de <code>2 cm</code> (<code>4 / 9 cm</code> na frente em <code>M2A</code> e <code>~5 cm</code> nos outros 3 lados em <code>M2B–M2D</code>). Corte <b>5 tiras de <code>15 cm × 1,00 m</code></b> de um pedaço de <code>0,75 m</code> do rolo de <b>tela soldada <code>1/2"</code></b> (com <b>trena</b>, <b>alicate</b> e <b>luvas</b>) e feche os <b>4 lados</b>: cada tira fica de pé, rente à face interna da parede, presa embaixo com <b>bucha <code>8 mm</code> e arruela</b> (ou grampo na viga de madeira, usando <b>furadeira + broca vídea <code>8 mm</code></b> e <b>martelo</b>) e dobrada em cima contra a telha, acompanhando as ondas (<b>nunca amarrar na borda da telha</b>). Na v2, saem com a telha velha e vão para os vãos de ventilação.</li>
+    <li><b>Passo 1 · Tirar as tábuas velhas e a lona do Canil 1:</b> com <b>luvas</b>, <b>vassoura</b> e <b>pá/enxada</b>, esvazie o Canil 1 e retire todas as <b>tábuas velhas soltas</b> e a <b>lona velha</b> entre a parede e a telha (esconderijo de ácaro vermelho).</li>
+    <li><b>Passo 2 · Lavar e deixar secar:</b> varra, lave o piso e as paredes do Canil 1 com <b>vassoura e mangueira</b> e espere secar bem.</li>
+    <li><b>Passo 3 · Caiar o Canil 1 e a viga (2 demãos e máscara PFF2):</b> vestindo <b>luvas</b> e <b>máscara PFF2</b>, misture <b>cal hidratada com água</b> no <b>balde</b> e aplique <b>2 demãos</b> com <b>broxa ou pincel</b> nas paredes internas do Canil 1 e na viga velha antes de as aves entrarem. Fecha microfrestas contra ácaro e tira o limo verde. Deixe secar bem.</li>
+    <li><b>Passo 4 · Grampear e amarrar as 5 tiras de tela <code>1/2"</code> nos 4 vãos entre a parede e a telha:</b> todos os vãos passam de <code>2 cm</code> (<code>4 / 9 cm</code> na frente em <code>M2A</code> e <code>~5 cm</code> nos outros 3 lados em <code>M2B–M2D</code>). Corte <b>5 tiras de <code>15 cm × 1,00 m</code></b> do rolo de <b>tela soldada <code>1/2"</code></b> (<code>trena</code>, <code>alicate</code>, <code>luvas</code>) e feche os <b>4 lados</b>: cada tira fica de pé, rente à face interna da parede, presa embaixo com <b>bucha <code>8 mm</code> e arruela</b> ou <b>grampo <code>3/4"</code></b> na viga de madeira (<b>furadeira + broca vídea <code>8 mm</code></b> / <b>martelo</b>) e dobrada em cima contra a telha, acompanhando as ondas (<b>nunca amarrar na borda da telha</b>). Na v2, saem com a telha velha e vão para os vãos de ventilação.</li>
   </ol>
 </section>
 
 <!-- ETAPA 1 -->
 <section id="etapa1">
-  <h2><span class="badge">Etapa 1 · Canis 1 e 2</span> Telas 1/2" nas duas grades, poleiro solto, tabuleiro, maravalha, comedouro e ninho</h2>
+  <h2><span class="badge">Etapa 1 · Canil 1</span> Passos 5 a 9 — tela 1/2" na grade, poleiro solto, moldura do tabuleiro, maravalha e comedouro</h2>
   <div class="grid2">
     <ol class="steps">
-      <li><b>Passo 5 · Tela <code>1/2"</code> na grade do Canil 1:</b> meça com a <b>trena</b>, corte com o <b>alicate</b> (de <b>luvas</b>) a <b>tela soldada <code>1/2"</code></b> e amarre em toda a grade do Canil 1 com <b>arame recozido nº 18</b> torcido no <b>alicate</b>. De dia, a grade fica amarrada aberta; à noite, <b>fica fechada no ferrolho</b> para proteger de timbu (que rasga tela hexagonal fina).</li>
-      <li><b>Passo 6 · Tela <code>1/2"</code> na grade do Canil 2 (fica fechada):</b> novo na v1. Como o Canil 2 fica dentro do solário (<code>x 1,45–2,75</code>), corte com <b>trena</b> e <b>alicate</b> a <b>tela soldada <code>1/2"</code></b> e amarre com <b>arame recozido nº 18</b> na grade do Canil 2, deixando-a <b>fechada</b> (as aves não usam na v1). A tela vira uma caixa fechada para rato que entre pelo telhado do Canil 2 não chegar ao solário — já é peça da v2 no lugar.</li>
-      <li><b>Passo 7 · Suportes + poleiro solto:</b> marque com a <b>trena</b> a <code>30 cm</code> da parede do fundo e <code>~30 cm</code> de altura do piso, fure as paredes laterais com <b>furadeira e broca vídea <code>8 mm</code></b>, encaixe <b>buchas <code>8 mm</code></b> e parafuse com a <b>chave</b> 2 suportes. Corte com o <b>serrote</b> <b>1 poleiro de <code>1,30 m</code></b> (<code>4–5 cm</code>, madeira <b>não tratada</b>) e apoie <b>solto sobre os 2 suportes, sem parafuso no próprio poleiro</b> (sai inteiro para escaldar e tomar sol). Sobe para <code>45 cm</code> com <code>~2 meses</code> de idade.</li>
-      <li><b>Passo 8 · Tabuleiro + areia:</b> meça com <b>trena e esquadro</b>, corte as <b>tábuas</b> com o <b>serrote</b>, faça pré-furo com <b>furadeira e broca fina de madeira</b> e monte com <b>pregos e martelo</b> uma caixa rasa de <code>1,30 × 0,55 m</code>, com borda de <code>5 cm</code>. Ponha embaixo do poleiro e encha com <code>~3 cm</code> de <b>areia</b> usando a <b>pá/enxada</b>. <b>É o que mais segura o cheiro.</b></li>
-      <li><b>Passo 9 · Maravalha:</b> espalhe <code>8–10 cm</code> de <b>maravalha grossa</b> no resto do piso do Canil 1 usando <b>luvas</b> ou <b>pá/enxada</b>.</li>
-      <li><b>Passo 10 · Comedouro:</b> monte com <b>serrote/faca</b> o comedouro de <b>galão 20 L + cano <code>100 mm</code></b> e pendure com <b>arame recozido nº 18</b> (torcido no <b>alicate</b>) no canto da frente à direita do Canil 1, na altura do dorso delas (rato e pardal não alcançam).</li>
-      <li><b>Depois (~16 semanas) · Ninho de balde:</b> apoie e prenda com <b>arame recozido nº 18</b> e <b>alicate</b> <b>1 balde de 20 L deitado</b> (plástico sem emenda, borda na boca — lava com <b>mangueira</b>) no canto da frente à esquerda, a <code>15 cm</code> do piso, com <b>1 ovo falso</b> dentro.</li>
+      <li><b>Passo 5 · Tela <code>1/2"</code> na grade:</b> meça com a <b>trena</b>, corte com o <b>alicate</b> (de <b>luvas</b>) a <b>tela soldada <code>1/2"</code></b> e amarre em toda a grade do Canil 1 com <b>arame recozido nº 18</b> torcido no <b>alicate</b>. De dia, a grade fica amarrada aberta; à noite, <b>fica fechada no ferrolho</b> para proteger de timbu e rato.</li>
+      <li><b>Passo 6 · Suportes de <code>45 cm</code> + poleiro solto:</b> marque com a <b>trena</b> a <code>30 cm</code> da parede do fundo e <code>~30 cm</code> de altura do piso, fure as duas paredes laterais com <b>furadeira e broca vídea <code>8 mm</code></b>, encaixe <b>buchas <code>8 mm</code></b> e parafuse os <b>2 suportes de sarrafo de <code>45 cm</code></b> (do Sarrafo 2). Apoie por cima, <b>solto e sem parafuso</b>, o <b>poleiro de caibro <code>5 × 5 cm × 1,30 m</code></b> (madeira <b>sem tratamento</b> — sai inteiro para escaldar e tomar sol). Sobe para <code>45 cm</code> com <code>~2 meses</code> de idade.</li>
+      <li><b>Passo 7 · Moldura do tabuleiro no piso + areia:</b> corte os 4 sarrafos do Sarrafo 2 e 3 (<code>2 × 130 cm</code> + <code>2 × 50 cm</code>), faça pré-furo com <b>broca fina de madeira</b> e pregue com <b>pregos <code>18×27</code> e martelo</b> só a <b>moldura de sarrafo em pé (<code>1,30 × 0,55 m</code>, borda <code>5 cm</code>), SEM FUNDO</b>. Apoie direto no piso de cimento, embaixo do poleiro, e encha com <code>~3 cm</code> de <b>areia</b>. <b>É o que mais segura o cheiro.</b></li>
+      <li><b>Passo 8 · Maravalha:</b> espalhe <code>8–10 cm</code> de <b>maravalha grossa</b> no resto do piso do Canil 1 usando <b>luvas</b> ou <b>pá/enxada</b>.</li>
+      <li><b>Passo 9 · Comedouro:</b> monte o comedouro de <b>galão 20 L</b> (de casa) com <b>cano <code>100 mm</code></b> e pendure com <b>arame recozido nº 18</b> na altura do dorso delas (rato e pardal não alcançam).</li>
+      <li><b>Depois (~16 semanas) · Ninho de balde:</b> apoie e prenda com <b>arame nº 18</b> <b>1 balde de 20 L deitado</b> (plástico sem emenda, borda na boca) a <code>15 cm</code> do piso, com <b>1 ovo falso</b> dentro, e troque para ração de postura.</li>
     </ol>
 
     <div class="diagram-box">
@@ -525,13 +556,13 @@
         <text x="145" y="16" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">Planta interna do Canil 1 (1,30 × 1,00 m)</text>
         <text x="145" y="42" font-size="9.5" fill="#64748b" text-anchor="middle">Parede do fundo (z = 0)</text>
 
-        <rect x="36" y="48" width="218" height="72" fill="#e2e8f0" stroke="#94a3b8"/>
-        <text x="145" y="108" font-size="9.5" fill="#334155" text-anchor="middle">Tabuleiro de areia (1,30 × 0,55 m | borda 5 cm | ~3 cm areia)</text>
+        <rect x="36" y="48" width="218" height="72" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+        <text x="145" y="108" font-size="9" fill="#334155" text-anchor="middle">Moldura s/ fundo (1,30 × 0,55 m | borda 5 cm | ~3 cm areia)</text>
 
         <line x1="34" y1="74" x2="256" y2="74" stroke="#92400e" stroke-width="7" stroke-linecap="round"/>
-        <rect x="30" y="69" width="7" height="10" fill="#0f172a"/>
-        <rect x="253" y="69" width="7" height="10" fill="#0f172a"/>
-        <text x="145" y="64" font-size="10" fill="#78350f" font-weight="bold" text-anchor="middle">Poleiro 1,30 m solto nos suportes (30 cm do fundo)</text>
+        <rect x="30" y="69" width="12" height="10" fill="#0f172a"/>
+        <rect x="248" y="69" width="12" height="10" fill="#0f172a"/>
+        <text x="145" y="64" font-size="9.5" fill="#78350f" font-weight="bold" text-anchor="middle">Caibro 5×5 × 1,30 m solto nos suportes de 45 cm</text>
 
         <rect x="36" y="122" width="218" height="74" fill="#fef3c7" opacity=".75"/>
         <text x="145" y="162" font-size="9.5" fill="#92400e" text-anchor="middle">Maravalha grossa (8–10 cm)</text>
@@ -545,9 +576,9 @@
         <text x="232" y="180" font-size="8" fill="#166534" text-anchor="middle">20 L</text>
 
         <line x1="30" y1="200" x2="260" y2="200" stroke="#0369a1" stroke-width="3" stroke-dasharray="6 3"/>
-        <text x="145" y="218" font-size="10" fill="#0369a1" font-weight="bold" text-anchor="middle">Grade Canil 1 c/ tela 1/2" (+ Canil 2 fechado c/ 1/2")</text>
+        <text x="145" y="218" font-size="10" fill="#0369a1" font-weight="bold" text-anchor="middle">Grade do Canil 1 c/ tela 1/2" (fecha no ferrolho à noite)</text>
 
-        <text x="275" y="76" font-size="9.5" fill="#334155">← Altura: ~30 cm</text>
+        <text x="275" y="76" font-size="9.5" fill="#334155">← Altura: 30 cm</text>
         <text x="275" y="90" font-size="9.5" fill="#334155">(45 cm c/ ~2 meses)</text>
         <text x="275" y="170" font-size="9.5" fill="#075985">← Balde 20 L a 15 cm</text>
         <text x="275" y="183" font-size="9.5" fill="#075985">c/ 1 ovo falso</text>
@@ -556,9 +587,9 @@
   </div>
   <div class="res3d-row">
     <div class="res3d">
-      <img src="img/3d/v1-interior.png" alt="Resultado 3D v1 Interior do Canil 1 e Canil 2 fechado">
+      <img src="img/3d/v1-interior.png" alt="Resultado 3D v1 Interior do Canil 1">
       <div class="bar">
-        <span>🧊 3D da v1: Interior do Canil 1 (poleiro solto, tabuleiro, comedouro) e Canil 2 fechado</span>
+        <span>🧊 3D da v1: Interior do Canil 1 (poleiro de caibro solto, moldura sem fundo com areia, comedouro)</span>
         <a href="quintal-completo.html?versao=v1" target="_blank">Abrir v1 em 3D →</a>
       </div>
     </div>
@@ -567,39 +598,42 @@
 
 <!-- ETAPA 2 -->
 <section id="etapa2">
-  <h2><span class="badge">Etapa 2 · Estrutura (casca da v2)</span> 5 estacas com topo a 1,70 m e sarrafos de topo e de base</h2>
+  <h2><span class="badge">Etapa 2 · Estrutura (Madeira &amp; PVC)</span> Passos 10 a 16 — sarrafos S1–S3, cortes de PVC, 2 pés na terra, pé da divisória e joelhos</h2>
   <ol class="steps">
-    <li><b>Passo 11 · Marcar e socar as 5 estacas com o topo a <code>1,70 m</code>:</b> com a <b>trena</b>, marque os 5 pontos finais da v2 na terra e abra os buracos de <code>50 cm</code> com <b>cavadeira (ou enxada)</b>, sem concreto: <span style="display:block;margin:6px 0;padding:6px 8px;background:#fefce8;border:1px solid #fde68a;border-radius:6px;font-size:12.5px">📏 <b>Como marcar com a trena:</b> o 1º número é a distância do <b>muro esquerdo</b>; o 2º, da parede do fundo dos canis. Como a <b>parede da frente dos canis</b> fica em <code>1,00</code>, meça dela: <code>3,94</code> = <code>2,94 m</code> à frente da parede · <code>3,01</code> = <code>2,01 m</code> · <code>2,05</code> = <code>1,05 m</code> (logo depois do patamar). Confira o esquadro: a diagonal entre os cantos da frente e os da parede tem que dar igual dos dois lados.</span>
+    <li><b>Passo 10 · Parafusar o <code>S1</code> no topo da parede do Canil 1 (bucha <code>8 mm</code>):</b> corte <code>140 cm</code> do Sarrafo 1 com o <b>serrote</b>. Marque no topo da parede da frente do Canil 1 (<code>x 0–1,40</code>, a <code>~1,15 m</code> do patamar, logo abaixo da borda da telha velha e <b>sem prender nela</b>), fure com <b>furadeira + broca vídea <code>8 mm</code></b> e parafuse com <b>buchas <code>8 mm</code></b> e <b>chave</b>. Segura o teto e depois o balde de bicos.</li>
+    <li><b>Passo 11 · Parafusar o <code>S2</code> inclinado no muro:</b> use os <code>150 cm</code> restantes do Sarrafo 1. No muro esquerdo (<code>x = 0</code>), risque a linha inclinada de <code>≈ 1,28 m</code> da terra (junto à parede do canil) até <code>1,50 m</code> da terra (em <code>z = 2,50</code>), fure com <b>broca vídea <code>8 mm</code></b> e parafuse com <b>buchas <code>8 mm</code></b>. Prende a borda esquerda do teto.</li>
+    <li><b>Passo 12 · Parafusar o <code>S3</code> no cimento da calçada, em <code>x = 1,40</code>:</b> corte <code>100 cm</code> do Sarrafo 2 com o <b>serrote</b>. Alinhe ao longo de <code>x = 1,40</code> (no eixo da divisória, de <code>z = 1</code> a <code>z = 2</code>), fure o cimento com <b>broca vídea <code>8 mm</code></b> (sem quebrar a borda) e parafuse com <b>buchas <code>8 mm</code></b>. Prende o pé da tela do lado direito na calçada.</li>
+    <li><b>Passo 13 · Cortar os canos PVC <code>25 mm</code> com serrote e lixar a rebarba:</b> meça com a <b>trena</b> e serre as 2 barras de 6 m (5 peças ao todo, e tire a rebarba das pontas com lixa):
       <ul style="margin:6px 0 6px;padding-left:18px;font-size:13px">
-        <li><b>3 estacas grossas</b> (<code>Ø 8–10 cm × 2,20 m</code>): canto frente-esquerda <code>(0,06; 3,94)</code>, canto frente-direita <code>(2,94; 3,94)</code> e batente da porta <code>(2,94; 3,01)</code>;</li>
-        <li><b>2 estacas finas</b> (<code>Ø 5–7 cm × 2,20 m</code>): meio da frente <code>(1,50; 3,94)</code> e início da terra à direita <code>(2,94; 2,05)</code>.</li>
+        <li><b>2 pés da frente:</b> <code>1,80 m</code> cada;</li>
+        <li><b>1 pé da divisória:</b> <b>medir na hora</b> do cimento da calçada até <code>1,50 m</code> da terra (aprox. <code>1,35–1,40 m</code>);</li>
+        <li><b>1 barra do topo da frente:</b> <code>1,40 m</code>;</li>
+        <li><b>1 barra do topo do lado direito:</b> <code>1,50 m</code>.</li>
       </ul>
-      Alinhe cada estaca na vertical com o <b>prumo caseiro</b> (pedra no barbante), confira com a <b>trena</b> o topo a <b><code>1,70 m</code> da terra</b> e devolva <b>terra com pedras</b> aos poucos com <b>enxada/pá</b>, socando bem cada camada com um <b>pau</b>.
     </li>
-    <li><b>Passo 12 · Sarrafos de topo a <code>1,70 m</code> (frente, direita e esquerda no muro):</b> meça com <b>trena e esquadro</b> e corte os <b>sarrafos <code>5 × 2,5 × 300 cm</code></b> com o <b>serrote</b>. Faça <b>pré-furo</b> (<b>furadeira + broca fina de madeira</b>) e pregue com <b>pregos e martelo</b> a <code>1,70 m</code> na frente (<code>x 0–3,00</code>) e na lateral direita (<code>x = 2,94</code>, de <code>z 1,00</code> até <code>3,94</code>). Na esquerda (<code>x = 0</code>), fure o muro com <b>furadeira e broca vídea <code>8 mm</code></b> e parafuse o sarrafo horizontal a <code>1,70 m</code> da terra com <b>buchas <code>8 mm</code>, parafusos e chave</b>.</li>
-    <li><b>Passo 13 · Sarrafos de base a <code>0,20 m</code> (frente e direita):</b> meça <code>0,20 m</code> acima da terra com a <b>trena</b>, corte os <b>sarrafos <code>5 × 2,5 cm</code></b> com o <b>serrote</b>, faça <b>pré-furo</b> (<b>broca fina de madeira</b>) e pregue com <b>pregos e martelo</b> nas estacas da frente (<code>x 0–3,00</code>) e da direita (<code>z 2,05–3,05</code> e <code>z 3,85–4,00</code>, deixando o vão da porta livre). É exatamente a altura em que a mureta de tijolo da v2 vai chegar por baixo depois.</li>
-    <li><b>Passo 14 · Sarrafo no topo da parede dos canis (<code>z 1,00</code>) para a rampa:</b> meça com a <b>trena</b> a <code>~1,15 m</code> do patamar (logo abaixo da borda da telha velha a <code>1,20–1,30 m</code>), de <code>x 0</code> a <code>x 3,00</code>. Corte o <b>sarrafo <code>5 × 2,5 cm</code></b> com o <b>serrote</b>, fure a parede da frente dos canis com <b>furadeira e broca vídea <code>8 mm</code></b> e prenda com <b>buchas <code>8 mm</code>, parafusos e chave</b>. É nele que a rampa de tela será presa — <b>nunca amarrar na telha</b>.</li>
-    <li><b>Passo 15 · Sarrafos do trecho do patamar (<code>z 1,00–2,00</code>), na parede e no cimento:</b> como na v2, na lateral direita sobre o patamar, fure a parede externa do Canil 2 (vertical) e o piso de cimento do patamar (horizontal, sem quebrar o cimento!) com <b>furadeira e broca vídea <code>8 mm</code></b> e parafuse os <b>sarrafos <code>5 × 2,5 cm</code></b> com <b>buchas <code>8 mm</code>, parafusos e chave</b>, ligando até a estaca <code>(2,94; 2,05)</code>.</li>
+    <li><b>Passo 14 · Enterrar os 2 pés da frente <code>30 cm</code>, a <code>1,50 m</code> da parede dos canis:</b> use a <b>cavadeira ou enxada</b> para abrir os 2 buracos de <code>30 cm</code> na terra e coloque os 2 pés de <code>1,80 m</code> (ficam <code>1,50 m</code> acima da terra).
+      <span style="display:block;margin:6px 0;padding:7px 10px;background:#fefce8;border:1px solid #fde68a;border-radius:6px;font-size:12.5px">📏 <b>Como marcar com a trena:</b> os pés da frente ficam a <code>1,50 m</code> da parede da frente dos canis (<code>50 cm</code> dentro da terra depois da calçada de <code>1 m</code>); um junto do muro (<code>(0,05; 2,50)</code>) e outro no eixo da divisória, a <code>1,40 m</code> do muro (<code>(1,40; 2,50)</code>). Confira o esquadro medindo as duas diagonais.</span>
+      Devolva <b>terra com pedras</b> aos poucos, socando bem com um pau e conferindo o prumo e a altura de <code>1,50 m</code> acima da terra.
+    </li>
+    <li><b>Passo 15 · Prender o pé da divisória com 2 abraçadeiras tipo D + buchas <code>8 mm</code>:</b> apoie o pé da divisória em pé sobre a calçada em <code>(1,40; 1,00)</code>, encostado na cara da divisória, fure com <b>broca vídea <code>8 mm</code></b> e fixe com <b>2 abraçadeiras tipo D de <code>3/4"</code></b> e <b>buchas <code>8 mm</code></b>.</li>
+    <li><b>Passo 16 · Encaixar os 3 joelhos e as barras do topo e amarrar a quina:</b> sem usar cola, encaixe os <b>3 joelhos <code>90°</code> de <code>25 mm</code></b> e as barras do topo: canto frente-esquerda (pé → barra da frente <code>1,40 m</code>), canto frente-direita (pé → barra da frente) e topo do pé da divisória (pé → barra do lado <code>1,50 m</code>). Na quina frente-direita, amarre firme a barra do lado no canto com <b>abraçadeiras de nylon</b> e <b>arame recozido nº 18</b> (<b>alicate</b>).</li>
   </ol>
 </section>
 
 <!-- ETAPA 3 -->
 <section id="etapa3">
-  <h2><span class="badge">Etapa 3 · Fechamento</span> Tela hexagonal, faixa no muro, porta, rodapé + saia, fios, teto e rampa</h2>
+  <h2><span class="badge">Etapa 3 · Tela do Cercado</span> Passos 17 a 20 — lado direito, teto inclinado, frente com ganchos e saia de 30 cm</h2>
   <ol class="steps">
-    <li><b>Passo 16 · Tela hexagonal na frente e na direita (<code>0,20</code> a <code>1,70 m</code>):</b> usando <b>trena</b>, <b>alicate</b> e <b>luvas</b>, corte os panos de <b>tela hexagonal <code>1" × 1,50 m</code></b> do rolo de <code>~16 m</code>. Estique bem na frente inteira (<code>3,00 m</code>) e na lateral direita (<code>z 1,00 → 3,05</code>; pula o vão da porta; depois <code>z 3,85 → 4,00</code>) e prenda nos sarrafos de base (<code>0,20 m</code>), nos sarrafos de topo (<code>1,70 m</code>), nas estacas e no sarrafo da parede com <b>martelo e grampos <code>3/4"</code></b> (e <b>arame recozido nº 18</b> no <b>alicate</b> nas emendas).</li>
-    <li><b>Passo 17 · Faixa de tela em cima do muro esquerdo (<code>x = 0</code>):</b> o muro tem <code>1,57–1,62 m</code> da terra (<code>M3A</code>/<code>M3B</code>), abaixo do teto a <code>1,70 m</code>. Corte uma faixa de <b>tela hexagonal <code>1"</code></b> (com <b>alicate</b> e <b>luvas</b>) e feche do topo do muro até o sarrafo de topo a <code>1,70 m</code> (de <code>z 1,00</code> a <code>4,00</code>), prendendo com <b>grampos <code>3/4"</code> e martelo</b> no sarrafo superior e <b>buchas <code>8 mm</code> / arame nº 18</b> junto ao muro, sem deixar fresta para timbu.</li>
-    <li><b>Passo 18 · Porta de <code>0,80 × 1,50 m</code> sobre a soleira temporária:</b> meça com <b>trena e esquadro</b>, corte os <b>sarrafos <code>5 × 2,5 cm</code></b> com o <b>serrote</b>, faça <b>pré-furo</b> com <b>furadeira + broca fina de madeira</b> e monte com <b>pregos e martelo</b> o quadro da porta (<code>0,80 × 1,50 m</code>) com uma <b>diagonal</b> (para não arriar). Feche a folha com <b>tela hexagonal <code>1"</code></b> usando <b>grampos <code>3/4"</code> e martelo</b> e instale na lateral direita (<code>z 3,05–3,85</code>, de <code>0,20</code> a <code>1,70 m</code>) presa na estaca do batente <code>(2,94; 3,01)</code> com as <b>dobradiças e ferrolho</b> (<b>chave</b>). Embaixo da porta, entre a estaca do batente e a base, prenda uma tábua de <b>soleira temporária de <code>0,80 × 0,20 m</code></b> (sobra cortada no <b>serrote</b>).</li>
-    <li><b>Passo 19 · Rodapé + saia de <code>50 cm</code>, com pedras (temporário):</b> corte <code>~1,75 m</code> do rolo de <b>tela hexagonal <code>1" × 1,50 m</code></b> em <b>3 tiras de <code>0,50 m</code></b> de largura com o <b>alicate</b> (de <b>luvas</b>). Na frente e na lateral direita na terra (<code>~5,2 m</code> tirando a porta), prenda <code>20 cm</code> em pé — do chão até o sarrafo de base (<code>0,20 m</code>) — com <b>martelo e grampos <code>3/4"</code></b>, e deixe <code>30 cm</code> deitados no chão por fora, seguros com <b>pedras</b> contra quem cava. No trecho do patamar (<code>z 1,00–2,00</code>), prenda o rodapé no sarrafo parafusado no cimento, <b>sem saia</b>.</li>
-    <li><b>Passo 20 · Fios de arame liso nº 14:</b> com o <b>alicate</b> (de <b>luvas</b>), estique bem e amarre <b>1 fio transversal em <code>z = 1,75</code> a <code>1,70 m</code></b> (entre o sarrafo do muro esquerdo e a linha da direita) e <b>5 fios longitudinais</b> em <code>x = 0,5 / 1,0 / 1,5 / 2,0 / 2,5</code>, indo do fio transversal em <code>z = 1,75</code> até o sarrafo de topo da frente (<code>z = 4,00</code>).</li>
-    <li><b>Passo 21 · Teto de tela a <code>1,70 m</code>:</b> estenda a <b>tela hexagonal <code>1" × 1,50 m</code></b> plana por cima dos 5 fios (de <code>x = 0</code> a <code>3,00</code> e de <code>z = 1,75</code> a <code>4,00</code>) e amarre com <b>arame recozido nº 18</b> torcido no <b>alicate</b> nos 5 fios, no fio transversal, nos sarrafos de topo e nas emendas.</li>
-    <li><b>Passo 22 · Rampa de tela do topo da parede até o fio de <code>z 1,75</code> (temporária):</b> corte <code>~3 m</code> de <b>tela hexagonal <code>1"</code></b> (com <b>alicate</b> e <b>luvas</b>) e feche de <code>x = 0</code> a <code>3,00</code>, ligando o sarrafo no topo da parede da frente dos canis (<code>z = 1,00</code>, <code>~1,15 m</code> do patamar, abaixo da telha velha — <b>sem amarrar na telha</b>) até o fio transversal em <code>z = 1,75 / 1,70 m</code>, amarrando com <b>arame recozido nº 18</b> e grampeando no sarrafo com <b>grampos <code>3/4"</code></b>. Na v2, essa tela sai e é reaproveitada nos triângulos laterais e na faixa vertical em <code>z = 1,75</code>.</li>
+    <li><b>Passo 17 · Lado direito (<code>x = 1,40</code>):</b> corte com <b>trena</b> e <b>alicate</b> (de <b>luvas</b>) um pano de <b>tela hexagonal <code>1" × 1,50 m</code></b> do chão à barra do topo, de <code>z = 1</code> a <code>2,50</code>. Prenda com <b>martelo e grampos <code>3/4"</code></b> no sarrafo <code>S3</code> sobre a calçada e amarre nos canos PVC (pé da divisória, pé da frente e barra do topo) com <b>arame recozido nº 18</b> torcido no <b>alicate</b>.</li>
+    <li><b>Passo 18 · Teto inclinado:</b> estenda a <b>tela hexagonal <code>1" × 1,50 m</code></b> do <code>S1</code> até a barra da frente, e do <code>S2</code> (muro) até a barra do lado direito. Prenda com <b>grampos <code>3/4"</code></b> no <code>S1</code> e no <code>S2</code> e amarre firme com <b>arame nº 18</b> nas barras de PVC da frente e do lado (<b>nunca amarrar na telha</b>). O lado esquerdo é o próprio muro (<code>1,57–1,62 m</code>) e não leva tela.</li>
+    <li><b>Passo 19 · Frente amarrada com ganchos (é a entrada):</b> corte a folha da frente (<code>1,40 × 1,50 m</code>, em <code>z = 2,50</code>), prenda embaixo/lados se precisar e amarre nos canos de PVC com <b>4 ou 5 ganchos de arame</b>. <b>Não tem porta:</b> para entrar, basta soltar os ganchos.</li>
+    <li><b>Passo 20 · Saia de <code>30 cm</code> na terra com pedras:</b> corte uma faixa de <code>30 cm</code> de largura da tela hexagonal e deite na terra por fora, na frente (<code>1,40 m</code>) e no lado direito da terra (<code>z 2–2,5</code>, <code>0,50 m</code>), amarrada na borda inferior da tela e bem segura com <b>pedras</b> por cima contra quem cava.</li>
   </ol>
   <div class="res3d-row">
     <div class="res3d">
-      <img src="img/3d/v1-solario.png" alt="Resultado 3D v1 Solário 3,00 x 3,00 m casca da v2">
+      <img src="img/3d/v1-solario.png" alt="Resultado 3D v1 Cercado de PVC 1,40 x 1,50 m">
       <div class="bar">
-        <span>🧊 3D da v1: Solário 3,00 × 3,00 m (casca da v2), teto 1,70 m, rampa, porta na direita e rodapé + saia</span>
+        <span>🧊 3D da v1: Cercado provisório de PVC 1,40 × 1,50 m com teto inclinado, entrada por ganchos e saia com pedras</span>
         <a href="quintal-completo.html?versao=v1" target="_blank">Abrir v1 em 3D →</a>
       </div>
     </div>
@@ -608,25 +642,25 @@
 
 <!-- ETAPA 4 -->
 <section id="etapa4">
-  <h2><span class="badge">Etapa 4 · Aves e Operação</span> Balde de bicos no patamar, banho de terra, folhas e 5 frangas</h2>
+  <h2><span class="badge">Etapa 4 · Aves e Operação</span> Passos 21 a 23 — balde de bicos no S1, banho de terra e 5 frangas</h2>
   <ol class="steps">
-    <li><b>Passo 23 · Balde de bicos sobre o patamar:</b> monte o <b>balde de 10 L com tampa e 2–3 bicos nipple</b> no fundo. Pendure com <b>arame recozido nº 18</b> (torcido no <b>alicate</b>) no sarrafo da lateral direita (<code>x = 2,94</code>), <b>sobre o patamar</b> (<code>z 1,00–2,00</code>, para os pingos caírem no cimento e não virarem lama), medindo com a <b>trena</b> para o fundo ficar na altura da cabeça delas esticada.</li>
-    <li><b>Passo 24 · Banho de terra + folhas:</b> deixe o patamar (<code>3 × 1 m</code>) em cimento liso, sem cama (raspar 2× por semana). Na parte de terra (<code>z 2,00–4,00</code>, <code>3 × 2 m</code>), espalhe com <b>enxada/pá</b> <b>folhas secas do quintal</b> (revirar 1× por semana) e monte num canto o <b>banho de terra</b> misturando <b>areia e cinza de lenha</b> com a <b>enxada</b>.</li>
-    <li><b>Passo 25 · Soltar as 5 frangas, com bebedouro comum nos primeiros dias:</b> escolha <b>5 frangas de poedeira comercial</b> (Lohmann, Isa Brown ou Embrapa 051) com 35 dias, <b>vacinadas</b> (em João Pessoa não precisam de lâmpada). Antes de entrarem, olhe embaixo das asas e em volta da cloaca. Nos primeiros dias, <b>deixe também um bebedouro comum</b> junto e toque no bico nipple para ensiná-las a beber.</li>
-    <li><b>Dia e noite · Grade do Canil 1 e postura:</b> de dia, a grade do Canil 1 fica amarrada aberta; ao escurecer, elas entram sozinhas e você fecha no ferrolho. Abasteça o comedouro com <b>ração de crescimento até ~16 semanas</b> e troque para <b>ração de postura</b> depois disso (quando entra o ninho de balde 20 L com ovo falso e, ao começarem a botar, um pote de <b>calcário ou farinha de ostra</b>).</li>
+    <li><b>Passo 21 · Balde de bicos no <code>S1</code>, sobre a calçada:</b> monte o <b>balde de 10 L</b> (de casa) com tampa e 2–3 bicos nipple do kit no fundo. Pendure com <b>arame recozido nº 18</b> no sarrafo <b><code>S1</code></b>, no canto direito (<code>x ≈ 1,2</code>), <b>sobre a calçada</b> (para os pingos caírem no cimento e não virarem lama), na altura da cabeça delas esticada. <b>NUNCA pendurar na barra de PVC</b>, porque 10 L de água entortam o cano.</li>
+    <li><b>Passo 22 · Banho de terra + folhas secas:</b> deixe a calçada (<code>1,40 × 1,00 m</code>) em cimento liso, sem cama (raspar 2× por semana). Na parte de terra (<code>z 2–2,50</code>, <code>1,40 × 0,50 m</code>), espalhe <b>folhas secas do quintal</b> e monte num canto o <b>banho de terra</b> misturando <b>areia e cinza de lenha</b> com a <b>enxada</b>.</li>
+    <li><b>Passo 23 · Soltar as 5 frangas, com um bebedouro comum nos primeiros dias:</b> escolha <b>5 frangas de poedeira comercial</b> (Lohmann, Isa Brown ou Embrapa 051) com 35 dias, <b>vacinadas</b> (em João Pessoa não precisam de lâmpada). Antes de soltar, olhe embaixo das asas e em volta da cloaca. Deixe um <b>bebedouro comum</b> junto nos primeiros dias e toque no bico nipple para ensiná-las a beber.</li>
+    <li><b>Dia e noite · Grade e postura:</b> de dia a grade do Canil 1 fica amarrada aberta; ao escurecer, feche a grade no ferrolho (obrigatório). Dê <b>ração de crescimento até ~16 semanas</b>; depois entre com o <b>ninho de balde 20 L</b>, <b>ração de postura</b> e um pote de <b>calcário ou farinha de ostra</b> quando começarem a botar.</li>
   </ol>
   <div class="res3d-row">
     <div class="res3d">
       <img src="img/3d/v1-geral.png" alt="Resultado 3D v1 Visão Geral">
       <div class="bar">
-        <span>🧊 3D da v1: Visão geral de dia no solário 3,00 × 3,00 m com as 5 frangas</span>
+        <span>🧊 3D da v1: Visão geral de dia no cercado de PVC 1,40 × 1,50 m com as 5 frangas</span>
         <a href="quintal-completo.html?versao=v1" target="_blank">Abrir v1 em 3D →</a>
       </div>
     </div>
     <div class="res3d">
       <img src="img/3d/v1-noite.png" alt="Resultado 3D v1 Fechada à Noite">
       <div class="bar">
-        <span>🌙 3D da v1: Aves no poleiro à noite com grade fechada no ferrolho</span>
+        <span>🌙 3D da v1: Aves no poleiro à noite com a grade do Canil 1 fechada no ferrolho</span>
         <a href="quintal-completo.html?versao=v1" target="_blank">Abrir v1 em 3D →</a>
       </div>
     </div>
@@ -635,16 +669,16 @@
 
 <!-- ROTINA -->
 <section id="rotina">
-  <h2><span class="badge blue">Seção 7 · Rotina</span> Manutenção diária, semanal e mensal da v1</h2>
+  <h2><span class="badge blue">Rotina</span> Manutenção diária, semanal e mensal da v1</h2>
   <div class="table-wrap">
     <table>
       <thead>
         <tr><th>Quando</th><th>O quê</th><th>Tempo</th></tr>
       </thead>
       <tbody>
-        <tr><td><b>Todo dia</b></td><td>Abrir a grade de manhã, fechar à noite, olhar o balde e, depois de ~18–20 semanas, pegar os ovos</td><td>2 min</td></tr>
-        <tr><td><b>2× por semana</b></td><td>Peneirar o tabuleiro e raspar o patamar (o cocô vai para a compostagem da horta)</td><td>5 min</td></tr>
-        <tr><td><b>1× por semana</b></td><td>Revirar a maravalha e as folhas e completar o balde de água</td><td>10 min</td></tr>
+        <tr><td><b>Todo dia</b></td><td>Abrir a grade de manhã, fechar à noite no ferrolho, olhar o balde e, depois de ~18–20 semanas, pegar os ovos</td><td>2 min</td></tr>
+        <tr><td><b>2× por semana</b></td><td>Peneirar a areia do tabuleiro e raspar a calçada (o cocô vai para a compostagem da horta)</td><td>5 min</td></tr>
+        <tr><td><b>1× por semana</b></td><td>Revirar a maravalha e as folhas, completar o balde de água e conferir amarrações e pedras da saia</td><td>10 min</td></tr>
         <tr><td><b>A cada ~3 semanas</b></td><td>Encher o comedouro</td><td>5 min</td></tr>
         <tr><td><b>1× por mês</b></td><td>Conferir pixilinga à noite (seção abaixo)</td><td>5 min</td></tr>
         <tr><td><b>A cada 2–3 meses</b></td><td>Trocar toda a cama, que vai para a horta</td><td>20 min</td></tr>
@@ -656,14 +690,14 @@
 
 <!-- PIXILINGA -->
 <section id="pixilinga">
-  <h2><span class="badge warn">Seção 4 · Pixilinga</span> Prevenção e controle de ácaros e piolhos de galinha (vale para v1 e v2)</h2>
+  <h2><span class="badge warn">Pixilinga</span> Prevenção e controle de ácaros e piolhos de galinha (vale para v1 e v2)</h2>
   <p style="font-size:13px;color:var(--mut);margin-top:4px">O ácaro vermelho passa o dia escondido em <b>fresta de madeira, emenda de ninho e trinca de parede</b>, e sobe nas aves à noite. Por isso:</p>
   <ul style="font-size:13.5px;line-height:1.65;padding-left:20px">
-    <li><b>Sem esconderijo:</b> caiar (cal hidratada com água) as paredes internas do Canil 1 e a viga velha antes de as aves entrarem (também tira o limo verde), e tirar a tralha e as tábuas velhas soltas de perto dos canis.</li>
-    <li><b>Poleiro removível:</b> ele fica <b>solto, apoiado em 2 suportes</b> parafusados na parede, sem parafuso no próprio poleiro — assim sai inteiro para escaldar e tomar sol.</li>
-    <li><b>Ninho de balde:</b> balde de 20 L deitado, de plástico, sem emenda, com uma borda na boca. Lava com mangueira. A v2 passa a usar 3 baldes no lugar das caixas de tábua.</li>
-    <li><b>Banho de terra:</b> canto do solário com areia e cinza de lenha. É o que elas fazem por conta própria contra parasita.</li>
-    <li><b>Pardal fora:</b> comedouro dentro do canil e tela no solário inteiro. Pássaro de fora traz ácaro.</li>
+    <li><b>Sem esconderijo:</b> caiar (cal hidratada com água, 2 demãos) as paredes internas do Canil 1 e a viga velha antes de as aves entrarem (também tira o limo verde), e tirar as tábuas velhas soltas e a lona de perto do Canil 1.</li>
+    <li><b>Poleiro removível:</b> caibro <code>5 × 5 × 1,30 m</code> <b>solto sobre os 2 suportes de <code>45 cm</code></b>, sem parafuso no próprio poleiro — assim sai inteiro para escaldar e tomar sol.</li>
+    <li><b>Ninho de balde:</b> balde de 20 L deitado (entra com ~16 semanas), de plástico, sem emenda, com borda na boca. Lava com mangueira.</li>
+    <li><b>Banho de terra:</b> canto do cercado com areia e cinza de lenha. É o que elas fazem por conta própria contra parasita.</li>
+    <li><b>Pardal fora:</b> comedouro dentro do canil e tela no cercado inteiro. Pássaro de fora traz ácaro.</li>
     <li><b>Ave nova:</b> comprar de fornecedor que vacina; antes de entrar no bando, olhar embaixo das asas e em volta da cloaca; manter 2–3 semanas separada.</li>
     <li><b>Conferência 1× por mês, à noite:</b> passar papel branco ou lenço embaixo do poleiro e nas emendas. Pontinhos vermelhos ou cinza que se mexem são ácaro.</li>
   </ul>
@@ -674,45 +708,39 @@
 
 <!-- PASSAGEM PARA A V2 -->
 <section id="passagem-v2">
-  <h2><span class="badge">Seção 8 · Evolução</span> Passagem da v1 para a v2 (nada de fora é desmontado)</h2>
-  <p style="font-size:13px;color:var(--mut);margin-top:4px">Como a casca externa da v1 já está nas coordenadas finais da <a href="guia-montagem.html">v2</a>, nenhuma peça de fora é desmontada — as aves ficam no galinheiro o tempo todo:</p>
+  <h2><span class="badge">Evolução</span> Passagem da v1 para a v2</h2>
+  <p style="font-size:13px;color:var(--mut);margin-top:4px">A <a href="guia-montagem.html">v2</a> é construída em volta do cercado de PVC, com as aves dentro: mureta, estacas, tela, porta e, por último, o telhado novo:</p>
   <p style="font-size:13px;margin:8px 0">
     <a href="quintal-completo.html?versao=sobreposto" target="_blank"><img src="img/3d/v1-sobre-v2.png" alt="v1 sobre v2 em 3D: verde = fica, laranja = sai" style="width:100%;max-width:640px;border-radius:10px;display:block"></a>
-    <b>🔀 v1 sobre v2 em 3D:</b> <b>verde = fica, laranja = sai</b>. A parte de fora já coincide peça por peça com a v2. <a href="quintal-completo.html?versao=sobreposto" target="_blank">Abrir v1 sobre v2 →</a>
+    <b>🔀 v1 sobre v2 em 3D:</b> <b>verde = fica, laranja = sai</b>. <a href="quintal-completo.html?versao=sobreposto" target="_blank">Abrir v1 sobre v2 →</a>
   </p>
 
   <ol class="steps">
-    <li><b>Mureta:</b> baldrame <code>10 × 15</code> + 1 fiada de tijolo (<code>20 cm</code>), feitos <b>por baixo do sarrafo de base</b>, entre as 5 estacas que já estão socadas. Antes, tirar a faixa de rodapé + saia de cada trecho, um trecho por vez, e trocar a soleira da porta pela mureta. Mais o dreno (cano PVC <code>40 mm</code> com tampão).</li>
-    <li><b>Telhado novo:</b> a telha velha sai, junto com as 5 tiras <code>1/2"</code> dos vãos do Canil 1, e as aves ficam presas no Canil 1 nesse dia. Quando o telhado novo estiver em cima, tirar a rampa de tela e fechar os triângulos laterais sob o telhado e a faixa vertical em <code>z 1,75</code> com a tela da rampa.</li>
-    <li><b>Interior do Canil 2:</b> abrir a grade para as aves, instalar os 3 ninhos de balde (o balde da v1 é um deles) e o 2º poleiro (no Canil 1, a <code>65 cm</code> do fundo).</li>
+    <li><b>Construir a v2 por fora:</b> levante a mureta, finque as estacas da v2, feche a tela externa, instale a porta e, por último, coloque o telhado novo — tudo em volta do cercado de PVC, com as aves dentro.</li>
+    <li><b>Quando o solário da v2 fechar:</b> desmonte o cercado de PVC (como não tem cola, basta soltar arames e abraçadeiras); tire <code>S1</code>, <code>S2</code> e <code>S3</code> e tape os furos de bucha com massa.</li>
+    <li><b>Reaproveitar as telas e abrir o Canil 2:</b> a tela hexagonal do cercado vira retalho para os triângulos laterais e emendas da v2; as 5 tiras <code>1/2"</code> saem junto com a telha velha e vão para os vãos de ventilação. Instale os 3 ninhos de balde (o da v1 é um deles) e o 2º poleiro.</li>
   </ol>
 
   <div class="grid3">
     <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px">
-      <h3 style="margin-top:0;color:#166534">✅ Fica no lugar</h3>
+      <h3 style="margin-top:0;color:#166534">✅ Fica na v2</h3>
       <ul style="font-size:13px;margin:0;padding-left:18px;line-height:1.55">
-        <li>as <b>5 estacas</b> (3 grossas + 2 finas);</li>
-        <li>os <b>sarrafos</b> de topo (<code>1,70 m</code>) e de base (<code>0,20 m</code>);</li>
-        <li>a <b>tela hexagonal</b> das laterais, frente, faixa do muro e teto plano (<code>1,70 m</code>);</li>
-        <li>a <b>porta <code>0,80 × 1,50 m</code></b> com dobradiças e ferrolho;</li>
-        <li>os <b>fios de arame nº 14</b> do teto;</li>
-        <li>a <b>tela soldada <code>1/2"</code></b> nas grades do Canil 1 e do Canil 2;</li>
-        <li>todo o <b>interior do Canil 1</b> (poleiro, tabuleiro, comedouro, ninho) e o <b>balde de bicos</b>.</li>
+        <li><b>tela soldada <code>1/2"</code></b> na grade do Canil 1;</li>
+        <li>todo o <b>interior do Canil 1</b>: poleiro de caibro, suportes de <code>45 cm</code>, moldura do tabuleiro, comedouro de 20 L, balde de bicos 10 L e ninho de balde 20 L.</li>
       </ul>
     </div>
     <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px">
-      <h3 style="margin-top:0;color:#1e40af">♻️ Sai (e para onde vai)</h3>
+      <h3 style="margin-top:0;color:#1e40af">♻️ Vira material da v2</h3>
       <ul style="font-size:13px;margin:0;padding-left:18px;line-height:1.55">
-        <li><b>rampa de tela hexagonal</b> (<code>~3 m</code>): sai quando o telhado novo cobrir até <code>z 1,75</code> e <b>fecha os triângulos laterais sob o telhado + a faixa vertical em <code>z 1,75</code></b>;</li>
-        <li><b>5 tiras de tela <code>1/2"</code></b> dos vãos do Canil 1: saem com a telha velha e <b>vão para os vãos de ventilação da v2</b>.</li>
+        <li><b>tela hexagonal <code>1"</code></b> (<code>6 m</code>) do cercado: vira retalho para os <b>triângulos e emendas</b> da v2;</li>
+        <li><b>5 tiras de tela <code>1/2"</code></b> dos vãos do Canil 1: saem com a telha velha e vão para os <b>vãos de ventilação</b> da v2.</li>
       </ul>
     </div>
     <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px">
       <h3 style="margin-top:0;color:#92400e">🗑️ Perde-se</h3>
       <ul style="font-size:13px;margin:0;padding-left:18px;line-height:1.55">
-        <li>o <b>rodapé + saia</b> (<code>~5,2 m × 0,5 m</code> de tela hexagonal);</li>
-        <li>a <b>soleira</b> da porta (<code>0,80 × 0,20 m</code>);</li>
-        <li>os <b>furos de bucha</b> (que se tapam com massa).</li>
+        <li>os <b>canos PVC <code>25 mm</code></b> (2 barras + 3 joelhos) e os <b>3 sarrafos <code>S1–S3</code></b> (<code>~R$ 80–180</code> ao todo);</li>
+        <li>os furos de bucha de <code>S1–S3</code> e das abraçadeiras tipo D (que se tapam com massa).</li>
       </ul>
     </div>
   </div>
@@ -720,12 +748,13 @@
 
 <!-- RISCOS -->
 <section id="riscos">
-  <h2><span class="badge red">Seção 9 · Riscos</span> Pontos de atenção e medidas conferidas</h2>
+  <h2><span class="badge red">Riscos</span> Pontos de atenção da v1 de PVC</h2>
   <ul style="font-size:13.5px;line-height:1.65;padding-left:20px;margin-bottom:0">
-    <li><b>Mais obra antes das aves:</b> são 5 estacas em vez de 2, e o solário já tem <code>~9 m²</code> (<code>3,00 × 3,00 m</code>). Se as frangas chegarem antes, deixe-as no Canil 1 com a grade fechada e o bebedouro dentro até o solário fechar.</li>
-    <li><b>Saia e estacas:</b> sem mureta, a saia é a única defesa contra quem cava — <b>conferir as pedras toda semana</b>. As estacas ficam com a madeira na terra até a mureta chegar, o que já é assim na v2 (estacas socadas na terra).</li>
-    <li><b>Enchente:</b> a terra do solário e o patamar alagam primeiro; o piso do canil fica a <code>~12–13 cm</code> da terra. Em chuva forte: <b>deixar as aves no canil, subir o comedouro e, depois, trocar a cama molhada</b>. <i>Ainda falta saber com que frequência alaga.</i></li>
-    <li><b>Medidas do local:</b> tiradas em 19/11/2026 (<code>fotos-19-11/LEIA.md</code>). O fundo da telha velha (altura atrás) não foi medido, mas não muda nada na v1.</li>
+    <li><b>PVC fraco:</b> aguenta tela e galinha, mas não cachorro empurrando. Conferir as amarrações toda semana (e nunca pendurar o balde de 10 L de água na barra de PVC).</li>
+    <li><b>Noite:</b> fechar a grade do Canil 1 toda noite no ferrolho é obrigatório. O cercado de PVC não protege de timbu à noite.</li>
+    <li><b>Espaço:</b> <code>~2 m²</code> fora dá para frangas por <b>1 a 3 meses</b>. Adultas por mais tempo pedem a v2.</li>
+    <li><b>Enchente:</b> a terra do cercado alaga primeiro; as aves ficam no Canil 1 (piso <code>~13 cm</code> acima da terra). Em chuva forte, subir o comedouro e depois trocar a cama molhada.</li>
+    <li><b>Saia:</b> conferir as pedras da saia de <code>30 cm</code> toda semana.</li>
   </ul>
 </section>
 

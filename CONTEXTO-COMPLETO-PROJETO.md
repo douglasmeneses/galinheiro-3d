@@ -1,6 +1,6 @@
 # v2 — Contexto Completo Consolidado — Projeto Galinheiro & Quintal (João Pessoa/PB)
 
-> **Versões:** **v1** = só o Canil 1 com 5 frangas, mínimo de obra (`V1-CANIL-1.md`). **v2** = este documento, o projeto completo. A v1 é feita para virar v2 sem desfazer nada.
+> **Versões:** **v1** = Canil 1 + cercado provisório de PVC 1,40 × 1,50 m com 5 frangas, para 1–3 meses (`V1-CANIL-1.md`). **v2** = este documento, o projeto completo (construída em volta da v1; depois o cercado de PVC sai).
 
 > **Documento mestre (consolidado em 18/11/2026; revisado em 19/11: mureta de volta, telhado a 2,10 m, testeira, tela soldada nos canis):** reúne todas as decisões técnicas, medidas reais tiradas no local, aprendizados de pesquisa no YouTube, resultados da auditoria técnica cega e mapa dos arquivos deste diretório, para que qualquer agente (Antigravity, Claude, etc.) ou o usuário entenda o projeto inteiro sem precisar ler múltiplos arquivos.
 
@@ -130,5 +130,5 @@ Publicado em `https://douglasmeneses.github.io/galinheiro-3d/` (repo público).
   - `CONTEXTO-COMPLETO-PROJETO.md`: **este arquivo**.
   - `PROJETO-HORTAS.md`: as duas hortas.
   - `fotos-18-11/`: 14 fotos originais do quintal e `LEIA.md`.
-- **`V1-CANIL-1.md`:** v1, só o Canil 1 com 5 frangas, para começar já.
+- **`V1-CANIL-1.md`:** v1, Canil 1 + cercado provisório de PVC 1,40 × 1,50 m com 5 frangas (1–3 meses), para começar já.
 - **Legado (`legado/`):** versões anteriores à revisão final (`v1*`, `galinheiro-12*`, `PROJETO-12-GALINHAS.md`, `PROJETO-V1-E-V2.md`, `CONTEXTO-E-DECISOES.md`, `GUIA-CRIACAO-E-GALINHEIRO.md`, `PESQUISA-YOUTUBE-POEDEIRAS-BAIXO-CUSTO.md`, `shot.mjs`). Os números de lá **não valem** mais.

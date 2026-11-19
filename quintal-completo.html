@@ -776,11 +776,14 @@ function criarTelhaVelha(pai, opacidade = 1, cor = 0xc9cfd5) {
   return { tv, dz, dy, yEm: z => Y_TV_FUNDO - dy * (z / dz) };
 }
 
-// Versão v1 ("casca da v2"): parte final da v2 já no lugar + telha velha + peças temporárias (5 frangas no solário 3 × 3 m)
+// Versão v1 (PVC): cercado provisório x 0–1,40, z 1–2,50, h 1,50 m na frente + Canil 1 (5 frangas)
 let telhaVelhaV1 = null;
 {
-  const fica = (o, estrutural = false) => { o.userData.fica = true; o.userData.estrutural = estrutural; return o; };
+  const XV1 = 1.40, ZV1 = 2.50, HV1 = 1.50, Y_S1 = 1.28;
+  const fica = o => { o.userData.fica = true; o.userData.estrutural = false; return o; };
   const temp = (o, nome, estrutural = false) => { o.name = nome; o.userData.temporaria = true; o.userData.estrutural = estrutural; return o; };
+  const matPvc = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.35 });
+
   // Telha velha + 4 tiras 1/2" nos vãos do Canil 1 (temporárias; saem com o telhado novo)
   const { tv, yEm } = criarTelhaVelha(E.v1);
   telhaVelhaV1 = tv;
@@ -790,42 +793,44 @@ let telhaVelhaV1 = null;
   temp(telaTrapezio('fina', C1[1], 0.02, 1.00, Y_TETO_CANIL, Y_TV_FUNDO, yFrente, E.v1), 'v1-tira-dir');
   temp(telaTrapezio('fina', 0.01, 0.02, 1.00, Y_TETO_CANIL, Y_TV_FUNDO, yFrente, E.v1), 'v1-tira-esq');
 
-  // Peças FINAIS da v2 já no lugar (ficam na v2 sem desmontar)
-  [[0.06, ZS, 0.04], [XS, ZS, 0.04], [XS, PORTA[0] - 0.04, 0.04], [1.50, ZS, 0.03], [XS, 2.05, 0.03]].forEach(([x, z, r]) => {
-    fica(barra(r, [x, 0, z], [x, TOPO, z], M.eucalipto, E.v1), true);
-  });
-  // Sarrafos de topo e de base da v2 (base a 0,20 m mesmo sem mureta) + sarrafo na parede do canil (patamar)
-  fica(caixa(0, W, TOPO - S, TOPO, ZS - 0.06, ZS - 0.035, M.madeira, E.v1), true);
-  fica(caixa(XS - 0.06, XS - 0.035, TOPO - S, TOPO, Z_CANIL, ZS, M.madeira, E.v1), true);
-  fica(caixa(0.06 - E_SAR / 2, 0.06 + E_SAR / 2, TOPO - S, TOPO, Z_BEIRAL, ZS, M.madeira, E.v1), true);
-  fica(caixa(0, W, MURETA, MURETA + S, ZS - 0.06, ZS - 0.035, M.madeira, E.v1), true);
-  fica(caixa(XS - 0.06, XS - 0.035, MURETA, MURETA + S, Z_CANIL, PORTA[0], M.madeira, E.v1), true);
-  fica(caixa(XS - 0.06, XS - 0.035, MURETA, MURETA + S, PORTA[1], ZS, M.madeira, E.v1), true);
-  fica(caixa(XS - 0.06, XS - 0.035, Y_PATAMAR, TOPO, Z_CANIL, Z_CANIL + 0.025, M.madeira, E.v1), true);
-
-  // Tela hexagonal 0,20–1,70 m (frente, direita, faixa sobre muro) + teto plano a 1,70 m (z 1,75–4) com 5 fios + fio transversal
-  fica(tela('hex', [0, MURETA, Z_FRENTE - 0.015], [W, TOPO, Z_FRENTE - 0.015], E.v1));
-  fica(tela('hex', [XT, MURETA, Z_CANIL], [XT, TOPO, PORTA[0]], E.v1));
-  fica(tela('hex', [XT, MURETA, PORTA[1]], [XT, TOPO, Z_FRENTE - 0.015], E.v1));
-  fica(tela('hex', [0.005, 1.55, Z_BEIRAL], [0.005, TOPO, Z_FRENTE], E.v1));
-  fica(tela('hex', [0, TOPO + 0.003, Z_BEIRAL], [W, TOPO + 0.003, Z_FRENTE], E.v1));
-  fica(barra(0.006, [0.06, TOPO, Z_BEIRAL], [XS, TOPO, Z_BEIRAL], M.ferro, E.v1, 8), true);
-  for (const x of [0.50, 1.00, 1.50, 2.00, 2.50]) fica(barra(0.005, [x, TOPO, Z_BEIRAL], [x, TOPO, ZS], M.ferro, E.v1, 6), true);
-
-  // Porta da v2 (0,80 × 1,50 m na lateral direita, z 3,05–3,85, y 0,20–1,70)
+  // Sarrafos S1 (parede Canil 1, abaixo da telha), S2 (inclinado no muro) e S3 (patamar em x = 1,40)
+  temp(caixa(0, XV1, Y_S1 - 0.05, Y_S1, Z_CANIL, Z_CANIL + 0.025, M.madeira, E.v1), 'v1-sarrafo-s1', true);
   {
-    const w = PORTA[1] - PORTA[0], h = TOPO - MURETA;
-    const p = new THREE.Group(); p.position.set(XT, MURETA, PORTA[0]); p.rotation.y = 0.45;
-    fica(caixa(-0.015, 0.015, 0, S, 0, w, M.madeira, p), true);
-    fica(caixa(-0.015, 0.015, h - S, h, 0, w, M.madeira, p), true);
-    fica(caixa(-0.015, 0.015, S, h - S, 0, S, M.madeira, p), true);
-    fica(caixa(-0.015, 0.015, S, h - S, w - S, w, M.madeira, p), true);
-    fica(barra(0.016, [0, 0.03, 0.03], [0, h - 0.03, w - 0.03], M.madeira, p, 6), true);
-    fica(tela('hex', [0, S, S], [0, h - S, w - S], p));
-    E.v1.add(p);
+    const dzS2 = ZV1 - Z_CANIL, dyS2 = HV1 - Y_S1, compS2 = Math.hypot(dzS2, dyS2);
+    const s2 = temp(caixa(0, 0.025, -0.025, 0.025, -compS2 / 2, compS2 / 2, M.madeira, E.v1), 'v1-sarrafo-s2', true);
+    s2.position.set(0.0125, (Y_S1 + HV1) / 2 - 0.025, (Z_CANIL + ZV1) / 2);
+    s2.rotation.x = -Math.atan2(dyS2, dzS2);
   }
+  temp(caixa(XV1 - 0.025, XV1, Y_PATAMAR, Y_PATAMAR + 0.025, Z_CANIL, Z_PATAMAR, M.madeira, E.v1), 'v1-sarrafo-s3', true);
 
-  // Peças TEMPORÁRIAS da nova v1 (saem quando entram mureta e telhado novo)
+  // Canos PVC brancos Ø 25 mm: 2 pés na frente (0,05; 2,50) e (1,40; 2,50), pé da divisória (1,40; 1,00), barras topo e 3 joelhos
+  const R_PVC = 0.014;
+  temp(barra(R_PVC, [0.05, 0, ZV1], [0.05, HV1, ZV1], matPvc, E.v1, 12), 'v1-pvc-pe-esq', true);
+  temp(barra(R_PVC, [XV1, 0, ZV1], [XV1, HV1, ZV1], matPvc, E.v1, 12), 'v1-pvc-pe-dir', true);
+  temp(barra(R_PVC, [XV1, Y_PATAMAR, Z_CANIL + 0.015], [XV1, HV1, Z_CANIL + 0.015], matPvc, E.v1, 12), 'v1-pvc-pe-div', true);
+  temp(barra(R_PVC, [0.05, HV1, ZV1], [XV1, HV1, ZV1], matPvc, E.v1, 12), 'v1-pvc-barra-frente', true);
+  temp(barra(R_PVC, [XV1, HV1, Z_CANIL + 0.015], [XV1, HV1, ZV1], matPvc, E.v1, 12), 'v1-pvc-barra-lado', true);
+  [[0.05, ZV1, 'esq'], [XV1, ZV1, 'dir'], [XV1, Z_CANIL + 0.015, 'div']].forEach(([x, z, k]) => {
+    const j = new THREE.Mesh(new THREE.SphereGeometry(0.022, 10, 10), matPvc);
+    j.position.set(x, HV1, z); j.castShadow = true; E.v1.add(temp(j, `v1-pvc-joelho-${k}`, true));
+  });
+
+  // Telas hexagonais do cercado: lado direito (patamar + terra), teto inclinado S1->frente, frente amarrada c/ 5 ganchos, saia 30 cm
+  temp(tela('hex', [XV1, Y_PATAMAR, Z_CANIL], [XV1, HV1, Z_PATAMAR], E.v1), 'v1-tela-dir-patamar');
+  temp(tela('hex', [XV1, 0, Z_PATAMAR], [XV1, HV1, ZV1], E.v1), 'v1-tela-dir-terra');
+  {
+    const dzT = ZV1 - Z_CANIL, dyT = HV1 - Y_S1, compT = Math.hypot(dzT, dyT);
+    const txT = T_HEX.clone(); txT.needsUpdate = true; txT.repeat.set(Math.max(1, XV1 * 4), Math.max(1, compT * 4));
+    const teto = new THREE.Mesh(new THREE.PlaneGeometry(XV1, compT), new THREE.MeshStandardMaterial({ map: txT, transparent: true, side: THREE.DoubleSide, alphaTest: 0.25 }));
+    teto.rotation.x = -Math.PI / 2 - Math.atan2(dyT, dzT);
+    teto.position.set(XV1 / 2, (Y_S1 + HV1) / 2, (Z_CANIL + ZV1) / 2);
+    E.v1.add(temp(teto, 'v1-tela-teto'));
+  }
+  temp(tela('hex', [0, 0, ZV1], [XV1, HV1, ZV1], E.v1), 'v1-tela-frente');
+  for (const x of [0.16, 0.44, 0.72, 1.00, 1.28]) {
+    const g = new THREE.Mesh(new THREE.TorusGeometry(0.024, 0.005, 6, 12), M.ferro);
+    g.rotation.y = Math.PI / 2; g.position.set(x, HV1, ZV1); E.v1.add(temp(g, 'v1-gancho-frente'));
+  }
   function telaSaia(x0, x1, z0, z1, nome) {
     const w = x1 - x0, d = z1 - z0, tx = T_HEX.clone(); tx.needsUpdate = true;
     tx.repeat.set(Math.max(1, w * 4), Math.max(1, d * 4));
@@ -833,33 +838,10 @@ let telhaVelhaV1 = null;
     m.rotation.x = -Math.PI / 2; m.position.set((x0 + x1) / 2, 0.02, (z0 + z1) / 2);
     E.v1.add(m); return temp(m, nome);
   }
-  // Rodapé + saia de 50 cm na terra (frente e direita) + só rodapé no patamar
-  temp(tela('hex', [0, 0, Z_FRENTE - 0.015], [W, MURETA, Z_FRENTE - 0.015], E.v1), 'v1-rodape-frente');
-  telaSaia(0, W + 0.285, Z_FRENTE - 0.015, Z_FRENTE + 0.285, 'v1-saia-frente');
-  temp(tela('hex', [XT, Y_PATAMAR, Z_CANIL], [XT, MURETA, Z_PATAMAR], E.v1), 'v1-rodape-patamar');
-  temp(caixa(W - 0.08, W - 0.055, Y_PATAMAR, Y_PATAMAR + 0.025, Z_CANIL, Z_PATAMAR, M.madeira, E.v1), 'v1-sarrafo-rodape-patamar', true);
-  temp(tela('hex', [XT, 0, Z_PATAMAR], [XT, MURETA, PORTA[0]], E.v1), 'v1-rodape-dir-1');
-  telaSaia(XT, XT + 0.30, Z_PATAMAR, PORTA[0], 'v1-saia-dir-1');
-  temp(tela('hex', [XT, 0, PORTA[1]], [XT, MURETA, Z_FRENTE - 0.015], E.v1), 'v1-rodape-dir-2');
-  telaSaia(XT, XT + 0.30, PORTA[1], Z_FRENTE - 0.015, 'v1-saia-dir-2');
-  // Soleira de tábua 0,80 × 0,20 m embaixo da porta (sai quando entra a mureta)
-  temp(caixa(W - 0.07, W - 0.02, 0, MURETA, PORTA[0], PORTA[1], M.madeira, E.v1), 'v1-soleira-porta', true);
-  // Rampa de tela do sarrafo no topo da parede dos canis (z 1,00, ~1,15 m do patamar, sem tocar na telha) até (z 1,75; y 1,70)
-  {
-    const Y_RAMPA = Y_TETO_CANIL + 0.05;
-    temp(caixa(0, W, Y_TETO_CANIL, Y_RAMPA, Z_CANIL, Z_CANIL + 0.025, M.madeira, E.v1), 'v1-sarrafo-rampa', true);
-    const dzR = Z_BEIRAL - Z_CANIL, dyR = TOPO - Y_RAMPA, compR = Math.hypot(dzR, dyR);
-    const txR = T_HEX.clone(); txR.needsUpdate = true; txR.repeat.set(W * 4, Math.max(1, compR * 4));
-    const rampa = new THREE.Mesh(
-      new THREE.PlaneGeometry(W, compR),
-      new THREE.MeshStandardMaterial({ map: txR, transparent: true, side: THREE.DoubleSide, alphaTest: 0.25 })
-    );
-    rampa.rotation.x = -Math.PI / 2 - Math.atan2(dyR, dzR);
-    rampa.position.set(W / 2, (Y_RAMPA + TOPO) / 2, (Z_CANIL + Z_BEIRAL) / 2);
-    E.v1.add(temp(rampa, 'v1-rampa-tela'));
-  }
+  telaSaia(0, XV1 + 0.30, ZV1, ZV1 + 0.30, 'v1-saia-frente');
+  telaSaia(XV1, XV1 + 0.30, Z_PATAMAR, ZV1, 'v1-saia-dir');
 
-  // Interior do Canil 1 + manejo (tudo fica na v2)
+  // Interior do Canil 1 + balde de bicos no S1 (sobre o patamar) + banho de terra (fica na v2)
   const gInt = new THREE.Group();
   poleiroComSuportes(0.30, gInt);
   caixa(C1[0] + 0.01, C1[1], Y_PISO, Y_PISO + 0.01, 0.01, 0.55, M.madeira, gInt);
@@ -877,31 +859,31 @@ let telhaVelhaV1 = null;
     barra(0.125, [cx, yBase + 0.10, cz], [cx, yBase + 0.50, cz], new THREE.MeshStandardMaterial({ color: 0xeef3f5, transparent: true, opacity: 0.85, roughness: 0.12 }), gInt, 24);
     barra(0.004, [cx, yBase + 0.50, cz], [cx, Y_TETO_CANIL, cz], M.ferro, gInt, 6);
   }
-  // Balde de bicos pendurado do sarrafo da direita (x ≈ 2,94), sobre o patamar
+  // Balde de bicos pendurado no S1 (x ≈ 1,20), sobre o patamar
   {
-    const bx = 2.76, bz = 1.50, yFundo = Y_PATAMAR + 0.35;
+    const bx = 1.20, bz = 1.22, yFundo = Y_PATAMAR + 0.35;
     barra(0.125, [bx, yFundo + 0.28, bz], [bx, yFundo, bz], new THREE.MeshStandardMaterial({ color: 0x60a5fa, transparent: true, opacity: 0.88, roughness: 0.2 }), gInt, 24);
     barra(0.13, [bx, yFundo + 0.28, bz], [bx, yFundo + 0.295, bz], new THREE.MeshStandardMaterial({ color: 0x1d4ed8, roughness: 0.4 }), gInt, 24);
-    barra(0.004, [bx, yFundo + 0.295, bz], [XS - 0.045, TOPO - 0.02, bz], M.ferro, gInt, 6);
+    barra(0.004, [bx, yFundo + 0.295, bz], [bx, Y_S1 - 0.02, Z_CANIL + 0.02], M.ferro, gInt, 6);
     const matBico = new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.4 });
     for (const [dx, dz] of [[-0.05, -0.03], [0.05, -0.03], [0, 0.05]]) {
       barra(0.01, [bx + dx, yFundo, bz + dz], [bx + dx, yFundo - 0.025, bz + dz], matBico, gInt, 8);
       barra(0.004, [bx + dx, yFundo - 0.025, bz + dz], [bx + dx, yFundo - 0.045, bz + dz], M.ferro, gInt, 6);
     }
   }
-  // Banho de terra (0,50 × 0,50 m) na terra do solário
-  caixa(0.20, 0.70, 0, 0.08, 2.50, 2.53, M.madeira, gInt);
-  caixa(0.20, 0.70, 0, 0.08, 2.97, 3.00, M.madeira, gInt);
-  caixa(0.20, 0.23, 0, 0.08, 2.53, 2.97, M.madeira, gInt);
-  caixa(0.67, 0.70, 0, 0.08, 2.53, 2.97, M.madeira, gInt);
-  caixa(0.23, 0.67, 0.008, 0.06, 2.53, 2.97, M.terraRica, gInt);
-  gInt.traverse(o => { if (o.isMesh) fica(o, false); });
+  // Banho de terra (0,45 × 0,40 m) na terra do cercado (x 0,72–1,17, z 2,05–2,45)
+  caixa(0.72, 1.17, 0, 0.08, 2.05, 2.08, M.madeira, gInt);
+  caixa(0.72, 1.17, 0, 0.08, 2.42, 2.45, M.madeira, gInt);
+  caixa(0.72, 0.75, 0, 0.08, 2.08, 2.42, M.madeira, gInt);
+  caixa(1.14, 1.17, 0, 0.08, 2.08, 2.42, M.madeira, gInt);
+  caixa(0.75, 1.14, 0.008, 0.06, 2.08, 2.42, M.terraRica, gInt);
+  gInt.traverse(o => { if (o.isMesh) fica(o); });
   E.v1.add(gInt);
 }
 const avesV1 = Array.from({ length: 5 }, () => criarAve(E.v1));
 const DIA_V1 = [
-  [0.60, 0.78, Y_PISO + 0.06, 0.5], [2.42, 1.48, Y_PATAMAR, -1.8],
-  [1.35, 2.35, 0, 0.4], [2.35, 3.25, 0, -2.1], [0.65, 3.40, 0, 1.1],
+  [0.62, 0.78, Y_PISO + 0.06, 0.5], [0.85, 1.52, Y_PATAMAR, -1.6],
+  [1.10, 1.78, Y_PATAMAR, 1.1], [0.55, 2.22, 0, -2.0], [1.15, 2.26, 0, 0.7],
 ];
 const NOITE_V1 = Array.from({ length: 5 }, (_, i) => [C1[0] + 0.17 + i * 0.24, 0.30, Y_POLEIRO + 0.02, -Math.PI / 2]);
 E.v1.visible = false;
@@ -980,20 +962,13 @@ rotulo('Círculo de pedra', 8.2, 0.45, 6.7);
 rotulo('Casa', 7.5, 1.9, QZ - 0.4);
 const rotulosV1 = new THREE.Group();
 G.rotulos.add(rotulosV1);
-rotulo('Estacas da v2 (já no lugar)', 1.50, 1.35, 3.94, '', rotulosV1);
-rotulo('Rodapé + saia (sai quando entra a mureta)', 1.25, 0.14, 4.15, '', rotulosV1);
-rotulo('Soleira (sai com a mureta)', 2.96, 0.12, 3.45, '', rotulosV1);
-rotulo('Porta da v2 (fica)', 3.12, 1.48, 3.55, '', rotulosV1);
-rotulo('Teto a 1,70 m (fica)', 1.50, 1.82, 3.15, '', rotulosV1);
-rotulo('Rampa de tela (sai com o telhado novo)', 1.95, 1.56, 1.42, '', rotulosV1);
-rotulo('Tiras 1/2" nos vãos (saem com telha velha)', 0.45, 1.46, 0.88, '', rotulosV1);
-rotulo('Canil 2 fechado c/ tela 1/2" (fica)', 2.10, 0.92, 1.02, '', rotulosV1);
-rotulo('Bebedouro de bicos (fica)', 2.75, Y_PATAMAR + 0.62, 1.50, '', rotulosV1);
-rotulo('Banho de terra (fica)', 0.45, 0.18, 2.75, '', rotulosV1);
-rotulo('Ninho de balde (fica)', 0.15, Y_NINHO + 0.36, 0.82, '', rotulosV1);
-rotulo('Poleiro (fica)', 0.65, Y_POLEIRO + 0.28, 0.25, '', rotulosV1);
-rotulo('Tabuleiro de areia (fica)', 0.58, Y_PISO + 0.08, 0.35, '', rotulosV1);
-rotulo('Comedouro (fica)', 1.18, Y_PISO + 0.72, 0.83, '', rotulosV1);
+rotulo('Cano PVC 25 mm', 1.40, 1.15, 2.50, '', rotulosV1);
+rotulo('Teto inclinado de tela', 0.65, 1.46, 1.75, '', rotulosV1);
+rotulo('Frente amarrada = entrada', 0.68, 0.85, 2.52, '', rotulosV1);
+rotulo('Saia 30 cm', 0.68, 0.08, 2.74, '', rotulosV1);
+rotulo('Grade com tela 1/2"', 0.28, 0.72, 1.78, '', rotulosV1);
+rotulo('Tiras 1/2" nos vãos', 0.55, 1.36, 0.94, '', rotulosV1);
+rotulo('Balde de bicos', 1.20, Y_PATAMAR + 0.58, 1.24, '', rotulosV1);
 let etapaAtual = '4', versaoAtual = 'v2', vistaAtual = 'geral';
 function syncRotulosGrupo(grp, ativo) {
   const vis = ativo && document.getElementById('cRotulos').checked;
@@ -1024,14 +999,14 @@ const VISTAS = {
   galinheiroClose: [[4.5, 2.4, 4.9], [1.5, 1.0, 1.4]],
   encaixeTelhado: [[4.3, 2.25, 3.1], [1.75, 1.65, 1.15]],
   planta:     [[6.0, 21.0, 5.0], [6.0, 0, 5.0]],
-  v1:         [[5.45, 3.25, 6.45], [1.45, 0.78, 2.05]],
-  v1Solario:  [[5.10, 1.85, 6.20], [1.75, 0.72, 2.85]],
+  v1:         [[3.35, 2.55, 4.15], [0.85, 0.72, 1.35]],
+  v1Solario:  [[3.15, 1.55, 4.35], [0.85, 0.65, 2.00]],
   v1Interior: [[0.95, 1.38, 1.88], [0.60, 0.42, 0.48]],
   'medidas-frente': [[2.45, 1.25, 3.05], [0.72, 0.68, 0.85]],
   'medidas-muro':   [[2.65, 1.65, 4.35], [0.45, 0.65, 2.45]],
   'medidas-vaos':   [[1.85, 1.72, 1.55], [0.68, 1.24, 0.48]],
-  sobreposto:       [[5.55, 3.15, 6.55], [1.50, 0.85, 2.05]],
-  sobrepostoTopo:   [[1.50, 7.20, 2.35], [1.50, 0.40, 2.05]],
+  sobreposto:       [[4.55, 2.75, 5.15], [1.20, 0.80, 1.65]],
+  sobrepostoTopo:   [[1.30, 5.80, 2.05], [1.30, 0.40, 1.75]],
 };
 function vista(k) {
   vistaAtual = k;
@@ -1069,7 +1044,7 @@ function getV2TranspMat(orig) {
   return v2TranspMats.get(orig);
 }
 function restaurarSobreposto() {
-  [...V2_SOBRE_GRUPOS, E.v1].forEach(grp => grp.traverse(o => {
+  [...V2_SOBRE_GRUPOS, E.v1, grades[0]].forEach(grp => grp.traverse(o => {
     if (o.isMesh && origMats.has(o)) o.material = origMats.get(o);
   }));
   if (telhaVelhaV1) telhaVelhaV1.visible = true;
@@ -1079,6 +1054,8 @@ function restaurarSobreposto() {
 function aplicarSobreposto() {
   scene.updateMatrixWorld(true);
   const v1Est = [], v2Est = [];
+  if (!origMats.has(gradeExtras[0])) origMats.set(gradeExtras[0], gradeExtras[0].material);
+  gradeExtras[0].material = getV1SobreMat(origMats.get(gradeExtras[0]), 0x16a34a);
   E.v1.traverse(o => {
     if (!o.isMesh || o === telhaVelhaV1 || avesV1.some(a => a.children.includes(o))) return;
     if (!origMats.has(o)) origMats.set(o, o.material);
@@ -1110,7 +1087,7 @@ function aplicarSobreposto() {
   v2Bateu.forEach(m2 => m2.material = matV2Conflito);
   window.CONFLITOS_V1V2 = conflitos;
   const n = conflitos.length;
-  document.getElementById('sobLegenda').textContent = `Verde = fica na v2 · Laranja = sai na v2 · Translúcido = só v2 · Vermelho = peça da v2 que só entra depois de tirar uma temporária (${n})`;
+  document.getElementById('sobLegenda').textContent = `Verde = fica na v2 · Laranja = sai na v2 (telas viram retalho) · Translúcido = v2 · Vermelho = conflito (${n})`;
 }
 
 function setEtapa(et) {
@@ -1156,7 +1133,7 @@ function setVersao(v, moverCamera = true) {
   gradeExtras[0].visible = v === 'v1' || isSob;
   gradeExtras[0].material.opacity = v === 'v1' ? 0.48 : 1;
   gradeExtras[1].visible = isSob;
-  gradeExtras[2].visible = v === 'v1' || isSob;
+  gradeExtras[2].visible = isSob;
   rotuloGalinheiro.visible = false;
   syncRotulosExtras();
   aplicarEstado(document.getElementById('cNoite').checked);
