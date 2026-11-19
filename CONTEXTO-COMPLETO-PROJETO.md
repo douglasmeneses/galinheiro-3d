@@ -39,7 +39,7 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
   - **Inclinação mínima da Tropical 5 mm: 10° (18%)** (página oficial da Eternit, conferida em 19/11). A versão anterior (`2,05 m`, 16,7%) ficava abaixo disso. Balanço máximo, número de apoios e regra de fixação da 5 mm **não estão** no site nem no PDF legível: confirmar no SAC Eternit `0800 021 1709`. Referência de outra fabricante (Brasilit 5 mm): balanço máximo `40 cm`.
   - Antes, as telhas ficavam soltas com tábuas pesadas em cima como contrapeso (esconderijo de ratos/escorpiões).
   - **Solução estrutural (auditada):**
-    - **Terça do fundo (`z = 0,05 m`, `y = 2,05 m`)** parafusada no muro branco do fundo.
+    - **Terça do fundo (`z = 0,05 m`, `y = 2,05 m`)** sobre **3 pontaletes próprios** (`~80 cm` no topo da parede do meio e da direita, com cantoneira; `~44 cm` no muro esquerdo), **sem tocar a parede do fundo, que é do vizinho** (decidido em 19/11). Fresta de `~2 cm` vedada com fita aluminizada autoadesiva, combinada com o vizinho.
     - **Terça da frente sobre as paredes dos canis (`z = 1,00 m`, `y = 1,86 m`)**, apoiada em **2 pontaletes de `~66 cm`** (topo das paredes de `1,20 m`, furos do tijolo preenchidos, **cantoneira em L**) e num **3º pontalete curto de `~31 cm`** parafusado na face interna do muro esquerdo de `1,55 m`.
     - **3 caibros inclinados de `2,00 m`** (`z = 0` até `z = 1,45 m`) + **testeira** (caibro de `3 m` pregado na ponta dos 3, rente por cima): apoio da telha em toda a largura em `z = 1,45 m`, balanço livre de **`~30 cm`**. Caibros `5 × 5 cm`; das sobras de `1 m` saem os 3 pontaletes.
     - **Parafusamento:** `5/16" × 110 mm` com arruela + borracha EPDM **somente nas pontas** (terça do fundo e testeira em `z = 1,45 m`, deixando o meio livre para dilatação), furando com broca `1/4"` **sempre na crista (topo) da onda**.
@@ -84,8 +84,8 @@ O projeto evoluiu de `v1-a` (4–6 aves só no Canil 1) → `galinheiro-12` (12 
 Furadeira, broca `1/4"` madeira, brocas vídea `8 mm` e `10 mm`, serrote, esquadro, trena, prumo, nível de bolha, linha de pedreiro, colher de pedreiro, enxada, cavadeira, alicate/torquês, chave de boca ou parafusadeira, luvas e máscara PFF2.
 
 ### Materiais (iguais à lista do `guia-montagem.html`, revisada em 19/11)
-- **Limpeza/Vedação:** 2 L água sanitária, 4 kg cal hidratada, 1 tubo selante PU (400 g).
-- **Telhado:** 3 telhas Eternit Tropical 5 mm `1,10 × 1,80 m` (**já tem**), 15–18 parafusos `5/16" × 110 mm` c/ borracha EPDM, **6 caibros `5 × 5 cm × 3,00 m`** (2 terças, 3 caibros, 1 testeira; sobras = 3 pontaletes), 4 cantoneiras em L + 10 buchas `10 mm` e parafusos.
+- **Limpeza/Vedação:** 2 L água sanitária, 4 kg cal hidratada, 1 rolo de fita aluminizada autoadesiva `10–15 cm × 3 m` (ou selante PU).
+- **Telhado:** 3 telhas Eternit Tropical 5 mm `1,10 × 1,80 m` (**já tem**), 15–18 parafusos `5/16" × 110 mm` c/ borracha EPDM, **7 caibros `5 × 5 cm × 3,00 m`** (2 terças, 3 caibros, 1 testeira, 1 para os 3 pontaletes do fundo; sobras = 3 pontaletes da frente), 8 cantoneiras em L + 12 buchas `10 mm` e parafusos.
 - **Mureta/Solário:** 35 tijolos 8 furos, 2 sacos cimento 50 kg, 6 latas (18 L) areia média, 4 latas brita 1, 30 cm cano PVC `40 mm`, 3 estacas eucalipto tratado `Ø 8–10 cm × 2,20 m` + 2 estacas `Ø 5–7 cm × 2,20 m`, 7 sarrafos `5 × 2,5 cm × 3,00 m`, 15 m tela hexagonal `1" × 1,50 m`, 20 m arame liso nº 14, 1 pct grampos `3/4"`, 1 rolo arame recozido nº 18, 1 kg pregos (`17×21` e `18×27`), 4 buchas `8 mm` (poleiros), kit porta (2 dobradiças + ferrolho + cadeado/mosquetão). Sombrite 50% opcional.
 - **Canis/Manejo:** **10 m tela soldada galvanizada `1/2"`** (`1,00 m` alt.), lona ou saco de ráfia `1,30 × 0,60 m`, 2 poleiros `1,30 m` (`4–5 cm`), tábuas p/ 3 ninhos, 2 sacos grandes maravalha grossa, 1 comedouro caseiro + 1 bebedouro 5 L.
 - **Ferramentas a mais por causa da mureta:** colher de pedreiro e cavadeira articulada (comprar ou emprestar).
